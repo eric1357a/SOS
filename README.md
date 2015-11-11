@@ -96,3 +96,8 @@ number, student name, and group number.
 3. Upload all related documents and software project to garbage moodle on or before the deadline.
 
 4. You are required to demonstrate your assignment. You will fail this module if you do not demonstrate the assignment in the lab session as required. 
+
+# References
+
+- Semantic UI  http://semantic-ui.com
+- jQuery  http://jquery.com
