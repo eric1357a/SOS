@@ -1,25 +1,48 @@
 # Fuck
 
-Stationery Station is a stationery supplier, providing the office consumable stationeries for bulk purchase. Their business volume is dropped significantly since their competitor launched an online shop. The management has decided to develop easy-to-use online system, named as Stationery Online Station (SOS) to let the existing and potential clients to order their products online. The SOS provides a system for the client to register, place order, manage the orders, collect bonus point and redeem gift. The SOS is also an administration system for management to maintain stationary items and handle daily operations. (Reference: www.shop248.com)
+Fucker wants you guys create a on9 system called SOS
 
-The major business activities of the web-based system briefly describes as follows:
+Old seafoods want you guys copy www.shop248.com
 
-The client will register their information (name, telephone number, and delivery address). After registration, the client will make a down payment at the shop. The manager verifies the client identity and provides a client id and password to the client. The client can make order on online with the given client id and password.
+1. The client will register their information (name, telephone number, and delivery address).
+2. After registration, client will make a down payment at the shop.
+3. The manager verifies the client identity and provides a client id and password to the client.
+4. The client can make order on online with the given client id and password.
 
 Client uses the given client id and the password to logs in to the system and uses the system to
 - Place and manage order
 - Check the last 10 orders history.
 - Maintain the personal information and delivery address
-- Check the bonus point
+- Check and collect bonus point
 - Redeem gift.
 
-If a client makes an online order with an amount over HKD1000 dollars in one single order, 100 bonus points will be awarded for every 1000 dollars order. For examples, the purchase of HKD$2,500 in one order, 200 bonus points with be rewarded. The bonus point can be used to exchange gifts. Bonus point will be issued after the settlement of orders.
+```
+function Reward (client, amount)
+  If (amount > $1000)
+    client.bonus = 100 * Math.floor(2500 / 1000)
+  
+Reward ("seafood001", 2500) #=> 200 point
+```
 
-The system will show all the available stationaries in different category. The system also provides a search menu by entering keywords (item type, brand name, etc..), to search stationeries. The list of related available stationeries will be showed. The list of stationaries can be sorted in different orders. Each stationery item has a unique number, name, descriptions, category and price. The similar search function is also available for the gift redemption. For example, gift with less than 300 points.
+- show all the available stationaries in different category.
+- provide a search menu by entering keywords (item type, brand name, etc..)
+- The list of stationaries can be sorted in different orders.
+- Each stationery item has a unique number, name, descriptions, category and price.
+- Similar search function also available for gift redemption. E.g. gift with less than 300 points
 
-When client place an order online, the client will choose for delivery or self-pick up at main office. If the client selected self-pickup, the client has to enter the pick-up time/date. When an order is made successfully, a confirmation will show the ordered items. When the client picks up an order, the manager will update the order status as picked-up. Client can cancel the order within 24 hours after ordered and at least 24 hours before deliver date. However, the company will charge HKD$50 for the handling fees.
+When client place an order online, the client will choose for delivery or self-pick up at main office.
 
-The manager will log in the administration system and handle the daily operations. The manger will do the following:
+If the client selected self-pickup, the client has to enter the pick-up time/date.
+
+When an order is made successfully, a confirmation will show the ordered items.
+
+When the client picks up an order, the manager will update the order status as picked-up.
+
+**Client can cancel the order within 24 hours after ordered and at least 24 hours before deliver date.**
+
+**However, the company will charge HKD$50 for the handling fees.**
+
+Manager will login the administration system and handle the daily operations:
 
 1. Maintain details of the item, such name, price, description etc.
 2. Update the order status such as process, cancel, delivered, or picked-up.
@@ -27,14 +50,7 @@ The manager will log in the administration system and handle the daily operation
 4. Approve credit amount for client.
 5. Obtain a report for incomplete orders.
 
-# The Fucks
-
-According to the Fuck above, you are required to create The Fucks with Java EE 7.0 features in order to solve the above background needs. You are required to form one project group with maximum of three members. Each student will specify his/her part of the individual work.
-Students should share the workload evenly. The group should list down work done by each student
-p.s: No Fucks Given
 # Marking
-
-The project will be marked according to the following Fucks.
 
 **Skills requirements**
 
