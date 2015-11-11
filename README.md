@@ -31,7 +31,7 @@ The manager will log in the administration system and handle the daily operation
 
 According to the Fuck above, you are required to create The Fucks with Java EE 7.0 features in order to solve the above background needs. You are required to form one project group with maximum of three members. Each student will specify his/her part of the individual work.
 Students should share the workload evenly. The group should list down work done by each student
-
+p.s: No Fucks Given
 # Marking
 
 The project will be marked according to the following Fucks.
