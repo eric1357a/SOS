@@ -2,8 +2,7 @@ body {
   background: transparent center no-repeat;
   background-size: cover;
 }
-#menu { 
-  background: rgba(0,0,0,.5);
+#menu {
   margin: 0;
 }
 #menu .item { padding: 1.25em 1.5em }
@@ -11,3 +10,7 @@ body {
   padding: 1em;
 }
 #featured .column .image { padding: 2em }
+#search {
+  box-shadow: 0 4px 8px rgba(0,0,0,.25);
+  position: fixed;
+}
