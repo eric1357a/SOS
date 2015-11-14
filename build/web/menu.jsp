@@ -30,7 +30,11 @@
 </div>
 
 <script>
-$('#search-input .dropdown').dropdown();
+$('#search-input .dropdown').dropdown({
+  onChange: function(){
+    $('#search-input input').trigger('keyup');
+  }
+});
 $('#menu #toggle-search').click(function() {
   var rect = this.getBoundingClientRect();
   $(this).toggleClass('active');
@@ -41,7 +45,6 @@ $('#menu #toggle-search').click(function() {
 });
 $('#search-input input').keyup(function() {
   var which = $('#search-input .dropdown .text').text();
-  console.log('ajax?action=search&word=' + this.value + '&which=' + which);
   $.get('ajax?action=search&word=' + this.value + '&which=' + which, function(data) {
     $('#search-result').html(data);
   })

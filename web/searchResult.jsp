@@ -1,8 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-  String resultId = "result" + System.currentTimeMillis();
-%>
-<div id="<%=resultId%>">
+<div>
   <div class="category">
     <div class="name">Pen</div>
     <a class="result">
@@ -22,7 +19,7 @@
   </div>
 </div>
 <script>
-$('#<%=resultId%> .category .result').click(function(){
+$('.category .result').click(function(){
   alert('sd');
 })
 </script>
