@@ -2,24 +2,13 @@
 <div>
   <div class="category">
     <div class="name">Pen</div>
-    <a class="result">
+    <a class="result" href="item?action=details&id=10101">
       <div class="content">
-        <div class="title">Vault pen</div>
-        <div class="description">Healthy Population</div>
-      </div>
-    </a>
-  </div>
-  <div class="category">
-    <div class="name">Fucks</div>
-    <a class="result">
-      <div class="content">
-        <div class="title">aaaaaa</div>
+        <div class="title">Coupe&trade;</div>
+        <div class="description">
+          ent will register their information (name, telephone number, and delivery address). After registrati...
+        </div>
       </div>
     </a>
   </div>
 </div>
-<script>
-$('.category .result').click(function(){
-  alert('sd');
-})
-</script>

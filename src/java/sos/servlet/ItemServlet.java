@@ -2,8 +2,6 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sos.db.SOSDB;
 
-@WebServlet(name = "AjaxServlet", urlPatterns = {"/ajax"})
-public class AjaxServlet extends HttpServlet {
-  
+@WebServlet(name = "ItemServlet", urlPatterns = {"/item"})
+public class ItemServlet extends HttpServlet {
+
   private SOSDB db;
   
   public void init() throws ServletException {
@@ -25,30 +23,24 @@ public class AjaxServlet extends HttpServlet {
   
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    // request is not ajax, forward to index to enforce ajax
+    if (request.getHeader("X-Requested-With") == null) {
+      request.getRequestDispatcher("index.jsp").forward(request, response);
+    }
     PrintWriter out = response.getWriter();
-    String action = request.getParameter("action");
-    response.setContentType("text/html");
-    switch (action) {
-      case "connect":
-        // use for initialize server
-        // try to create tables if not exists
-        db.createTables();
+    response.setContentType("text/html;charset=UTF-8");
+    switch (request.getParameter("action")) {
+      case "featured":
+        request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
         break;
-      case "search":
-        String keyword = request.getParameter("word");
-        String which = request.getParameter("which");
-        Pattern p = Pattern.compile("(Name|Price|Category)");
-        Matcher m = p.matcher(which);
-        if (null != keyword && m.find()) {
-          String matched = m.group(1);
-          request.getRequestDispatcher("searchResult.jsp").forward(request, response);
-        }
+      case "details":
+        out.println("<h1>ItemServlet " + request.getParameter("id") + "</h1>");
         break;
       default:
         break;
     }
   }
-  
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     processRequest(request, response);

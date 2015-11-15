@@ -27,6 +27,7 @@ public class SOSDB {
       ResultSet rs = dbmd.getTables(null, "APP", table.toUpperCase(), null);
       while(rs.next()) ++numRows;
     } catch (Exception e) {}
+      System.out.println(""+numRows);
     return numRows > 0;
   }
   public void createTables(){
@@ -57,6 +58,8 @@ public class SOSDB {
       }
       stat.close();
       conn.close();
-    } catch (Exception e) {}
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }
