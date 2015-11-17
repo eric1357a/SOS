@@ -57,8 +57,15 @@ public class SOSDB {
       }
       if (!tableExists(conn, "CLIENT")) {
         sql = "CREATE TABLE CLIENT ("
-                + "ID VARCHAR(5) CONSTRAINT PK_CLIENT PRIMARY KEY,"
-                + "Name VARCHAR(50), Address VARCHAR(100), Phone INTEGER)";
+                + "CID VARCHAR(5) CONSTRAINT PK_CLIENT PRIMARY KEY,"
+                + "Name VARCHAR(50), Address VARCHAR(100), Bonus INTEGER,"
+                + "Password VARCHAR(20), Phone INTEGER, Verified INTEGER)";
+        stat.execute(sql);
+      }
+      if (!tableExists(conn, "CLIENT_ORDER")) {
+        sql = "CREATE TABLE CLIENT_ORDER ("
+                + "OrdNo VARCHAR(5) CONSTRAINT PK_CLIENT_ORDER PRIMARY KEY,"
+                + "Timestamp VARCHAR(20), CID VARCHAR(5) REFERENCES CLIENT(CID))";
         stat.execute(sql);
       }
       stat.close();
