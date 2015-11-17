@@ -8,19 +8,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SOSDB {
-  final private String url;
-  final private String username;
-  final private String password;
+  
+  final protected String url;
+  final protected String username;
+  final protected String password;
+  
   public SOSDB (String url, String username, String password) {
     this.url = url;
     this.username = username;
     this.password = password; 
   }
-  public Connection getConnection() throws SQLException, IOException {
+  
+  protected Connection getConnection() throws SQLException, IOException {
     System.setProperty("jdbc.drivers", "org.apache.derby.jdbc.ClientDriver");
     return DriverManager.getConnection(url, username, password);
   }
-  private boolean tableExists (Connection con, String table) {
+  
+  protected boolean tableExists (Connection con, String table) {
     int numRows = 0;
     try {
       DatabaseMetaData dbmd = con.getMetaData();
@@ -30,6 +34,7 @@ public class SOSDB {
       System.out.println(""+numRows);
     return numRows > 0;
   }
+  
   public void createTables(){
     java.sql.Connection conn = null;
     java.sql.Statement stat = null;
@@ -43,9 +48,9 @@ public class SOSDB {
                 + "Name VARCHAR(50))";
         stat.execute(sql);
       }
-      if (!tableExists(conn, "STATIONERY")) {
-        sql = "CREATE TABLE STATIONERY ("
-                + "ItemNo VARCHAR(5) CONSTRAINT PK_STATIONERY PRIMARY KEY,"
+      if (!tableExists(conn, "ITEM")) {
+        sql = "CREATE TABLE ITEM ("
+                + "ItemNo VARCHAR(5) CONSTRAINT PK_ITEM PRIMARY KEY,"
                 + "Name VARCHAR(50), Description VARCHAR(100), Brand VARCHAR(25), "
                 + "CatID VARCHAR(5) REFERENCES CATEGORY(CatID), Price INTEGER)";
         stat.execute(sql);
@@ -62,4 +67,5 @@ public class SOSDB {
       e.printStackTrace();
     }
   }
+  
 }

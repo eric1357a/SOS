@@ -26,10 +26,11 @@ public class ItemServlet extends HttpServlet {
     // request is not ajax, forward to index to enforce ajax
     if (request.getHeader("X-Requested-With") == null) {
       request.getRequestDispatcher("index.jsp").forward(request, response);
+      return;
     }
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
-    switch (request.getParameter("action")) {
+    switch (String.valueOf(request.getParameter("action"))) {
       case "featured":
         request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
         break;

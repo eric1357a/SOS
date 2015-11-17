@@ -3,6 +3,7 @@
   <a class="item active" href="item?action=featured">SOS Home</a>
   <a id="toggle-search" class="item">Search</a>
   <div class="right menu">
+    <a class="ui item" href="admin">Admin</a>
     <a class="ui item">Register</a>
     <a class="ui item">Sign in</a>
   </div>

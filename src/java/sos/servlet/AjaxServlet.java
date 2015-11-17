@@ -26,9 +26,8 @@ public class AjaxServlet extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     PrintWriter out = response.getWriter();
-    String action = request.getParameter("action");
     response.setContentType("text/html");
-    switch (action) {
+    switch (String.valueOf(request.getParameter("action"))) {
       case "connect":
         // use for initialize server
         // try to create tables if not exists
