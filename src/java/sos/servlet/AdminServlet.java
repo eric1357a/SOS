@@ -46,9 +46,7 @@ public class AdminServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     // request is not ajax, forward to index to enforce ajax
-    if (request.getHeader("X-Requested-With") == null) {
-      request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
+    if (request.getHeader("X-Requested-With") == null) return;
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {

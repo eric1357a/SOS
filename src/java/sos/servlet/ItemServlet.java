@@ -2,6 +2,8 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +23,7 @@ public class ItemServlet extends HttpServlet {
     db = new SOSDB(host, user, pass);
   }
   
-  protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     // request is not ajax, forward to index to enforce ajax
     if (request.getHeader("X-Requested-With") == null) {
@@ -42,14 +44,27 @@ public class ItemServlet extends HttpServlet {
     }
   }
 
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    processRequest(request, response);
-  }
-
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    processRequest(request, response);
+    // request is not ajax, forward to index to enforce ajax
+    if (request.getHeader("X-Requested-With") == null) return;
+    PrintWriter out = response.getWriter();
+    response.setContentType("text/html;charset=UTF-8");
+    switch (String.valueOf(request.getParameter("action"))) {
+      case "search":
+        String keyword = request.getParameter("word");
+        String which = request.getParameter("which");
+        Pattern p = Pattern.compile("(Item name|Item price|Item type|Gift points)");
+        Matcher m = p.matcher(which);
+        if (null != keyword && m.find()) {
+          String matched = m.group(1);
+          request.getRequestDispatcher("item/searchResult.jsp").forward(request, response);
+        } else
+          request.getRequestDispatcher("item/noResult.jsp").forward(request, response);
+        break;
+      default:
+        break;
+    }
   }
   
 }

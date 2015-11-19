@@ -1,4 +1,11 @@
 <%@page isErrorPage="true" contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="sos.db.*" %>
+<%
+  String host = this.getServletContext().getInitParameter("host");
+  String user = this.getServletContext().getInitParameter("user");
+  String pass = this.getServletContext().getInitParameter("pass");
+  new SOSDB(host, user, pass).createTables();
+%>
 <!DOCTYPE html>
 <html>
   <head>

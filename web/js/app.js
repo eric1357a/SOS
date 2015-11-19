@@ -41,5 +41,5 @@
     });
     window.onpopstate = getIndex;
   }
-  $.get('ajax?action=connect').then(getMenu).then(getIndex).done(initialized);
+  getMenu().then(getIndex).done(initialized);
 })();

@@ -15,13 +15,15 @@
     <!-- search input -->
     <div id="search-input">
       <div class="ui fluid right labeled input">
-        <input placeholder="Enter keyword" type="text">
+        <input placeholder="Enter keyword or number expression" type="text">
         <div class="ui dropdown label">
-          <div class="text">Name</div>
+          <div class="text">Item name</div>
           <i class="dropdown icon"></i>
           <div class="menu">
-            <div class="item">Price</div>
-            <div class="item">Category</div>
+            <div class="item">Item name</div>
+            <div class="item">Item price</div>
+            <div class="item">Item type</div>
+            <div class="item">Gift points</div>
           </div>
         </div>
       </div>
@@ -51,7 +53,7 @@ $(document).on('click reset', function (e) {
 })
 $('#search-input input').keyup(function () {
   var which = $('#search-input .dropdown .text').text();
-  $.get('ajax?action=search&word=' + this.value + '&which=' + which, function(data) {
+  $.post('item?action=search&word=' + this.value + '&which=' + which, function(data) {
     $('#search-result').html(data);
   })
 });
