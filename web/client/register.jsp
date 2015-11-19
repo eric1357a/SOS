@@ -13,8 +13,8 @@
       <br><br>
       <form class="ui form" action="client?action=register">
         <div class="field">
-          <label>Item name</label>
-          <input name="name" type="text">
+          <label>Username</label>
+          <input name="username" type="text" autocomplete="off">
         </div>
         <button class="ui button" type="submit">Submit</button>
       </form>

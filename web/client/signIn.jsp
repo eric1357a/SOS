@@ -14,11 +14,11 @@
       <form class="ui form" action="client?action=signIn">
         <div class="field">
           <label>Username</label>
-          <input name="username" type="text">
+          <input name="username" type="text" autocomplete="off">
         </div>
         <div class="field">
           <label>Password</label>
-          <input name="password" type="password">
+          <input name="password" type="password" autocomplete="off">
         </div>
         <button class="ui button" type="submit">Submit</button>
       </form>
