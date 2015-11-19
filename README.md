@@ -1,8 +1,6 @@
 # Fuck
 
-Fucker wants you guys create a on9 system called SOS
-
-Old seafoods want you guys copy www.shop248.com
+Copy www.shop248.com
 
 1. The client will register their information (name, telephone number, and delivery address).
 2. After registration, client will make a down payment at the shop.
@@ -54,15 +52,10 @@ Manager will login the administration system and handle the daily operations:
 
 **Skills requirements**
 
-1. Use JSP/servlets to dynamically generate HTML pages
-2. Use JSP/servlets to accept user inputs from browser
 3. Use JSP Action
 4. Use Custom Tag.
 5. Use Javabean
-6. Use JDBC for database connection
-7. Use session checking
-8. Use login control
-9. Apply MVC model
+7. Use session checking + login control
 10. Use EJB session bean for business logic
 11. Other skills applied
 
@@ -74,7 +67,6 @@ Manager will login the administration system and handle the daily operations:
 4. Tidy Page Layout with logical and related graphics
 5. Error free implementation
 6. Creativity
-
 
 # Submission of The Fucks
 1. The front page of your submission should include the course title, module title, student identity
@@ -90,8 +82,6 @@ number, student name, and group number.
   - Test plan and Test cases
   - Brief description (1 or 2 pages only) on the characteristics or good design of your application
   - Conclusions
-  - Skill checklist
-  - List your used skills (or technologies) in a single page. It highlights the skills and technologies applied in your project
 
 3. Upload all related documents and software project to garbage moodle on or before the deadline.
 
@@ -101,3 +91,10 @@ number, student name, and group number.
 
 - Semantic UI  http://semantic-ui.com
 - jQuery  http://jquery.com
+
+# Skill checklist
+
+- AJAX
+- MVC
+- REST
+- SPA (https://en.wikipedia.org/wiki/Single-page_application)
