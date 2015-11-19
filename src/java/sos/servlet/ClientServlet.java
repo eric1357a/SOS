@@ -35,7 +35,7 @@ public class ClientServlet extends HttpServlet {
         request.getRequestDispatcher("client/register.jsp").forward(request, response);
         break;
       case "signIn":
-        request.getRequestDispatcher("client/signin.jsp").forward(request, response);
+        request.getRequestDispatcher("client/signIn.jsp").forward(request, response);
         break;
       case "orders":
         out.print("todo: Check the last 10 orders history.");
@@ -64,11 +64,16 @@ public class ClientServlet extends HttpServlet {
     // request is not ajax, forward to index to enforce ajax
     if (request.getHeader("X-Requested-With") == null) return;
     PrintWriter out = response.getWriter();
-    response.setContentType("text/html;charset=UTF-8");
+    response.setContentType("application/json;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
         String name = request.getParameter("name");
         //db.addItem(name, desc, brand, catId, price);
+        break;
+      case "signIn":
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        out.print(String.valueOf(username.equals("abc") && password.equals("123")));
         break;
       default:
         break;

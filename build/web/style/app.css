@@ -22,8 +22,9 @@ body {
 .grid.menu .column { text-align: center }
 .grid.menu .ui.button {
   height: 160px;
-  line-height: 5.5rem;
+  line-height: 4rem;
+  padding: 2rem 0;
   width: 160px;
 }
 .grid.menu .ui.button .icon { font-size: 3rem }
-.grid.menu .ui.button span { font-size: 1.25rem }
+.grid.menu .ui.button span { font-size: 1.15rem }

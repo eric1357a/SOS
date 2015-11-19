@@ -2,7 +2,7 @@
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="configure icon"></i>
+      <i class="settings icon"></i>
       Administration
     </h4>
     <div class="ui segment">
@@ -13,20 +13,20 @@
       <br><br>
       <!--  Row 1  -->
       <div class="grid menu ui three column grid">
-        <!--  Add item  -->
-        <div class="column">
-          <a class="basic violet ui icon button" href="admin?action=addItem">
-            <i class="add square icon"></i>
-            <br>
-            <span>Add item</span>
-          </a>
-        </div>
         <!--  Manage items  -->
         <div class="column">
           <a class="basic violet ui icon button" href="admin?action=addItem">
             <i class="cubes icon"></i>
             <br>
             <span>Manage items</span>
+          </a>
+        </div>
+        <!--  Manage orders  -->
+        <div class="column">
+          <a class="basic violet ui icon button" href="admin?action=addItem">
+            <i class="list icon"></i>
+            <br>
+            <span>Manage orders</span>
           </a>
         </div>
         <!--  Verify clients  -->
@@ -43,9 +43,9 @@
         <!--  Add item  -->
         <div class="column">
           <a class="basic violet ui icon button" href="admin?action=fuck">
-            <i class="home icon"></i>
+            <i class="warning sign icon"></i>
             <br>
-            <span>Fuck client</span>
+            <span>Incomplete orders</span>
           </a>
         </div>
       </div>
