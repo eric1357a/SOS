@@ -1,0 +1,26 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <error-page>
+    <error-code>404</error-code>
+    <location>/index.jsp</location>
+  </error-page>
+  <session-config>
+    <session-timeout>
+      30
+    </session-timeout>
+  </session-config>
+  <context-param>
+    <param-name>host</param-name>
+    <param-value>jdbc:derby://localhost/SOS</param-value>
+  </context-param>
+  <context-param>
+    <param-name>user</param-name>
+    <param-value>APP</param-value>
+  </context-param>
+  <context-param>
+    <param-name>pass</param-name>
+    <param-value>APP</param-value>
+  </context-param>
+</web-app>
