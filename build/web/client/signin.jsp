@@ -31,7 +31,7 @@ $('.ui.dropdown').dropdown();
 $('form').submit(function (e) {
   e.preventDefault();
   $.post(this.getAttribute('action'), $(this).serialize(), function (data) {
-    if (JSON.parse(data))
+    if (JSON.parse(data)) /* reload session */
       location.href = "<%=request.getContextPath()%>";
     else
       alert("Incorrect username or password");
