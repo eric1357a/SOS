@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page isErrorPage="true" contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,10 +9,14 @@
   </head>
   <body>
     <main>
-      <div id="loading" class="ui active dimmer" style="position: fixed">
+      <div id="loading" class="ui active inverted dimmer" style="position: fixed">
         <div class="ui text loader">Loading</div>
       </div>
-      <article id="content"></article>
+      <article id="content">
+        <% if (response.getStatus() == 404) { %>
+          <jsp:include page="/404.jsp"/>
+        <% } %>
+      </article>
     </main>
     <script src="js/jquery.js"></script>
     <script src="js/semantic.js"></script>

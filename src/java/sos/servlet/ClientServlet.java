@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sos.db.*;
 
-@WebServlet(name = "AdminServlet", urlPatterns = {"/admin"})
-public class AdminServlet extends HttpServlet {
+@WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
+public class ClientServlet extends HttpServlet {
 
-  private ItemDB db;
+  private ClientDB db;
   
   public void init() throws ServletException {
     String host = this.getServletContext().getInitParameter("host");
     String user = this.getServletContext().getInitParameter("user");
     String pass = this.getServletContext().getInitParameter("pass");
-    db = new ItemDB(host, user, pass);
+    db = new ClientDB(host, user, pass);
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,11 +31,18 @@ public class AdminServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
-      case "addItem":
-        request.getRequestDispatcher("admin/addItem.jsp").forward(request, response);
+      case "register":
+        request.getRequestDispatcher("client/register.jsp").forward(request, response);
+        break;
+      case "signin":
+        request.getRequestDispatcher("client/signin.jsp").forward(request, response);
         break;
       case "null":
-        request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+        boolean signedIn = true;
+        if (signedIn)
+          request.getRequestDispatcher("client/index.jsp").forward(request, response);
+        else
+          request.getRequestDispatcher("404.jsp").forward(request, response);
         break;
       default:
         request.getRequestDispatcher("404.jsp").forward(request, response);
@@ -52,17 +59,9 @@ public class AdminServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
-      case "addItem":
+      case "register":
         String name = request.getParameter("name");
-        String desc = request.getParameter("desc");
-        String brand = request.getParameter("brand");
-        String catId = request.getParameter("catId");
-        float price = 0;
-        try {
-          price = new Float(request.getParameter("price"));
-        } catch (NumberFormatException e) {}
-        out.print("server returns: " + name+" "+desc+" "+price);
-        db.addItem(name, desc, brand, catId, price);
+        //db.addItem(name, desc, brand, catId, price);
         break;
       default:
         break;

@@ -36,7 +36,8 @@
       e.preventDefault();
       var page = this.pathname.split('/').slice(2) + this.search;
       load(page);
-      history.pushState(null, "SOS", page);
+      var root = this.pathname.split('/').slice(0, 2).join('/') + '/';
+      history.pushState(null, "SOS", page === 'item?action=featured' ? root : page);
     });
     window.onpopstate = getIndex;
   }

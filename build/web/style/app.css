@@ -14,3 +14,16 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,.25);
   position: fixed;
 }
+.grid.menu {
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+}
+.grid.menu .column { text-align: center }
+.grid.menu .ui.button {
+  height: 160px;
+  line-height: 5.5rem;
+  width: 160px;
+}
+.grid.menu .ui.button .icon { font-size: 3rem }
+.grid.menu .ui.button span { font-size: 1.25rem }
