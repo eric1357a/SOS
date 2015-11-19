@@ -2,10 +2,8 @@
 
 Copy www.shop248.com
 
-1. The client will register their information (name, telephone number, and delivery address).
-2. After registration, client will make a down payment at the shop.
-3. The manager verifies the client identity and provides a client id and password to the client.
-4. The client can make order on online with the given client id and password.
+1. Client will register (name, telephone number, and delivery address), then make a down payment at the shop.
+2. Manager verify client and provides a client id and password to the client.
 
 ```
 function Reward (client, amount)
@@ -15,10 +13,7 @@ function Reward (client, amount)
 Reward ("seafood001", 2500) #=> 200 point
 ```
 
-- show all the available stationaries in different category.
-- provide a search menu by entering keywords (item type, brand name, etc..)
-- The list of stationaries can be sorted in different orders.
-- Each stationery item has a unique number, name, descriptions, category and price.
+- show list of all the available stationaries in different category, sortable
 - Similar search function also available for gift redemption. E.g. gift with less than 300 points
 
 When client place an order online, the client will choose for delivery or self-pick up at main office.
@@ -54,40 +49,34 @@ Manager will login the administration system and handle the daily operations:
 
 **Functionalities and Web design**
 
-1. Complete the user requirements
-2. Consistent design and easy to use
-3. Smooth navigation to and fro
-4. Tidy Page Layout with logical and related graphics
-5. Error free implementation
-6. Creativity
-
 # Submission of The Fucks
-1. The front page of your submission should include the course title, module title, student identity
-number, student name, and group number.
+1. The front page of your submission should include the course & module title, student number & name, group number. also upload to suck moodle before the deadline.
 
 2. A written report should include the followings:
 
   - Assumption and the user and system requirements
   - Site map
-  - System structure on how MVC Model is applied
+  - System structure on how MVC Model is applied (#1)
   - Database structure
   - Tools, installation set, testing procedures and dataset (with suitable screen capture)
   - Test plan and Test cases
-  - Brief description (1 or 2 pages only) on the characteristics or good design of your application
+  - Brief description (1 or 2 pages only) on good design of application
   - Conclusions
 
-3. Upload all related documents and software project to garbage moodle on or before the deadline.
-
-4. You are required to demonstrate your assignment. You will fail this module if you do not demonstrate the assignment in the lab session as required. 
+3. Demonstrate your assignment or fail this module.
 
 # References
 
 - Semantic UI  http://semantic-ui.com
 - jQuery  http://jquery.com
 
-# Skill checklist
+# Skill checklist (& good design)
 
 - AJAX
 - MVC
 - REST
 - SPA (https://en.wikipedia.org/wiki/Single-page_application)
+
+# notes
+
+**#1**: Model = sos.db.*, View = JSP, Controllers = Servlets
