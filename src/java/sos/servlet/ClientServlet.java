@@ -34,8 +34,17 @@ public class ClientServlet extends HttpServlet {
       case "register":
         request.getRequestDispatcher("client/register.jsp").forward(request, response);
         break;
-      case "signin":
+      case "signIn":
         request.getRequestDispatcher("client/signin.jsp").forward(request, response);
+        break;
+      case "orders":
+        out.print("todo: Check the last 10 orders history.");
+        break;
+      case "updateInfo":
+        out.print("todo: <br>Tab1 - Maintain personal information<br>Tab2 - Maintain delivery address");
+        break;
+      case "bonus":
+        out.print("todo: Check and collect bonus point");
         break;
       case "null":
         boolean signedIn = true;

@@ -6,7 +6,7 @@
     <a class="ui item" href="admin">Admin</a>
     <a class="ui item" href="client">Home</a>
     <a class="ui item" href="client?action=register">Register</a>
-    <a class="ui item" href="client?action=signin">Sign in</a>
+    <a class="ui item" href="client?action=signIn">Sign in</a>
   </div>
 </div>
 

@@ -14,11 +14,9 @@
         </div>
         <div class="extra content">
           <span class="right floated">
-            Joined in 2013
-          </span>
-          <span>
-            <i class="user icon"></i>
-            75 Friends
+            <button class="ui basic blue button">
+              Add to cart
+            </button>
           </span>
         </div>
       </div>
@@ -36,11 +34,9 @@
         </div>
         <div class="extra content">
           <span class="right floated">
-            Joined in 2013
-          </span>
-          <span>
-            <i class="user icon"></i>
-            75 Friends
+            <button class="ui basic blue button">
+              Add to cart
+            </button>
           </span>
         </div>
       </div>
@@ -58,11 +54,9 @@
         </div>
         <div class="extra content">
           <span class="right floated">
-            Joined in 2013
-          </span>
-          <span>
-            <i class="user icon"></i>
-            75 Friends
+            <button class="ui basic blue button">
+              Add to cart
+            </button>
           </span>
         </div>
       </div>
