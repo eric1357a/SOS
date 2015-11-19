@@ -7,13 +7,6 @@ Copy www.shop248.com
 3. The manager verifies the client identity and provides a client id and password to the client.
 4. The client can make order on online with the given client id and password.
 
-Client uses the given client id and the password to logs in to the system and uses the system to
-- Place and manage order
-- Check the last 10 orders history.
-- Maintain the personal information and delivery address
-- Check and collect bonus point
-- Redeem gift.
-
 ```
 function Reward (client, amount)
   If (amount > $1000)
