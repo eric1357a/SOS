@@ -1,7 +1,5 @@
 # Fucks
 
-Copy www.shop248.com
-
 ```
 function Reward (client, amount)
   If (amount > $1000)
