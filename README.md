@@ -70,17 +70,17 @@ Manager will login the administration system and handle the daily operations:
 
 # distrubution
 
-K:
-java bean
-document
+> K:
+- java bean
+- document
 
-E:
-servlet
-Use session checking + login control
+> E:
+- servlet
+- Use session checking + login control
 
-S:
-custom tags
-UI + HCI
+> S:
+- custom tags
+- UI + HCI
 
 # notes
 
