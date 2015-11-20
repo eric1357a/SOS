@@ -31,8 +31,17 @@ public class AdminServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
-      case "addItem":
-        request.getRequestDispatcher("admin/addItem.jsp").forward(request, response);
+      case "manageItem":
+        request.getRequestDispatcher("admin/manageItem.jsp").forward(request, response);
+        break;
+      case "manageOrder":
+        request.getRequestDispatcher("admin/manageOrder.jsp").forward(request, response);
+        break;
+      case "verify":
+        request.getRequestDispatcher("admin/verify.jsp").forward(request, response);
+        break;
+      case "inOrder":
+        request.getRequestDispatcher("admin/inOrder.jsp").forward(request, response);
         break;
       case "null":
         request.getRequestDispatcher("admin/index.jsp").forward(request, response);

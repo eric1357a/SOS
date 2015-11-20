@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sos.db.SOSDB;
 
-@WebServlet(name = "ItemServlet", urlPatterns = {"/item"})
-public class ItemServlet extends HttpServlet {
+@WebServlet(name = "GiftServlet", urlPatterns = {"/gift"})
+public class GiftServlet extends HttpServlet {
 
   private SOSDB db;
   
@@ -33,15 +33,10 @@ public class ItemServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
-      case "details":
-        out.println("<h1>ItemServlet " + request.getParameter("id") + "</h1>");
-        String id = request.getParameter("id");
-        // DB QueryByID request.setAttribute("id", id);
-        
+      /*case "null":
+        request.getRequestDispatcher("gift/index.jsp").forward(request, response);
         break;
-      case "null":
-        request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
-        break;
+      */
       default:
         request.getRequestDispatcher("404.jsp").forward(request, response);
         break;
@@ -55,17 +50,6 @@ public class ItemServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
-      case "search":
-        String keyword = request.getParameter("word");
-        String which = request.getParameter("which");
-        Pattern p = Pattern.compile("(Item name|Item price|Item type|Gift points)");
-        Matcher m = p.matcher(which);
-        if (null != keyword && m.find()) {
-          String matched = m.group(1);
-          request.getRequestDispatcher("item/searchResult.jsp").forward(request, response);
-        } else
-          request.getRequestDispatcher("item/noResult.jsp").forward(request, response);
-        break;
       default:
         break;
     }

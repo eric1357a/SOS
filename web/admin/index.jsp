@@ -15,7 +15,7 @@
       <div class="grid menu ui three column grid">
         <!--  Manage items  -->
         <div class="column">
-          <a class="basic violet ui icon button" href="admin?action=addItem">
+          <a class="basic violet ui icon button" href="admin?action=manageItem">
             <i class="cubes icon"></i>
             <br>
             <span>Manage items</span>
@@ -23,7 +23,7 @@
         </div>
         <!--  Manage orders  -->
         <div class="column">
-          <a class="basic violet ui icon button" href="admin?action=addItem">
+          <a class="basic violet ui icon button" href="admin?action=manageOrder">
             <i class="list icon"></i>
             <br>
             <span>Manage orders</span>
@@ -40,9 +40,9 @@
       </div>
       <!--  Row 2  -->
       <div class="grid menu ui three column grid">
-        <!--  Add item  -->
+        <!--  Incomplete order  -->
         <div class="column">
-          <a class="basic violet ui icon button" href="admin?action=fuck">
+          <a class="basic violet ui icon button" href="admin?action=inOrder">
             <i class="warning sign icon"></i>
             <br>
             <span>Incomplete orders</span>

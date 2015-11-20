@@ -73,6 +73,13 @@ public class ClientServlet extends HttpServlet {
       case "signIn":
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        // get detail from db - check is admin
+        /*
+        if(admin){
+          
+        }else{
+        }
+                */
         out.print(String.valueOf(username.equals("abc") && password.equals("123")));
         break;
       default:
