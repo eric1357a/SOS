@@ -38,14 +38,6 @@ Manager will login the administration system and handle the daily operations:
 
 # Marking
 
-**Skills requirements**
-
-3. Use JSP Action
-4. Use Custom Tag.
-5. Use Javabean
-7. Use session checking + login control
-11. Other skills applied
-
 **Functionalities and Web design**
 
 # Submission of The Fucks
@@ -75,6 +67,20 @@ Manager will login the administration system and handle the daily operations:
 - MVC
 - REST
 - SPA (https://en.wikipedia.org/wiki/Single-page_application)
+
+# distrubution
+
+K:
+java bean
+document
+
+E:
+servlet
+Use session checking + login control
+
+S:
+custom tags
+UI + HCI
 
 # notes
 
