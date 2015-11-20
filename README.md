@@ -29,7 +29,6 @@ Manager will login the administration system and handle the daily operations:
 2. Update the order status such as process, cancel, delivered, or picked-up.
 3. Verify the client identity and provide client id and password.
 4. Approve credit amount for client.
-5. Obtain a report for incomplete orders.
 
 # Submission of The Fucks
 1. The front page of your submission should include the course & module title, student number & name, group number. also upload to suck moodle before the deadline.
