@@ -1,9 +1,6 @@
-# Fuck
+# Fucks
 
 Copy www.shop248.com
-
-1. Client will register (name, telephone number, and delivery address), then make a down payment at the shop.
-2. Manager verify client and provides a client id and password to the client.
 
 ```
 function Reward (client, amount)
@@ -36,10 +33,6 @@ Manager will login the administration system and handle the daily operations:
 4. Approve credit amount for client.
 5. Obtain a report for incomplete orders.
 
-# Marking
-
-**Functionalities and Web design**
-
 # Submission of The Fucks
 1. The front page of your submission should include the course & module title, student number & name, group number. also upload to suck moodle before the deadline.
 
@@ -54,7 +47,7 @@ Manager will login the administration system and handle the daily operations:
   - Brief description (1 or 2 pages only) on good design of application
   - Conclusions
 
-3. Demonstrate your assignment or fail this module.
+3. Demo your assignment or fail this module.
 
 # References
 
@@ -72,7 +65,7 @@ Manager will login the administration system and handle the daily operations:
 
 > K:
 - java bean
-- document
+- document + DB
 
 > E:
 - servlet
