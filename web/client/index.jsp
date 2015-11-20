@@ -15,7 +15,7 @@
       <div class="grid menu ui three column grid">
         <!--  Shopping cart  -->
         <div class="column">
-          <a class="basic teal ui icon button" href="client?action=fuck">
+          <a class="basic teal ui icon button" href="client?action=cart">
             <i class="in cart icon"></i>
             <br>
             <span>Shopping cart</span>
@@ -23,7 +23,7 @@
         </div>
         <!--  Manage orders  -->
         <div class="column">
-          <a class="basic teal ui icon button" href="client?action=orders">
+          <a class="basic teal ui icon button" href="client?action=manageOrders">
             <i class="list icon"></i>
             <br>
             <span>Manage orders</span>
@@ -32,7 +32,7 @@
         <!--  Add item  -->
         <div class="column">
           <a class="basic teal ui icon button" href="client?action=updateInfo">
-            <i class="add square icon"></i>
+            <i class="edit icon"></i>
             <br>
             <span>Update info</span>
           </a>

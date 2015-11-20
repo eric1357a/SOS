@@ -37,14 +37,17 @@ public class ClientServlet extends HttpServlet {
       case "signIn":
         request.getRequestDispatcher("client/signIn.jsp").forward(request, response);
         break;
-      case "orders":
-        out.print("todo: Check the last 10 orders history.");
+      case "cart":
+        request.getRequestDispatcher("client/cart.jsp").forward(request, response);
+        break;
+      case "manageOrders":
+        request.getRequestDispatcher("client/manageOrders.jsp").forward(request, response);
         break;
       case "updateInfo":
-        out.print("todo: <br>Tab1 - Maintain personal information<br>Tab2 - Maintain delivery address");
+        request.getRequestDispatcher("client/updateInfo.jsp").forward(request, response);
         break;
       case "bonus":
-        out.print("todo: Check and collect bonus point");
+        request.getRequestDispatcher("client/bonus.jsp").forward(request, response);
         break;
       case "null":
         boolean signedIn = true;
