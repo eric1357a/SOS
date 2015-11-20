@@ -11,7 +11,21 @@
         Back
       </a>
       <br><br>
-      Fuck...Obtain a report for incomplete orders.
+      <!--  Incomplete order report  -->
+      <div class="ui relaxed divided list">
+        <div class="item">
+          <div class="content">
+            <div class="header">Order #1</div>
+            Client 123
+          </div>
+        </div>
+        <div class="item">
+          <div class="content">
+            <div class="header">Order #2</div>
+            Client 456
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

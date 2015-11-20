@@ -9,17 +9,23 @@ body {
 }
 #menu:before {
   content: 'SOS';
+  cursor: default;
   font: 24pt 'Bilbo Swash Caps', cursive;
   height: 32px;
   left: 50%;
   line-height: 32px;
   margin: -16px -40px;
+  opacity: .6;
   position: absolute;
   text-align: center;
   text-shadow: 0 2px #fff;
   top: 50%;
   width: 80px;
+  -webkit-transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
 }
+#menu:hover:before { opacity: 1 }
 #menu .item { padding: 1.25em 1.5em }
 #content {
   padding: 1em;
@@ -43,3 +49,9 @@ body {
 }
 .grid.menu .ui.button .icon { font-size: 3rem }
 .grid.menu .ui.button span { font-size: 1.15rem }
+#bonus .segment {
+  border-radius: 50%;
+  height: 128px;
+  text-align: center;
+  width: 128px;
+}

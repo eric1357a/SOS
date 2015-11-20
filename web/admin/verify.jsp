@@ -11,7 +11,29 @@
         Back
       </a>
       <br><br>
-      Vault
+      <!--  Client list  -->
+      <div class="ui middle aligned divided list">
+        <div class="item">
+          <div class="right floated content">
+            <a class="ui red icon button"><i class="remove icon"></i></a>
+            <a class="ui green icon button"><i class="checkmark icon"></i></a>
+          </div>
+          <div class="content">
+            <div class="header">Client #1</div>
+            fuck
+          </div>
+        </div>
+        <div class="item">
+          <div class="right floated content">
+            <a class="ui red icon button"><i class="remove icon"></i></a>
+            <a class="ui green icon button"><i class="checkmark icon"></i></a>
+          </div>
+          <div class="content">
+            <div class="header">Client #2</div>
+            vault
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -45,7 +45,7 @@
           <a class="basic teal ui icon button" href="client?action=bonus">
             <i class="database icon"></i>
             <br>
-            <span>Bonus points</span>
+            <span>Bonus Points</span>
           </a>
         </div>
       </div>
