@@ -11,8 +11,18 @@
         Back
       </a>
       <br><br>
-      <!--  Incomplete order report  -->
-      <div class="ui relaxed divided list">
+      <!--  Incomplete orders report  -->
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
+          <div class="ui tiny horizontal statistic">
+            <div class="label">Total</div>
+            <div class="label"></div>
+            <div class="value">2</div>
+            <div class="label">Incomplete orders</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui divided list">
         <div class="item">
           <div class="content">
             <div class="header">Order #1</div>
