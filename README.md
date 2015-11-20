@@ -44,7 +44,6 @@ Manager will login the administration system and handle the daily operations:
 4. Use Custom Tag.
 5. Use Javabean
 7. Use session checking + login control
-10. Use EJB session bean for business logic
 11. Other skills applied
 
 **Functionalities and Web design**
