@@ -33,13 +33,14 @@ public class ItemServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
-      case "featured":
-        request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
-        break;
       case "details":
         out.println("<h1>ItemServlet " + request.getParameter("id") + "</h1>");
         break;
+      case "null":
+        request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
+        break;
       default:
+        request.getRequestDispatcher("404.jsp").forward(request, response);
         break;
     }
   }

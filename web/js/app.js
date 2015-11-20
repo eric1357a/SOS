@@ -25,7 +25,7 @@
   }
   function getIndex () {
     var controller = location.pathname.split('/').slice(2).toString();
-    var top = !controller.length ? 'item?action=featured' : controller + location.search;
+    var top = !controller.length ? 'item' : controller + location.search;
     load(top);
   }
   function initialized () {
@@ -37,7 +37,7 @@
       var page = this.pathname.split('/').slice(2) + this.search;
       load(page);
       var root = this.pathname.split('/').slice(0, 2).join('/') + '/';
-      history.pushState(null, "SOS", page === 'item?action=featured' ? root : page);
+      history.pushState(null, "SOS", page === 'item' ? root : page);
     });
     window.onpopstate = getIndex;
   }

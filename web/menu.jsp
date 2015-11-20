@@ -1,12 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="menu" class="ui secondary pointing menu">
-  <a class="item active" href="item?action=featured">SOS Home</a>
+  <a class="item" href="item">Stationaries</a>
+  <a class="item" href="item?action=categories">Categories</a>
+  <a class="item" href="gift">Gifts</a>
   <a id="toggle-search" class="item">Search</a>
   <div class="right menu">
-    <a class="ui item" href="admin">Admin</a>
-    <a class="ui item" href="client">Home</a>
-    <a class="ui item" href="client?action=register">Register</a>
-    <a class="ui item" href="client?action=signIn">Sign in</a>
+    <a class="item" href="admin">Admin</a>
+    <a class="item" href="client">Home</a>
+    <a class="item" href="client?action=register">Register</a>
+    <a class="item" href="client?action=signIn">Sign in</a>
   </div>
 </div>
 
@@ -34,6 +36,11 @@
 </div>
 
 <script>
+  console.log(location.pathname.split('/').slice(2).toString() + location.search);
+$('#menu .item').click(function () {
+  $(this).siblings().removeClass('active');
+  $(this).addClass('active');
+});
 $('#search-input .dropdown').dropdown({
   onChange: function(){
     $('#search-input input').trigger('keyup');
