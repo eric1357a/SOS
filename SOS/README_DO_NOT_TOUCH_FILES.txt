@@ -1,9 +1,9 @@
 
 # *************************************************************************
-# ***              DO NOT TOUCH FILES IN THIS DIRECTORY!                ***
-# *** FILES IN THIS DIRECTORY AND SUBDIRECTORIES CONSTITUTE A DERBY     ***
-# *** DATABASE, WHICH INCLUDES THE DATA (USER AND SYSTEM) AND THE       ***
-# *** FILES NECESSARY FOR DATABASE RECOVERY.                            ***
-# *** EDITING, ADDING, OR DELETING ANY OF THESE FILES MAY CAUSE DATA    ***
-# *** CORRUPTION AND LEAVE THE DATABASE IN A NON-RECOVERABLE STATE.     ***
+# ***              請勿動到此目錄中的檔案！                ***
+# *** 此目錄和子目錄中的檔案構成 DERBY     ***
+# *** 資料庫，其中包括資料 (使用者和系統) 和       ***
+# *** 資料庫回復所需的檔案。                            ***
+# *** 若編輯、新增或刪除其中任何檔案都可能導致資料    ***
+# *** 損毀，使資料庫處於不可回復的狀態。     ***
 # *************************************************************************

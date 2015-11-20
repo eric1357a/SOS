@@ -1,57 +1,64 @@
 /*Insert Category Sample Records*/
-INSERT INTO APP.CATEGORY ("Category Name") 
-	VALUES ('School Stationery');
-INSERT INTO APP.CATEGORY ("Category Name") 
-	VALUES ('Notebook & Daybook');
-INSERT INTO APP.CATEGORY ("Category Name") 
-	VALUES ('Writing Instrument');
-INSERT INTO APP.CATEGORY ("Category Name") 
-	VALUES ('File & Folders');
-INSERT INTO APP.CATEGORY ("Category Name") 
-	VALUES ('Others');
+INSERT INTO APP.CATEGORY ("NAME") 
+	VALUES ('School Stationery')
+INSERT INTO APP.CATEGORY ("NAME") 
+	VALUES ('Notebook & Daybook')
+INSERT INTO APP.CATEGORY ("NAME") 
+	VALUES ('Writing Instrument')
+INSERT INTO APP.CATEGORY ("NAME") 
+	VALUES ('File & Folders')
+INSERT INTO APP.CATEGORY ("NAME") 
+	VALUES ('Others')
+
 
 /*Insert Client Sample Records*/
-INSERT INTO APP.CLIENT (CLIENTID, PASSWORD, CLIENTNAME, TELENO, ADDRESS, VERIFIED) 
-	VALUES ('10001', '12345678', 'Vault Boy', 23382338, 'Vault 101', 1);
-INSERT INTO APP.CLIENT (CLIENTID, PASSWORD, CLIENTNAME, TELENO, ADDRESS, VERIFIED) 
-	VALUES ('10002', '87654321', 'Steven', 23800000, 'Vault 111', 1);
-INSERT INTO APP.CLIENT (CLIENTID, PASSWORD, CLIENTNAME, TELENO, ADDRESS, VERIFIED) 
-	VALUES ('10003', '65498741', 'Eric', 24681357, 'Vault 111', 1);
-INSERT INTO APP.CLIENT (CLIENTID, PASSWORD, CLIENTNAME, TELENO, ADDRESS, VERIFIED) 
-	VALUES ('10004', '65489468', 'Carlyle', 36696940, 'Vault 111', 1);
-INSERT INTO APP.CLIENT (CLIENTID, PASSWORD, CLIENTNAME, TELENO, ADDRESS, VERIFIED) 
-	VALUES ('10005', '98765432', 'Cedric', 36996336, 'Vault 111', 0);
+INSERT INTO APP.CLIENT (PASSWORD, "NAME", PHONE, ADDRESS, VERIFIED, BONUS) 
+	VALUES ('12345678', 'Vault Boy', 23382338, 'Vault 101', 1, 3000)
+INSERT INTO APP.CLIENT (PASSWORD, "NAME", PHONE, ADDRESS, VERIFIED, BONUS) 
+	VALUES ('87654321', 'Steven', 23800000, 'Vault 111', 1, 1000)
+INSERT INTO APP.CLIENT (PASSWORD, "NAME", PHONE, ADDRESS, VERIFIED, BONUS) 
+	VALUES ('65498741', 'Eric', 24681357, 'Vault 111', 1, 1333)
+INSERT INTO APP.CLIENT (PASSWORD, "NAME", PHONE, ADDRESS, VERIFIED, BONUS) 
+	VALUES ('65489468', 'Carlyle', 36696940, 'Vault 111', 1, 1234)
+INSERT INTO APP.CLIENT (PASSWORD, "NAME", PHONE, ADDRESS, VERIFIED, BONUS) 
+	VALUES ('98765432', 'Cedric', 36996336, 'Vault 111', 0, 0)
+
 
 /*Insert Order Sample Records*/
-INSERT INTO APP."Order" ("Order ID", "Total Amount", "Order Date", "Order Status", CLIENTID)
-	VALUES ('1001', 8964, '2015-11-08', 'Shipping', '10001');
-INSERT INTO APP."Order" ("Order ID", "Total Amount", "Order Date", "Order Status", CLIENTID) 
-	VALUES ('1002', 4689, '2015-11-15', 'Picked-up', '10002');
-INSERT INTO APP."Order" ("Order ID", "Total Amount", "Order Date", "Order Status", CLIENTID) 
-	VALUES ('1003', 20, '2015-11-16', 'Cancelled', '10003');
+INSERT INTO APP."Order" (AMOUNT, "TIME", STATUS, CLIENTID) 
+	VALUES (8964, 20151108, 'Shipping', 1)
+INSERT INTO APP."Order" (AMOUNT, "TIME", STATUS, CLIENTID) 
+	VALUES (4689, 20151115, 'Picked-up', 2)
+INSERT INTO APP."Order" (AMOUNT, "TIME", STATUS, CLIENTID) 
+	VALUES (20, 20151116, 'Cancelled', 3)
 	
-/*Insert Order Sample Records*/
-INSERT INTO APP.GIFT (POINT, "Gift Name", DESCRIPTION, "Order ID") 
-	VALUES (100, 'Free Pen', 'Redeem a free limited edition pen', '2001');
+/*Insert Gift Sample Records*/
+INSERT INTO APP.GIFT (POINT, "NAME", DESCRIPTION) 
+	VALUES (100, 'Free Pen', 'Redeem a free limited edition pen')
+
 	
-/*Insert Order Sample Records*/
-INSERT INTO APP.PRODUCT ("Product ID", "Product Name", PRICE, DESCRIPTION, "Category ID") 
-	VALUES ('10001', 'Fountain Pen', 1200, 'A simple fountain pen', 3);
-INSERT INTO APP.PRODUCT ("Product ID", "Product Name", PRICE, DESCRIPTION, "Category ID") 
-	VALUES ('10002', 'Pen', 10, 'A simple pen ( 10 pcs / pack )', 1);
-INSERT INTO APP.PRODUCT ("Product ID", "Product Name", PRICE, DESCRIPTION, "Category ID") 
-	VALUES ('10003', 'Water Proof Notebook', 500, 'Notebook come with waterproof function', 2);
-INSERT INTO APP.PRODUCT ("Product ID", "Product Name", PRICE, DESCRIPTION, "Category ID") 
-	VALUES ('10004', 'Folder', 20, '10 layers folder , come with 10 colors', 4);
-INSERT INTO APP.PRODUCT ("Product ID", "Product Name", PRICE, DESCRIPTION, "Category ID") 
-	VALUES ('10005', 'Vault Boy Bobble Head Figure Toy', 111, 'You want what I mean', 5);
+/*Insert Product Sample Records*/
+INSERT INTO APP.PRODUCT ("NAME", PRICE, DESCRIPTION, CATNO, BRAND) 
+	VALUES ('Fountain Pen', 1200, 'A simple fountain pen', 3, 'Parker')
+INSERT INTO APP.PRODUCT ("NAME", PRICE, DESCRIPTION, CATNO, BRAND) 
+	VALUES ('Pen', 10, 'A simple pen ( 10 pcs / pack )', 1, 'Seven')
+INSERT INTO APP.PRODUCT ("NAME", PRICE, DESCRIPTION, CATNO, BRAND) 
+	VALUES ('Water Proof Notebook', 500, 'Notebook come with waterproof function', 2, 'Samsung')
+INSERT INTO APP.PRODUCT ("NAME", PRICE, DESCRIPTION, CATNO, BRAND) 
+	VALUES ('Folder', 20, '10 layers folder , come with 10 colors', 4, 'Simple')
+INSERT INTO APP.PRODUCT ("NAME", PRICE, DESCRIPTION, CATNO, BRAND) 
+	VALUES ('Vault Boy', 111, 'You want what I mean', 5, 'Vault-Tec')
 
 /*Insert PRODUCT_ORDER Sample Records*/
-INSERT INTO APP.PRODUCT_ORDER (QUANTITY, "Product ID", "Order ID") 
-	VALUES (10, '10001', '1001');
-INSERT INTO APP.PRODUCT_ORDER (QUANTITY, "Product ID", "Order ID") 
-	VALUES (20, '10002', '1003');
-INSERT INTO APP.PRODUCT_ORDER (QUANTITY, "Product ID", "Order ID") 
-	VALUES (64, '10005', '1002');
+INSERT INTO APP.PRODUCT_ORDER (QUANTITY, PRODNO, ORDNO) 
+	VALUES (20, 1, 1);
+INSERT INTO APP.PRODUCT_ORDER (QUANTITY, PRODNO, ORDNO) 
+	VALUES (10, 2, 3);
+INSERT INTO APP.PRODUCT_ORDER (QUANTITY, PRODNO, ORDNO) 
+	VALUES (64, 3, 3);
+
+/*Insert Admin Sample Records*/
+INSERT INTO APP."ADMIN" (PASSWORD) 
+	VALUES ('abc123')
 
 
