@@ -11,18 +11,28 @@
         Back
       </a>
       <br><br>
-      <div id="bonus" class="ui small circular rotate left reveal image">
-        <div class="visible content">
-          <div class="ui circular segment">
-            <h4 class="ui header">My Points</h4>
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
+          <div id="bonus" class="ui circular rotate left reveal image">
+            <div class="visible content">
+              <div class="ui circular segment">
+                <h4 class="ui header">My Points</h4>
+              </div>
+            </div>
+            <div class="hidden content">
+              <div class="ui circular segment">
+                <div class="ui massive star rating"></div>
+                <br>
+                <b>102 points</b>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="hidden content">
-          <div class="ui circular segment">
-            <div class="ui massive star rating"></div>
-            <br>
-            <b>102 points</b>
-          </div>
+        <div class="row">
+          <a class="ui pink button" href="gift">
+            <i class="add to cart icon"></i>
+            Shop gift now
+          </a>
         </div>
       </div>
     </div>

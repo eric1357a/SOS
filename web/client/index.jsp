@@ -16,7 +16,7 @@
         <!--  Shopping cart  -->
         <div class="column">
           <a class="basic teal ui icon button" href="client?action=cart">
-            <i class="in cart icon"></i>
+            <i class="cart icon"></i>
             <br>
             <span>Shopping cart</span>
           </a>

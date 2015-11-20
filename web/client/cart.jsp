@@ -2,7 +2,7 @@
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="in cart icon"></i>
+      <i class="cart icon"></i>
       Shopping cart
     </h4>
     <div class="ui segment">

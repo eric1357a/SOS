@@ -51,6 +51,7 @@ body {
 .grid.menu .ui.button span { font-size: 1.15rem }
 #bonus .segment {
   border-radius: 50%;
+  cursor: default;
   height: 128px;
   text-align: center;
   width: 128px;
