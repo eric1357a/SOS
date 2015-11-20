@@ -37,9 +37,11 @@
 </div>
 
 <script>
+var searchInput = $('#search-input input');
 $('#search-input .dropdown').dropdown({
   onChange: function(){
-    $('#search-input input').trigger('keyup');
+    if (searchInput.val().length > 0)
+      searchInput.trigger('keyup');
   }
 });
 $(document).on('click reset', function (e) {
@@ -54,7 +56,7 @@ $(document).on('click reset', function (e) {
     });
   }
 })
-$('#search-input input').keyup(function () {
+searchInput.keyup(function () {
   var which = $('#search-input .dropdown .text').text();
   $.post('<%=cp%>/item?action=search&word=' + this.value + '&which=' + which, function(data) {
     $('#search-result').html(data);

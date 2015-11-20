@@ -1,10 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*, sos.bean.*"%>
 <%@taglib uri="/WEB-INF/tlds/search-result" prefix="sos"%>
 <div>
   <div class="category">
     <div class="name">Pen</div>
-    <sos:searchResult id="1" title="<%="Coupe&trade;"%>" desc="fuck"/>
-	<sos:searchResult id="2" title="<%="Vault penis;"%>" desc="penis"/>
-    <sos:searchResult id="3" title="<%="Waste"%>" desc="fuck"/>
+    <% for (ItemBean item : (ArrayList<ItemBean>) request.getAttribute("items")) { %>
+    <sos:searchResult id="1" title="<%=item.getName()%>" desc="fuck"/>
+    <% } %>
   </div>
 </div>

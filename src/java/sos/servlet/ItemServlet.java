@@ -2,6 +2,7 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sos.bean.ItemBean;
 import sos.db.SOSDB;
 
 @WebServlet(name = "ItemServlet", urlPatterns = {"/item"})
@@ -37,7 +39,6 @@ public class ItemServlet extends HttpServlet {
         out.println("<h1>ItemServlet " + request.getParameter("id") + "</h1>");
         String id = request.getParameter("id");
         // DB QueryByID request.setAttribute("id", id);
-        
         break;
       case "null":
         request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
@@ -62,6 +63,10 @@ public class ItemServlet extends HttpServlet {
         Matcher m = p.matcher(which);
         if (null != keyword && m.find()) {
           String matched = m.group(1);
+          ArrayList<ItemBean> items = new ArrayList<>();
+          // get results from db..
+          items.add(new ItemBean(keyword));
+          request.setAttribute("items", items);
           request.getRequestDispatcher("item/searchResult.jsp").forward(request, response);
         } else
           request.getRequestDispatcher("item/noResult.jsp").forward(request, response);
