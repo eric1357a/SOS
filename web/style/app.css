@@ -1,9 +1,24 @@
+@import 'https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps';
 body {
   background: transparent center no-repeat;
   background-size: cover;
 }
 #menu {
   margin: 0;
+  position: relative;
+}
+#menu:before {
+  content: 'SOS';
+  font: 24pt 'Bilbo Swash Caps', cursive;
+  height: 32px;
+  left: 50%;
+  line-height: 32px;
+  margin: -16px -40px;
+  position: absolute;
+  text-align: center;
+  text-shadow: 0 2px #fff;
+  top: 50%;
+  width: 80px;
 }
 #menu .item { padding: 1.25em 1.5em }
 #content {
