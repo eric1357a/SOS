@@ -5,5 +5,6 @@
     <div class="name">Pen</div>
     <sos:searchResult id="1" title="<%="Coupe&trade;"%>" desc="fuck"/>
     <sos:searchResult id="2" title="<%="Vault penis;"%>" desc="fuck"/>
+    <sos:searchResult id="3" title="<%="Waste"%>" desc="fuck"/>
   </div>
 </div>
