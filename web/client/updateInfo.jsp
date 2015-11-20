@@ -19,11 +19,27 @@
         </div>
         <!--  Maintain personal information tab  -->
         <div class="ui bottom attached active tab segment" data-tab="personal-info">
-          fuck
+          <div class="field">
+            <label>Forename</label>
+            <input name="forename" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label>Surname</label>
+            <input name="surname" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label>Phone number</label>
+            <input name="phone" type="text" autocomplete="off">
+          </div>
+          <button class="ui button" type="submit">Submit</button>
         </div>
         <!--  Maintain delivery address tab  -->
         <div class="ui bottom attached tab segment" data-tab="delivery-addr">
-          vault
+          <div class="field">
+            <label>Address</label>
+            <input name="address" type="text" autocomplete="off">
+          </div>
+          <button class="ui button" type="submit">Submit</button> 
         </div>
       </form>
     </div>

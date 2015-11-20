@@ -22,17 +22,19 @@
           </div>
         </div>
       </div>
-      <div class="ui divided list">
-        <div class="item">
-          <div class="content">
-            <div class="header">Order #1</div>
-            Client 123
+      <div class="ui segment">
+        <div class="ui divided list">
+          <div class="item">
+            <div class="content">
+              <div class="header">Order #1</div>
+              Client 123
+            </div>
           </div>
-        </div>
-        <div class="item">
-          <div class="content">
-            <div class="header">Order #2</div>
-            Client 456
+          <div class="item">
+            <div class="content">
+              <div class="header">Order #2</div>
+              Client 456
+            </div>
           </div>
         </div>
       </div>
