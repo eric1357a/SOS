@@ -11,9 +11,16 @@
         Back
       </a>
       <br><br>
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
+          <div class="ui tiny horizontal statistic">
+            <div class="value">2</div>
+            <div class="label">items in your cart</div>
+          </div>
+        </div>
+      </div>
       <div class="ui relaxed items">
         <div class="ui feed">
-          <div class="ui divider"></div>
           <div class="event">
             <div class="label">
               <img src="http://localhost:8080/SOS/images/stationery/pens/101/10103.jpg">
@@ -39,7 +46,6 @@
               </div>
             </div>
           </div>
-          <div class="ui divider"></div>
         </div>
       </div>
     </div>
