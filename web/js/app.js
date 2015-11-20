@@ -2,6 +2,7 @@
   var $main = $('main');
   var $content = $('#content');
   var $loading = $('#loading');
+  var cp = location.pathname.split('/').splice(0,2).join('/') + '/';
   
   // set random wallpaper
   var wallpaper = (Math.random() * 6 + 1) | 0;
@@ -13,20 +14,33 @@
     return $.get(url, function (data) {
       $content.html(data);
       $loading.fadeOut(250);
+      updateActiveMenu();
       $(document).trigger('reset');
     });
+  }
+  
+  function updateActiveMenu () {
+    var current = location.pathname + location.search;
+    var item = $('#menu .item[href="' + current + '"]');
+    if (!item.length) {
+      var item = $('#menu .item[href="' + location.pathname + '"]');
+      if (!item.length) return;
+    }
+    $('#menu .item').removeClass('active');
+    item.addClass('active');
   }
   
   // initialize webpage
   function getMenu () {
     return $.get('menu.jsp', function (data) {
       $main.prepend(data);
+      $('#menu .item').click(updateActiveMenu);
     });
   }
   function getIndex () {
     var controller = location.pathname.split('/').slice(2).toString();
     var top = !controller.length ? 'item' : controller + location.search;
-    load(top);
+    load(cp + top);
   }
   function initialized () {
     // hide loading after everything loaded
@@ -35,9 +49,8 @@
     $(document).on('click', 'a[href]', function (e) {
       e.preventDefault();
       var page = this.pathname.split('/').slice(2) + this.search;
-      load(page);
-      var root = this.pathname.split('/').slice(0, 2).join('/') + '/';
-      history.pushState(null, "SOS", page === 'item' ? root : page);
+      load(!page ? cp + 'item' : cp + page);
+      history.pushState(null, "SOS", cp + page);
     });
     window.onpopstate = getIndex;
   }

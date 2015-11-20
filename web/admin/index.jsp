@@ -31,7 +31,7 @@
         </div>
         <!--  Verify clients  -->
         <div class="column">
-          <a class="basic violet ui icon button" href="admin?action=addItem">
+          <a class="basic violet ui icon button" href="admin?action=verify">
             <i class="users icon"></i>
             <br>
             <span>Verify clients</span>
