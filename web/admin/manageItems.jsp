@@ -22,7 +22,8 @@
                 <div class="date">Vault penis</div>
                 <div class="summary">111111111111111</div>
                 <div class="meta">
-                  <a href="gift"><i class="share icon"></i> View</a>
+                  <a href="admin?action=editItem&id=10011"><i class="edit icon"></i> Edit</a>
+                  <a href="admin?action=deleteItem&id=10011"><i class="remove icon"></i> Delete</a>
                 </div>
               </div>
             </div>
@@ -35,7 +36,8 @@
                 <div class="date">Vault penis</div>
                 <div class="summary">111111111111111</div>
                 <div class="meta">
-                  <a href="gift"><i class="share icon"></i> View</a>
+                  <a href="admin?action=editItem&id=10011"><i class="edit icon"></i> Edit</a>
+                  <a href="admin?action=deleteItem&id=10011"><i class="remove icon"></i> Delete</a>
                 </div>
               </div>
             </div>

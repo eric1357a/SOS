@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sos.bean.ItemBean;
 import sos.db.*;
 
 @WebServlet(name = "AdminServlet", urlPatterns = {"/admin"})
@@ -30,8 +31,9 @@ public class AdminServlet extends HttpServlet {
     }
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
-        System.out.println("===============");
-        System.out.println(String.valueOf(request.getParameter("action")));
+    System.out.println("===============");
+    System.out.println(String.valueOf(request.getParameter("action")));
+    int itemId;
     switch (String.valueOf(request.getParameter("action"))) {
       case "manageItems":
         request.getRequestDispatcher("admin/manageItems.jsp").forward(request, response);
@@ -47,6 +49,16 @@ public class AdminServlet extends HttpServlet {
         break;
       case "null":
         request.getRequestDispatcher("admin/index.jsp").forward(request, response);
+        break;
+      case "editItem":
+        itemId = new Integer(request.getParameter("id"));
+        request.setAttribute("item", new ItemBean(itemId, "fuck"));
+        request.getRequestDispatcher("admin/editItem.jsp").forward(request, response);
+        break;
+      case "deleteItem":
+        itemId = new Integer(request.getParameter("id"));
+        request.setAttribute("item", new ItemBean(itemId, "fuck"));
+        request.getRequestDispatcher("admin/deleteItem.jsp").forward(request, response);
         break;
       default:
         request.getRequestDispatcher("404.jsp").forward(request, response);
