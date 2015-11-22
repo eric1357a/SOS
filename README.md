@@ -69,10 +69,6 @@ Manager will login the administration system and handle the daily operations:
 - servlet
 - Use session checking + login control
 
-> S:
-- custom tags
-- UI + HCI
-
 # notes
 
 **#1**: Model = sos.db.*, View = JSP, Controllers = Servlets
