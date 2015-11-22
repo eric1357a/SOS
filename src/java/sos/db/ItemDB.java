@@ -95,6 +95,35 @@ public class ItemDB extends SOSDB {
         }
         return ib;
     }
+        
+        public ItemBean queryProdByCat(String id) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList product = new ArrayList();
+        ItemBean ib = new ItemBean();
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "SELECT * FROM PRODUCT WHERE CATNO=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, id);
+            ResultSet rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                ib.setName(rs.getString("ProdName"));
+                ib.setId(rs.getInt("ProdNo"));
+                product.add(ib);
+            }
+            pStmnt.close();
+            cnnct.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return ib;
+    }
   /*TODO class: 
     
   */
