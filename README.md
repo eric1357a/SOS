@@ -1,6 +1,7 @@
 # Fucks
 
 ```
+# for any order, total amount run:
 function Reward (client, amount)
   If (amount > $1000)
     client.bonus = 100 * Math.floor(2500 / 1000)
