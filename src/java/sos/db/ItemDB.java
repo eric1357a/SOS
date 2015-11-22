@@ -49,7 +49,7 @@ public class ItemDB extends SOSDB {
         PreparedStatement pStmnt = null;
         try {
             cnnct = getConnection();
-            String preQueryStatement = "DELETE FROM PRODUCTS WHERE CUSTID=?";
+            String preQueryStatement = "DELETE FROM PRODUCTS WHERE PRODNO=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
             pStmnt.setInt(1, id);
             pStmnt.executeUpdate();
