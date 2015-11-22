@@ -1,3 +1,5 @@
+<%@page import="java.util.*, sos.bean.*"%>
+<%@taglib uri="/WEB-INF/tlds/cart-item" prefix="sos"%>
 <br>
 <div class="ui two column centered grid">
   <div class="column">
@@ -11,45 +13,32 @@
         Back
       </a>
       <br><br>
+      <%
+        ArrayList<ItemBean> cart;
+        if (null == request.getAttribute("cart"))
+          cart = new ArrayList<ItemBean>();
+        else
+          cart = (ArrayList<ItemBean>) request.getAttribute("cart");
+      %>
       <div class="ui equal width center aligned padded grid">
         <div class="row">
           <div class="ui tiny horizontal statistic">
-            <div class="value">2</div>
+            <div class="value"><%=cart.size()%></div>
             <div class="label">items in your cart</div>
           </div>
         </div>
       </div>
+      <% if (cart.size() > 0) { %>
       <div class="ui segment">
         <div class="ui relaxed items">
           <div class="ui feed">
-            <div class="event">
-              <div class="label">
-                <img src="http://localhost:8080/SOS/images/stationery/pens/101/10103.jpg">
-              </div>
-              <div class="content">
-                <div class="date">Vault penis</div>
-                <div class="summary">111111111111111</div>
-                <div class="meta">
-                  <a href="gift"><i class="share icon"></i> View</a>
-                </div>
-              </div>
-            </div>
-            <div class="ui divider"></div>
-            <div class="event">
-              <div class="label">
-                <img src="http://localhost:8080/SOS/images/stationery/pens/101/10103.jpg">
-              </div>
-              <div class="content">
-                <div class="date">Vault penis</div>
-                <div class="summary">111111111111111</div>
-                <div class="meta">
-                  <a href="gift"><i class="share icon"></i> View</a>
-                </div>
-              </div>
-            </div>
+          <% for (ItemBean item : cart) { %>
+          <sos:cartItem id="<%=item.getId()%>" title="<%=item.getName()%>"/>
+          <% } %>
           </div>
         </div>
       </div>
+      <% } %>
     </div>
   </div>
 </div>
