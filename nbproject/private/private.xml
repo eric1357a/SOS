@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/servlet/ClientServlet.java</file>
+            <file>file:/C:/Users/ERIC/SOS/web/admin/addItem.jsp</file>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/servlet/GiftServlet.java</file>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/servlet/AdminServlet.java</file>
+            <file>file:/C:/Users/ERIC/SOS/web/item/stationeries.jsp</file>
+            <file>file:/C:/Users/ERIC/SOS/web/admin/index.jsp</file>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/bean/ItemBean.java</file>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/db/ItemDB.java</file>
+            <file>file:/C:/Users/ERIC/SOS/web/admin/manageItems.jsp</file>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/servlet/ItemServlet.java</file>
+            <file>file:/C:/Users/ERIC/SOS/src/java/sos/db/SOSDB.java</file>
+            <file>file:/C:/Users/ERIC/SOS/web/style/semantic.css</file>
+            <file>file:/C:/Users/ERIC/SOS/web/admin/editItem.jsp</file>
+        </group>
     </open-files>
 </project-private>

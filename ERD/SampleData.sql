@@ -38,16 +38,16 @@ INSERT INTO APP.GIFTS (POINT, "GIFTNAME", DESCRIPTION)
 
 	
 /*Insert Product Sample Records*/
-INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND) 
-	VALUES ('Fountain Pen', 1200, 'A simple fountain pen', 3, 'Parker');
-INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND) 
-	VALUES ('Pen', 10, 'A simple pen ( 10 pcs / pack )', 1, 'Seven');
-INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND) 
-	VALUES ('Water Proof Notebook', 500, 'Notebook come with waterproof function', 2, 'Samsung');
-INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND) 
-	VALUES ('Folder', 20, '10 layers folder , come with 10 colors', 4, 'Simple');
-INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND) 
-	VALUES ('Vault Boy', 111, 'You want what I mean', 5, 'Vault-Tec');
+INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND,PICTURE) 
+	VALUES ('Fountain Pen', 1200, 'A simple fountain pen', 3, 'Parker','pic.jpg');
+INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND,PICTURE) 
+	VALUES ('Pen', 10, 'A simple pen ( 10 pcs / pack )', 1, 'Seven','pic.jpg');
+INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND,PICTURE) 
+	VALUES ('Water Proof Notebook', 500, 'Notebook come with waterproof function', 2, 'Samsung','pic.jpg');
+INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND,PICTURE) 
+	VALUES ('Folder', 20, '10 layers folder , come with 10 colors', 4, 'Simple','pic.jpg');
+INSERT INTO APP.PRODUCTS ("PRODNAME", PRICE, DESCRIPTION, CATNO, BRAND,PICTURE) 
+	VALUES ('Vault Boy', 111, 'You want what I mean', 5, 'Vault-Tec','pic.jpg');
 
 /*Insert PRODUCT_ORDER Sample Records*/
 INSERT INTO APP.PRODUCTS_ORDERS (QUANTITY, PRODNO, ORDNO) 
