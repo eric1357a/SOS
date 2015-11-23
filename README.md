@@ -9,7 +9,7 @@ function Reward (client, amount)
 Reward ("seafood001", 2500) #=> 200 point
 ```
 
-- show list of all the available stationaries in different category, sortable
+- sortable search result list
 - Similar search function also available for gift redemption. E.g. gift with less than 300 points
 
 When client place an order online, the client will choose for delivery or self-pick up at main office.
@@ -28,7 +28,6 @@ Manager will login the administration system and handle the daily operations:
 
 1. Maintain details of the item, such name, price, description etc.
 2. Update the order status such as process, cancel, delivered, or picked-up.
-3. Verify the client identity and provide client id and password.
 4. Approve credit amount for client.
 
 # Submission of The Fucks
