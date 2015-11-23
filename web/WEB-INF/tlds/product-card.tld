@@ -1,0 +1,21 @@
+<taglib
+  version="2.1"
+  xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+  <tlib-version>1.0</tlib-version>
+  <short-name>product-card</short-name>
+  <uri>/WEB-INF/tlds/product-card</uri>
+  <tag>
+    <name>productCard</name>
+    <tag-class>sos.tag.ProductCardTag</tag-class>
+    <body-content>empty</body-content>
+    
+    <attribute>
+      <name>item</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>sos.bean.ItemBean</type>
+    </attribute>
+  </tag>
+</taglib>

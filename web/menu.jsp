@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="sos.bean.*"%>
 <% String cp = request.getContextPath(); %>
 <div id="menu" class="ui secondary pointing menu">
   <a class="item" href="<%=cp%>/">Stationaries</a>
@@ -6,9 +7,16 @@
   <a class="item" href="<%=cp%>/gift">Gifts</a>
   <a id="toggle-search" class="item">Search</a>
   <div class="right menu">
-    <% if (request.getAttribute("user") != null) { %>
-      <a class="item" href="<%=cp%>/admin">Admin</a>
-      <a class="item" href="<%=cp%>/client">Home</a>
+    <%
+      IUserBean user = (IUserBean) request.getSession().getAttribute("user");
+      if (user != null) {
+        if (user.isAdmin()) {
+    %>
+        <a class="item" href="<%=cp%>/admin">Admin</a>
+      <% } else { %>
+        <a class="item" href="<%=cp%>/client">Home</a>
+      <% } %>
+      <a class="item" id="sign-out">Sign out</a>
     <% } else { %>
       <a class="item" href="<%=cp%>/client?action=register">Register</a>
       <a class="item" href="<%=cp%>/client?action=signIn">Sign in</a>
@@ -63,6 +71,11 @@ searchInput.keyup(function () {
   var which = $('#search-input .dropdown .text').text();
   $.post('<%=cp%>/item?action=search&word=' + this.value + '&which=' + which, function(data) {
     $('#search-result').html(data);
-  })
+  });
+});
+$('#sign-out').click(function () {
+  $.post('<%=cp%>/client?action=signOut', function(data) {
+    location.href = '<%=cp%>';
+  });
 });
 </script>

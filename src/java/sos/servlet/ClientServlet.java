@@ -33,7 +33,10 @@ public class ClientServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
-        request.getRequestDispatcher("client/register.jsp").forward(request, response);
+        if (request.getSession().getAttribute("regInfo") != null)
+          request.getRequestDispatcher("client/downPayment.jsp").forward(request, response);
+        else
+          request.getRequestDispatcher("client/register.jsp").forward(request, response);
         break;
       case "signIn":
         request.getRequestDispatcher("client/signIn.jsp").forward(request, response);
@@ -71,8 +74,23 @@ public class ClientServlet extends HttpServlet {
     response.setContentType("application/json;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
-        String name = request.getParameter("name");
-        //db.addItem(name, desc, brand, catId, price);
+        if (null != request.getSession().getAttribute("regInfo")) {
+          if ("submit".equals(request.getParameter("act"))) {
+            String[] data = ((String) request.getSession().getAttribute("regInfo")).split("\\|");
+            db.addClient(data[0], new Integer(data[1]), data[2]);
+            out.print("\"" + request.getContextPath() + "\"");
+            break;
+          }
+          else if ("cancel".equals(request.getParameter("act")))
+            request.getSession().removeAttribute("regInfo");
+        } else {
+          String name = request.getParameter("forename") + " " + request.getParameter("surname");
+          String phone = request.getParameter("phone");
+          String address = request.getParameter("address");
+          String regInfo = name + "|" + phone + "|" + address;
+          request.getSession().setAttribute("regInfo", regInfo);
+        }
+        out.print("\"" + request.getContextPath() + "/client?action=register\"");
         break;
       case "signIn":
         String username = request.getParameter("username");
@@ -82,6 +100,10 @@ public class ClientServlet extends HttpServlet {
         if (user != null)
           request.getSession().setAttribute("user", user);
         out.print(String.valueOf(user != null));
+        break;
+      case "signOut":
+        request.getSession().removeAttribute("user");
+        out.print('1');
         break;
       default:
         break;

@@ -55,8 +55,8 @@
 $('.ui.dropdown').dropdown();
 $('form').submit(function (e) {
   e.preventDefault();
-  $.post(this.getAttribute('action'), $(this).serialize(), function (data) {
-    alert(data);
+  $.post(this.getAttribute('action'), $(this).serialize(), function (target) {
+    location.href = target;
   })
 });
 </script>

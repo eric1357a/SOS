@@ -56,6 +56,40 @@ body {
   text-align: center;
   width: 128px;
 }
+.category.column .ui.button {
+  height: 64px;
+  position: relative;
+  width: 100%;
+}
+.category.column .ui.button span {
+  left: 0;
+  padding: 8px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+}
+.grid.wall {
+  display: block;
+  -webkit-column-count: 5;
+  -webkit-column-gap: 0;
+  -moz-column-count: 5;
+  -moz-column-gap: 0;
+  column-count: 5;
+  column-gap: 0;
+  margin-bottom: .5rem;
+}
+.product.card {
+  width: 100%!important;
+  -webkit-transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
+}
+.product.card:active { opacity: .75 }
+.product.card .header { margin: 0 }
+.product.card .description td { padding-left: 8px }
 @media(max-width: 720px) {
   
 }

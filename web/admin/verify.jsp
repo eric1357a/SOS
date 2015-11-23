@@ -1,3 +1,5 @@
+<%@page import="java.util.*, sos.bean.*"%>
+<%@taglib uri="/WEB-INF/tlds/pending-client" prefix="sos"%>
 <br>
 <div class="ui two column centered grid">
   <div class="column">
@@ -11,29 +13,31 @@
         Back
       </a>
       <br><br>
+      <% ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clients"); %>
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
+          <div class="ui tiny horizontal statistic">
+            <div class="value"><%=clients.size()%></div>
+            <div class="label">client(s) to be verified</div>
+          </div>
+        </div>
+      </div>
       <!--  Client list  -->
       <div class="ui middle aligned divided list">
-        <div class="item">
-          <div class="right floated content">
-            <a class="ui red icon button"><i class="remove icon"></i></a>
-            <a class="ui green icon button"><i class="checkmark icon"></i></a>
-          </div>
-          <div class="content">
-            <div class="header">Client #1</div>
-            fuck
-          </div>
-        </div>
-        <div class="item">
-          <div class="right floated content">
-            <a class="ui red icon button"><i class="remove icon"></i></a>
-            <a class="ui green icon button"><i class="checkmark icon"></i></a>
-          </div>
-          <div class="content">
-            <div class="header">Client #2</div>
-            vault
-          </div>
-        </div>
+        <% for (ClientBean client : clients) { %>
+          <sos:pendingClient client="<%=client%>"/>
+        <% } %>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+$('[data-content]').popup();
+$('.list .button').click(function () {
+  var dis = $(this);
+  $.post('admin?action=verify&id=' + dis.data('id'), function () {
+    location.href = 'admin?action=verify';
+  });
+});
+</script>

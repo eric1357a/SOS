@@ -2,24 +2,27 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sos.bean.ItemBean;
+import sos.bean.*;
 import sos.db.*;
 
 @WebServlet(name = "AdminServlet", urlPatterns = {"/admin"})
 public class AdminServlet extends HttpServlet {
 
-  private ItemDB db;
+  private ItemDB itemDB;
+  private UserDB userDB;
   
   public void init() throws ServletException {
     String host = this.getServletContext().getInitParameter("host");
     String user = this.getServletContext().getInitParameter("user");
     String pass = this.getServletContext().getInitParameter("pass");
-    db = new ItemDB(host, user, pass);
+    itemDB = new ItemDB(host, user, pass);
+    userDB = new UserDB(host, user, pass);
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,6 +43,7 @@ public class AdminServlet extends HttpServlet {
         request.getRequestDispatcher("admin/manageOrders.jsp").forward(request, response);
         break;
       case "verify":
+        request.setAttribute("clients", userDB.getClientsByAttr("Verified", "=", "false"));
         request.getRequestDispatcher("admin/verify.jsp").forward(request, response);
         break;
       case "halfOrders":
@@ -49,11 +53,11 @@ public class AdminServlet extends HttpServlet {
         request.getRequestDispatcher("admin/index.jsp").forward(request, response);
         break;
       case "editItem":
-        request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
+        //request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
         request.getRequestDispatcher("admin/editItem.jsp").forward(request, response);
         break;
       case "deleteItem":
-        request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
+        //request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
         request.getRequestDispatcher("admin/deleteItem.jsp").forward(request, response);
         break;
       default:
@@ -79,7 +83,15 @@ public class AdminServlet extends HttpServlet {
           price = new Float(request.getParameter("price"));
         } catch (NumberFormatException e) {}
         out.print("server returns: " + name+" "+desc+" "+price);
-        db.addItem(name, desc, brand, catId, price);
+        itemDB.addItem(name, desc, brand, catId, price, "https://na.cx/i/051NY1.jpg");
+        break;
+      case "verify":
+        ClientBean client = userDB.getClientById(String.valueOf(request.getParameter("id")));
+        if (null != client) {
+          client.setVerified(true);
+          userDB.update(client);
+        }
+        out.print("");
         break;
       default:
         break;

@@ -1,3 +1,5 @@
 package sos.bean;
 
-public interface IUserBean {}
+public interface IUserBean {
+  public boolean isAdmin();
+}

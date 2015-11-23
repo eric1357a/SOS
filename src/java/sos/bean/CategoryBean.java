@@ -2,7 +2,7 @@ package sos.bean;
 
 import java.io.Serializable;
 
-public class CategoryBean implements Serializable, IUserBean {
+public class CategoryBean implements Serializable {
 
   private String no;
   private String name;

@@ -23,7 +23,5 @@ public class SOSDB {
     System.setProperty("jdbc.drivers", "org.apache.derby.jdbc.ClientDriver");
     return DriverManager.getConnection(url, username, password);
   }
-  /*TODO class: 
-    1. 
-  */
+  
 }

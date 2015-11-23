@@ -13,9 +13,7 @@
         Back
       </a>
       <br><br>
-      <%
-        ArrayList<ItemBean> cart = (ArrayList<ItemBean>) request.getSession().getAttribute("cart");
-      %>
+      <% ArrayList<ItemBean> cart = (ArrayList<ItemBean>) request.getSession().getAttribute("cart"); %>
       <div class="ui equal width center aligned padded grid">
         <div class="row">
           <div class="ui tiny horizontal statistic">
