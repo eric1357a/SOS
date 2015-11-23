@@ -2,13 +2,12 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sos.bean.ItemBean;
+import sos.bean.*;
 import sos.db.*;
 
 @WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
@@ -78,14 +77,8 @@ public class ClientServlet extends HttpServlet {
       case "signIn":
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean admin = db.isAdmin(username);
-        if(admin){
-          
-        }else{
-            
-        }
-                
-        out.print(String.valueOf(username.equals("abc") && password.equals("123")));
+        IUserBean user = db.login(username, password);
+        out.print(String.valueOf(user != null));
         break;
       default:
         break;

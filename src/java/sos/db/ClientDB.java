@@ -1,39 +1,50 @@
 package sos.db;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import sos.bean.*;
 
 public class ClientDB extends SOSDB {
-  
-  public ClientDB (String url, String username, String password) {
+
+  public ClientDB(String url, String username, String password) {
     super(url, username, password);
   }
-  public boolean isAdmin(String usern){
-      ArrayList dname = new ArrayList();
-      PreparedStatement pStmnt;
-      try{
-            Connection cnnct = DriverManager.getConnection(url, username, password);
-            String preQueryStatement = "select * from USERINFO";
-            pStmnt = cnnct.prepareStatement(preQueryStatement);
-            ResultSet rs = pStmnt.executeQuery();
-            for(int i=0;rs.next();i++) {
-                dname.add(rs.getString("USERNAME"));
-                if(usern.equals(dname.get(i))){
-            return true;
-        }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ClientDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
-  /*TODO class: 
   
-  */
+  public IUserBean login(String username, String password) {
+    PreparedStatement statement;
+    ResultSet result;
+    try {
+      statement = getConnection().prepareStatement("SELECT * FROM ADMINS WHERE USERNAME = ? AND PASSWORD = ?");
+      statement.setString(1, username);
+      statement.setString(2, password);
+      result = statement.executeQuery();
+      if (result.next()) {
+        AdminBean bean = new AdminBean();
+        bean.setUsername(result.getString("Username"));
+        bean.setPassword(result.getString("Password"));
+        return bean;
+      } else {
+        statement = getConnection().prepareStatement("SELECT * FROM CLIENTS WHERE CLIENTID = ? AND PASSWORD = ?");
+        statement.setString(1, username);
+        statement.setString(2, password);
+        result = statement.executeQuery();
+        if (result.next()) {
+          ClientBean bean = new ClientBean();
+          bean.setId(result.getInt("ClientID"));
+          bean.setPassword(result.getString("Password"));
+          bean.setName(result.getString("FullName"));
+          bean.setPhone(result.getInt("Phone"));
+          bean.setAddress(result.getString("Address"));
+          bean.setAddress(result.getString("Address"));
+          bean.setVerified(result.getBoolean("Verified"));
+          bean.setBonus(result.getInt("Bonus"));
+          return bean;
+        }
+      }
+    } catch (Exception e) {
+      /* Who cares? */
+    }
+    return null;
+  }
+
 }
