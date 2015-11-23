@@ -1,3 +1,5 @@
+*SEE MOODLE SPEC FOR DETAILS*
+
 # Fucks
 
 ```
@@ -30,22 +32,6 @@ Manager will login the administration system and handle the daily operations:
 1. Maintain details of the item, such name, price, description etc.
 2. Update the order status such as process, cancel, delivered, or picked-up.
 4. Approve credit amount for client.
-
-# Submission of The Fucks
-1. The front page of your submission should include the course & module title, student number & name, group number. also upload to suck moodle before the deadline.
-
-2. A written report should include the followings:
-
-  - Assumption and the user and system requirements
-  - Site map
-  - System structure on how MVC Model is applied (#1)
-  - Database structure
-  - Tools, installation set, testing procedures and dataset (with suitable screen capture)
-  - Test plan and Test cases
-  - Brief description (1 or 2 pages only) on good design of application
-  - Conclusions
-
-3. Demo your assignment or fail this module.
 
 # References
 
