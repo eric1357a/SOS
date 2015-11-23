@@ -72,8 +72,21 @@ public class ItemServlet extends HttpServlet {
         break;
       case "null":
         LinkedHashMap<CategoryBean, ArrayList<ItemBean>> map = new LinkedHashMap<>();
-        for (CategoryBean category : db.getRandomFourCategories())
-          map.put(category, db.getTop10ProductsByCategory(category.getNo()));
+        boolean fa1se = true;
+        ArrayList<CategoryBean> categories;
+        while (fa1se) {
+          map.clear();
+          categories = db.getRandomFourCategories();
+          for (int i = 0; i < categories.size(); i++) {
+            ArrayList<ItemBean> items = db.getTop10ProductsByCategory(categories.get(i).getNo());
+            // filter out empty categories
+            if (items.size() < 1) break;
+            else {
+              map.put(categories.get(i), items);
+              fa1se = i != categories.size() - 1;
+            }
+          }
+        }
         request.setAttribute("catSta", map);
         request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
         break;
