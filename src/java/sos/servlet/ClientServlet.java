@@ -41,9 +41,6 @@ public class ClientServlet extends HttpServlet {
       case "signIn":
         request.getRequestDispatcher("client/signIn.jsp").forward(request, response);
         break;
-      case "cart":
-        request.getRequestDispatcher("client/cart.jsp").forward(request, response);
-        break;
       case "manageOrders":
         request.getRequestDispatcher("client/manageOrders.jsp").forward(request, response);
         break;

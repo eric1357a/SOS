@@ -18,7 +18,7 @@ public class ProductCardTag extends SimpleTagSupport {
   
   public void doTag() throws java.io.IOException {
     JspWriter out = getJspContext().getOut();
-    out.print("<a class='product card column' href='item?action=details&id=" + item.getNo() + "'>");
+    out.print("<a class='product card column' href='item?action=details&no=" + item.getNo() + "'>");
     out.print("  <div class='ui fluid card'>");
     out.print("    <div class='image'>");
     out.print("      <img src='" + item.getPicture() + "'>");

@@ -15,7 +15,7 @@
       <div class="grid menu ui three column grid">
         <!--  Shopping cart  -->
         <div class="column">
-          <a class="basic teal ui icon button" href="client?action=cart">
+          <a class="basic teal ui icon button" href="item?action=cart">
             <i class="cart icon"></i>
             <br>
             <span>Shopping cart</span>

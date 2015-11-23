@@ -3,6 +3,8 @@ package sos.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 import sos.bean.*;
 
 public class ItemDB extends SOSDB {
@@ -80,7 +82,8 @@ public class ItemDB extends SOSDB {
   }
 
   public ItemBean getProductByNo(String prodNo) {
-    return getProductsByAttr("PRODNO", "=", prodNo).get(0);
+    ArrayList<ItemBean> result = getProductsByAttr("PRODNO", "=", prodNo);
+    return result.size() == 1 ? result.get(0) : null;
   }
   
   public ArrayList<ItemBean> getProductsByName(String name) {
@@ -113,6 +116,15 @@ public class ItemDB extends SOSDB {
       /* Who cares? */
     }
     return categories;
+  }
+  
+  public ArrayList<CategoryBean> getRandomFourCategories() {
+    ArrayList<CategoryBean> categories = getCategoriesByAttr("CATNAME", "LIKE", "'%'");
+    long seed = System.nanoTime();
+    Collections.shuffle(categories, new Random(seed));
+    ArrayList<CategoryBean> four = new ArrayList<>();
+    for (int i = 0; i < 4; i++) four.add(categories.get(i));
+    return four;
   }
   
   public ArrayList<CategoryBean> getAllCategories() {

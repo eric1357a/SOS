@@ -4,8 +4,8 @@
 <div class="ui centered grid">
   <div class="twelve wide column">
     <h4 class="ui horizontal divider header">
-      <i class="home icon"></i>
-      Browse categories
+      <i class="book icon"></i>
+      Browse category
     </h4>
     <div class="ui segment">
       <a class="ui basic teal ribbon label" onclick="history.go(-1)">

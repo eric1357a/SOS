@@ -17,7 +17,7 @@ public class SearchResultTag extends SimpleTagSupport {
   
   public void doTag() throws java.io.IOException {
     JspWriter out = getJspContext().getOut();
-    out.print("<a class='result' href='item?action=details&id=10101'>");
+    out.print("<a class='result' href='item?action=details&no=10101'>");
     out.print("  <div class='content'>");
     out.print("    <div class='title'>" + title + "</div>");
     out.print("    <div class='description'>" + desc + "</div>");

@@ -27,7 +27,7 @@
         <div class="ui relaxed items">
           <div class="ui feed">
           <% for (ItemBean item : cart) { %>
-          <sos:cartItem id="<%=item.getId()%>" title="<%=item.getName()%>"/>
+          <sos:cartItem item="<%=item%>"/>
           <% } %>
           </div>
         </div>

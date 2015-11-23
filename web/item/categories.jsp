@@ -4,7 +4,7 @@
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="home icon"></i>
+      <i class="book icon"></i>
       Browse categories
     </h4>
     <div class="ui segment">

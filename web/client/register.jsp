@@ -22,7 +22,7 @@
         </div>
         <div class="field">
           <label>Phone number</label>
-          <input name="phone" type="text" autocomplete="off">
+          <input name="phone" type="text" autocomplete="off" maxlength="8">
         </div>
         <div class="field">
           <label>Address</label>
@@ -53,6 +53,18 @@
 
 <script>
 $('.ui.dropdown').dropdown();
+$('input').keypress(function (e) {
+  var index = $(this).parent().index();
+  if (index === 2 && !/\d/.test(String.fromCharCode(e.which)))
+    e.preventDefault();
+}).blur(function (e) {
+  var dis = $(this);
+  var index = $(this).parent().index();
+  if(dis.val().length < 2 || index === 2 && $(this).val().length !== 8)
+    dis.parent().addClass('error');
+  else
+    dis.parent().removeClass('error');
+});
 $('form').submit(function (e) {
   e.preventDefault();
   $.post(this.getAttribute('action'), $(this).serialize(), function (target) {

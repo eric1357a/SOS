@@ -5,14 +5,9 @@
   <div class="twelve wide column">
     <h4 class="ui horizontal divider header">
       <i class="home icon"></i>
-      Featured stationeries
+      Pick for you
     </h4>
     <div class="ui segment">
-      <a class="ui basic teal ribbon label" onclick="history.go(-1)">
-        <i class="arrow left icon"></i>
-        Back
-      </a>
-      <br><br>
       <% LinkedHashMap<CategoryBean, ArrayList<ItemBean>> map = (LinkedHashMap<CategoryBean, ArrayList<ItemBean>>) request.getAttribute("catSta"); %>
       <% for (CategoryBean category : map.keySet()) { %>
         <h3 class="ui dividing header"><%=category.getName()%></h3>
@@ -31,3 +26,4 @@
     </div>
   </div>
 </div>
+<br>

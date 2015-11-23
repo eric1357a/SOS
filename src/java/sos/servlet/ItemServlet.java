@@ -27,6 +27,11 @@ public class ItemServlet extends HttpServlet {
     db = new ItemDB(host, user, pass);
   }
   
+  private void initializeCart(HttpServletRequest request) {
+    if (request.getSession().getAttribute("cart") == null)
+      request.getSession().setAttribute("cart", new ArrayList<>());
+  }
+  
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     // request is not ajax, forward to index to enforce ajax
@@ -51,13 +56,23 @@ public class ItemServlet extends HttpServlet {
         }
         break;
       case "details":
-        out.println("<h1>ItemServlet " + request.getParameter("id") + "</h1>");
-        String id = request.getParameter("id");
+        ItemBean item = db.getProductByNo(String.valueOf(request.getParameter("no")));
+        if (null == item)
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+        else {
+          request.setAttribute("category", db.getCategoryByNo(item.getCatNo()));
+          request.setAttribute("item", item);
+          request.getRequestDispatcher("item/details.jsp").forward(request, response);
+        }
         // DB QueryByID request.setAttribute("id", id);
+        break;
+      case "cart":
+        initializeCart(request);
+        request.getRequestDispatcher("item/cart.jsp").forward(request, response);
         break;
       case "null":
         LinkedHashMap<CategoryBean, ArrayList<ItemBean>> map = new LinkedHashMap<>();
-        for (CategoryBean category : db.getAllCategories())
+        for (CategoryBean category : db.getRandomFourCategories())
           map.put(category, db.getTop10ProductsByCategory(category.getNo()));
         request.setAttribute("catSta", map);
         request.getRequestDispatcher("item/stationeries.jsp").forward(request, response);
@@ -87,6 +102,14 @@ public class ItemServlet extends HttpServlet {
         } else
           request.getRequestDispatcher("item/noResult.jsp").forward(request, response);
         break;
+      case "cart":
+        ItemBean item = db.getProductByNo(String.valueOf(request.getParameter("no")));
+        if (null != item) {
+          initializeCart(request);
+          ArrayList<ItemBean> cart = (ArrayList<ItemBean>) request.getSession().getAttribute("cart");
+          cart.add(item);
+          request.getSession().setAttribute("cart", cart);
+        }
       default:
         break;
     }
