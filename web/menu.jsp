@@ -6,10 +6,13 @@
   <a class="item" href="<%=cp%>/gift">Gifts</a>
   <a id="toggle-search" class="item">Search</a>
   <div class="right menu">
-    <a class="item" href="<%=cp%>/admin">Admin</a>
-    <a class="item" href="<%=cp%>/client">Home</a>
-    <a class="item" href="<%=cp%>/client?action=register">Register</a>
-    <a class="item" href="<%=cp%>/client?action=signIn">Sign in</a>
+    <% if (request.getAttribute("user") != null) { %>
+      <a class="item" href="<%=cp%>/admin">Admin</a>
+      <a class="item" href="<%=cp%>/client">Home</a>
+    <% } else { %>
+      <a class="item" href="<%=cp%>/client?action=register">Register</a>
+      <a class="item" href="<%=cp%>/client?action=signIn">Sign in</a>
+    <% } %>
   </div>
 </div>
 

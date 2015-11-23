@@ -31,8 +31,6 @@ public class AdminServlet extends HttpServlet {
     }
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
-    System.out.println("===============");
-    System.out.println(String.valueOf(request.getParameter("action")));
     int itemId;
     switch (String.valueOf(request.getParameter("action"))) {
       case "manageItems":
@@ -51,13 +49,11 @@ public class AdminServlet extends HttpServlet {
         request.getRequestDispatcher("admin/index.jsp").forward(request, response);
         break;
       case "editItem":
-        itemId = new Integer(request.getParameter("id"));
-        request.setAttribute("item", new ItemBean(itemId, "fuck"));
+        request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
         request.getRequestDispatcher("admin/editItem.jsp").forward(request, response);
         break;
       case "deleteItem":
-        itemId = new Integer(request.getParameter("id"));
-        request.setAttribute("item", new ItemBean(itemId, "fuck"));
+        request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
         request.getRequestDispatcher("admin/deleteItem.jsp").forward(request, response);
         break;
       default:

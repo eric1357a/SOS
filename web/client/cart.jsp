@@ -14,11 +14,7 @@
       </a>
       <br><br>
       <%
-        ArrayList<ItemBean> cart;
-        if (null == request.getAttribute("cart"))
-          cart = new ArrayList<ItemBean>();
-        else
-          cart = (ArrayList<ItemBean>) request.getAttribute("cart");
+        ArrayList<ItemBean> cart = (ArrayList<ItemBean>) request.getSession().getAttribute("cart");
       %>
       <div class="ui equal width center aligned padded grid">
         <div class="row">

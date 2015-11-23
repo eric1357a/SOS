@@ -1,6 +1,6 @@
 @import 'https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps';
 body {
-  background: transparent center no-repeat;
+  background: transparent center fixed no-repeat;
   background-size: cover;
 }
 #menu {
@@ -55,4 +55,7 @@ body {
   height: 128px;
   text-align: center;
   width: 128px;
+}
+@media(max-width: 720px) {
+  
 }

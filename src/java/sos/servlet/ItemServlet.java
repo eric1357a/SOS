@@ -65,7 +65,7 @@ public class ItemServlet extends HttpServlet {
           String matched = m.group(1);
           ArrayList<ItemBean> items = new ArrayList<>();
           // get results from db..
-          items.add(new ItemBean(0, keyword));
+          items.add(new ItemBean("12", keyword));
           request.setAttribute("items", items);
           request.getRequestDispatcher("item/searchResult.jsp").forward(request, response);
         } else

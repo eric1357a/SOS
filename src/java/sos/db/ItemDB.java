@@ -3,7 +3,7 @@ package sos.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import sos.bean.ItemBean;
+import sos.bean.*;
 
 public class ItemDB extends SOSDB {
 
@@ -54,7 +54,7 @@ public class ItemDB extends SOSDB {
       ResultSet result = statement.executeQuery();
       while (result.next()) {
         ItemBean item = new ItemBean();
-        item.setId(result.getInt("ProdNo"));
+        item.setId(result.getString("ProdNo"));
         item.setName(result.getString("ProdName"));
         products.add(item);
       }

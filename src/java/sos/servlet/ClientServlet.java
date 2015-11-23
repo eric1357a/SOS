@@ -78,6 +78,9 @@ public class ClientServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         IUserBean user = db.login(username, password);
+        //getServletContext().setAttribute("user", out);
+        if (user != null)
+          request.getSession().setAttribute("user", user);
         out.print(String.valueOf(user != null));
         break;
       default:

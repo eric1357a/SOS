@@ -3,23 +3,22 @@ package sos.bean;
 import java.io.Serializable;
 
 public class ItemBean implements Serializable {
-
-  private int id;
-  private String name;
+  
+  private String id, name;
 
   public ItemBean() {
   }
 
-  public ItemBean(int id, String name) {
+  public ItemBean(String id, String name) {
     this.id = id;
     this.name = name;
   }
 
-  public int getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 
