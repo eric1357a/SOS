@@ -13,13 +13,13 @@ import sos.db.*;
 @WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
 public class ClientServlet extends HttpServlet {
 
-  private ClientDB db;
+  private UserDB db;
   
   public void init() throws ServletException {
     String host = this.getServletContext().getInitParameter("host");
     String user = this.getServletContext().getInitParameter("user");
     String pass = this.getServletContext().getInitParameter("pass");
-    db = new ClientDB(host, user, pass);
+    db = new UserDB(host, user, pass);
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)

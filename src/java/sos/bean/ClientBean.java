@@ -69,7 +69,7 @@ public class ClientBean implements Serializable, IUserBean {
     this.bonus = bonus;
   }
 
-  public boolean isVerified() {
+  public boolean getVerified() {
     return verified;
   }
 
