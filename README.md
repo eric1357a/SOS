@@ -59,16 +59,6 @@ Manager will login the administration system and handle the daily operations:
 - REST
 - SPA (https://en.wikipedia.org/wiki/Single-page_application)
 
-# distrubution
-
-> K:
-- java bean
-- document + DB
-
-> E:
-- servlet
-- Use session checking + login control
-
 # notes
 
 **#1**: Model = sos.db.*, View = JSP, Controllers = Servlets
