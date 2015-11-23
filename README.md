@@ -12,13 +12,14 @@ Reward ("seafood001", 2500) #=> 200 point
 - sortable search result list
 - Similar search function also available for gift redemption. E.g. gift with less than 300 points
 
-When client place an order online, the client will choose for delivery or self-pick up at main office.
+- Client place an order online
+  - Delivery
+  - self-pick up
+    - enter the pick-up time/date.
 
-If the client selected self-pickup, the client has to enter the pick-up time/date.
+Order success -> show confirmation of ordered items
 
-When an order is made successfully, a confirmation will show the ordered items.
-
-When the client picks up an order, the manager will update the order status as picked-up.
+Client picks up -> manager update order status
 
 **Client can cancel the order within 24 hours after ordered and at least 24 hours before deliver date.**
 
