@@ -22,7 +22,17 @@
           <% total += entry.getKey().getPrice() * entry.getValue(); %>
         <% } %>
         <div class="ui divider"></div>
-        Total: $<%=total%>
+        <div class="ui equal width center aligned padded grid">
+          <div class="row">
+            <div class="ui tiny horizontal statistic">
+              <div class="label">Total:</div>
+              <div class="label"></div>
+              <div class="value">$<%=total%></div>
+            </div>
+            <br>
+          </div>
+          <a class="ui basic brown button" href="item?action=checkout">Choose delivery method</a>
+        </div>
       </div>
     </div>
   </div>
@@ -32,10 +42,4 @@
 <% if (cart.size() < 1) { %>
 location.href = 'item?action=cart';
 <% } %>
-$('.list .button').click(function () {
-  var dis = $(this);
-  $.post('item?action=emptyCart&no=' + dis.data('no'), function () {
-    location.href = 'item?action=checkout';
-  });
-});
 </script>

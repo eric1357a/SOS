@@ -25,9 +25,12 @@ public class CartItemTag extends SimpleTagSupport {
     out.print("  </div>");
     out.print("  <div class='content'>");
     out.print("    <div class='date'>" + entry.getKey().getName() +"</div>");
-    out.print("    <div class='summary'>Quantity: " + entry.getValue()+ "</div>");
+    out.print("    <div class='summary'>");
+    out.print("      Quantity: <div class='ui small input'><input type='text' name='qty" + entry.getKey().getNo() + "' value='" + entry.getValue() + "'></div>");
+    out.print("    </div>");
     out.print("    <div class='meta'>");
     out.print("      <a href='item?action=details&no=" + entry.getKey().getNo() + "'><i class='share icon'></i> View</a>");
+    out.print("      <a data-rmno='" + entry.getKey().getNo() + "'><i class='remove icon'></i> Delete</a>");
     out.print("    </div>");
     out.print("  </div>");
     out.print("</div>");

@@ -16,6 +16,7 @@ public class AdminServlet extends HttpServlet {
 
   private ItemDB itemDB;
   private UserDB userDB;
+  private OrderDB orderDB;
   
   public void init() throws ServletException {
     String host = this.getServletContext().getInitParameter("host");
@@ -23,6 +24,7 @@ public class AdminServlet extends HttpServlet {
     String pass = this.getServletContext().getInitParameter("pass");
     itemDB = new ItemDB(host, user, pass);
     userDB = new UserDB(host, user, pass);
+    orderDB = new OrderDB(host, user, pass);
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -53,6 +55,7 @@ public class AdminServlet extends HttpServlet {
         request.getRequestDispatcher("admin/verify.jsp").forward(request, response);
         break;
       case "halfOrders":
+        request.setAttribute("halfOrders", orderDB.getOrdersByAttr("Status", "IN", "('process','cancelled')"));
         request.getRequestDispatcher("admin/halfOrders.jsp").forward(request, response);
         break;
       case "null":

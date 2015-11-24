@@ -29,7 +29,18 @@
             <span>Manage orders</span>
           </a>
         </div>
-        <!--  Add item  -->
+        <!--  Order history  -->
+        <div class="column">
+          <a class="basic teal ui icon button" href="client?action=orderHistory">
+            <i class="time icon"></i>
+            <br>
+            <span>Order history</span>
+          </a>
+        </div>
+      </div>
+      <!--  Row 2  -->
+      <div class="grid menu ui three column grid">
+        <!--  Update info  -->
         <div class="column">
           <a class="basic teal ui icon button" href="client?action=updateInfo">
             <i class="edit icon"></i>
@@ -37,9 +48,6 @@
             <span>Update info</span>
           </a>
         </div>
-      </div>
-      <!--  Row 2  -->
-      <div class="grid menu ui three column grid">
         <!--  Bonus points  -->
         <div class="column">
           <a class="basic teal ui icon button" href="client?action=bonus">

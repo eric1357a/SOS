@@ -1,3 +1,5 @@
+<%@page import="java.util.*, sos.bean.*"%>
+<%@taglib uri="/WEB-INF/tlds/incomplete-order" prefix="sos"%>
 <br>
 <div class="ui two column centered grid">
   <div class="column">
@@ -11,33 +13,27 @@
         Back
       </a>
       <br><br>
+      <% ArrayList<OrderBean> halfOrders = (ArrayList<OrderBean>) request.getAttribute("halfOrders"); %>
       <!--  Incomplete orders report  -->
       <div class="ui equal width center aligned padded grid">
         <div class="row">
           <div class="ui tiny horizontal statistic">
             <div class="label">Total</div>
             <div class="label"></div>
-            <div class="value">2</div>
+            <div class="value"><%=halfOrders.size()%></div>
             <div class="label">Incomplete orders</div>
           </div>
         </div>
       </div>
+      <% if (halfOrders.size() > 0) { %>
       <div class="ui segment">
         <div class="ui divided list">
-          <div class="item">
-            <div class="content">
-              <div class="header">Order #1</div>
-              Client 123
-            </div>
-          </div>
-          <div class="item">
-            <div class="content">
-              <div class="header">Order #2</div>
-              Client 456
-            </div>
-          </div>
+          <% for (OrderBean order : halfOrders) { %>
+            <sos:incompleteOrder order="<%=order%>"/>
+          <% } %>
         </div>
       </div>
+      <% } %>
     </div>
   </div>
 </div>

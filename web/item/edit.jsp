@@ -3,7 +3,7 @@
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="info icon"></i>
+      <i class="edit icon"></i>
       Edit details
     </h4>
     <div class="ui segment">
@@ -51,12 +51,15 @@
                   </div>
                 </div>
               </div>
-              <div class="item" data-content="Category No">
+              <div class="item" data-content="Category">
                 <i class="large book middle aligned icon"></i>
                 <div class="content">
-                  <div class="ui input">
-                    <input type="text" name="catNo" value="<%=item.getCatNo()%>">
-                  </div>
+                  <% ArrayList<CategoryBean> categories = (ArrayList<CategoryBean>) request.getAttribute("categories"); %>
+                  <select name="catNo" class="ui dropdown">
+                    <% for (CategoryBean category : categories) { %>
+                    <option value="<%=category.getNo()%>"<%=category.getNo().equals(item.getCatNo()) ? " selected" : ""%>><%=category.getName()%></option>
+                    <% } %>
+                  </select>
                 </div>
               </div>
               <div class="item" data-content="Picture">
@@ -83,6 +86,7 @@
 
 <script>
 $('[data-content]').popup();
+$('.ui.dropdown').dropdown();
 $('form').submit(function (e) {
   e.preventDefault();
   $.post(this.getAttribute('action'), $(this).serialize(), function () {

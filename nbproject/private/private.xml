@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/tag/IncompleteOrderTag.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/web/item/cart.jsp</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/servlet/AdminServlet.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/web/admin/halfOrders.jsp</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/web/client/index.jsp</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/db/ItemDB.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/db/OrderDB.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/tag/CheckoutListItemTag.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/tag/CartItemTag.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/web/item/checkout.jsp</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/servlet/ClientServlet.java</file>
+            <file>file:/C:/Users/admin/Documents/GitHub/SOS/src/java/sos/servlet/ItemServlet.java</file>
+        </group>
     </open-files>
 </project-private>

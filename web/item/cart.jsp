@@ -23,26 +23,35 @@
         </div>
       </div>
       <% if (cart.size() > 0) { %>
-      <div class="ui segment">
-        <div class="ui relaxed items">
-          <div class="ui feed">
-          <% for (Entry<ItemBean, Integer> entry : cart) { %>
-          <sos:cartItem entry="<%=entry%>"/>
-          <% } %>
+      <form action="item?action=updateCart">
+        <div class="ui segment">
+          <div class="ui relaxed items">
+            <div class="ui feed">
+            <% for (Entry<ItemBean, Integer> entry : cart) { %>
+            <sos:cartItem entry="<%=entry%>"/>
+            <% } %>
+            </div>
           </div>
+          <button id="empty" class="ui basic red button">Empty</button>
+          <button class="ui basic green button" type="submit">Update</button>
+          <a class="ui basic blue button" href="item?action=checkout">Checkout</a>
         </div>
-        <button id="empty" class="ui basic red button">Empty</button>
-        <a class="ui basic blue button" href="item?action=checkout">Checkout</a>
-      </div>
+      </form>
       <% } %>
     </div>
   </div>
 </div>
 
 <script>
+function reload () { location.href = 'item?action=cart' }
+$('[data-rmno]').click(function (e) {
+  $.post('item?action=emptyCart&no=' + $(this).data('rmno'), reload);
+});
 $('#empty').click(function () {
-  $.post('item?action=emptyCart', function () {
-    location.href = 'item?action=cart';
-  });
+  $.post('item?action=emptyCart', reload);
+});
+$('form').submit(function (e) {
+  e.preventDefault();
+  $.post(this.getAttribute('action'), $(this).serialize(), reload);
 });
 </script>

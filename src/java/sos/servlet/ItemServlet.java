@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -88,6 +89,7 @@ public class ItemServlet extends HttpServlet {
             request.getRequestDispatcher("404.jsp").forward(request, response);
           else {
             request.setAttribute("item", item);
+            request.setAttribute("categories", db.getAllCategories());
             request.getRequestDispatcher("item/edit.jsp").forward(request, response);
           }
         }
@@ -126,6 +128,7 @@ public class ItemServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     IUserBean user = (IUserBean) request.getSession().getAttribute("user");
+    ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart");
     switch (String.valueOf(request.getParameter("action"))) {
       case "search":
         String keyword = request.getParameter("word");
@@ -144,12 +147,13 @@ public class ItemServlet extends HttpServlet {
           ItemBean item = db.getProductByNo(String.valueOf(request.getParameter("no")));
           if (null != item) {
             initializeCart(request);
-            ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart");
-            if (cart.size() < 1)
-              cart.add(new SimpleEntry<>(item, 1));
-            else for (Entry<ItemBean, Integer> entry : cart)
-              if (entry.getKey().getNo().equals(item.getNo()))
+            boolean found = false;
+            for (Entry<ItemBean, Integer> entry : cart)
+              if (entry.getKey().getNo().equals(item.getNo())) {
+                found = true;
                 entry.setValue(entry.getValue() + 1);
+              }
+            if (!found) cart.add(new SimpleEntry<>(item, 1));
             request.getSession().setAttribute("cart", cart);
           }
         }
@@ -169,17 +173,28 @@ public class ItemServlet extends HttpServlet {
             db.update(item);
           }
         }
+        break;
+      case "updateCart":
+        java.util.Map<String, String[]> map = request.getParameterMap();
+        for (java.util.Map.Entry<String, String[]> field : map.entrySet()) {
+          if (!field.getKey().startsWith("qty")) continue;
+          for (Entry<ItemBean, Integer> entry : cart)
+            if (entry.getKey().getNo().equals(field.getKey().split("qty")[1]))
+              entry.setValue(new Integer(field.getValue()[0]));
+        }
+        request.getSession().setAttribute("cart", cart);
+        break;
       case "emptyCart":
         String no = request.getParameter("no");
         if (no != null) {
-          ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart");
           for (Entry<ItemBean, Integer> entry : cart)
-              if (entry.getKey().getNo().equals(no))
-                cart.remove(entry);
+            if (entry.getKey().getNo().equals(no))
+              cart.remove(entry);
           request.getSession().setAttribute("cart", cart);
         } else {
           request.getSession().setAttribute("cart", new ArrayList<>());
         }
+        break;
       default:
         break;
     }

@@ -60,12 +60,21 @@ public class ClientServlet extends HttpServlet {
         }
         request.getRequestDispatcher("client/manageOrders.jsp").forward(request, response);
         break;
+      case "orderHistory":
+        /* check is client */
+        if (user == null || !(user instanceof ClientBean)) {
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
+        request.getRequestDispatcher("client/orderHistory.jsp").forward(request, response);
+        break;
       case "updateInfo":
         /* check is client */
         if (user == null || !(user instanceof ClientBean)) {
           request.getRequestDispatcher("404.jsp").forward(request, response);
           break;
         }
+        request.setAttribute("user", user);
         request.getRequestDispatcher("client/updateInfo.jsp").forward(request, response);
         break;
       case "bonus":
@@ -123,6 +132,18 @@ public class ClientServlet extends HttpServlet {
         if (user != null)
           request.getSession().setAttribute("user", user);
         out.print(String.valueOf(user != null));
+        break;
+      case "updateInfo":
+        /* check is client */
+        String name = request.getParameter("forename") + " " + request.getParameter("surname");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        ClientBean client = (ClientBean) request.getSession().getAttribute("user");
+        client.setName(name);
+        client.setPhone(new Integer(phone));
+        client.setAddress(address);
+        db.update(client);
+        out.print('1');
         break;
       case "signOut":
         request.getSession().removeAttribute("user");
