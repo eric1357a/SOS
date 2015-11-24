@@ -34,6 +34,12 @@ public class AdminServlet extends HttpServlet {
     }
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
+    /* check is admin */
+    IUserBean user = (IUserBean) request.getSession().getAttribute("user");
+    if (user == null || !(user instanceof AdminBean)) {
+      request.getRequestDispatcher("404.jsp").forward(request, response);
+      return;
+    }
     int itemId;
     switch (String.valueOf(request.getParameter("action"))) {
       case "manageItems":
@@ -70,6 +76,8 @@ public class AdminServlet extends HttpServlet {
           throws ServletException, IOException {
     // request is not ajax, forward to index to enforce ajax
     if (request.getHeader("X-Requested-With") == null) return;
+    IUserBean user = (IUserBean) request.getSession().getAttribute("user");
+    if (user == null || !(user instanceof AdminBean))  return;
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
     switch (String.valueOf(request.getParameter("action"))) {

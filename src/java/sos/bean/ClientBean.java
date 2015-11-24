@@ -76,9 +76,5 @@ public class ClientBean implements Serializable, IUserBean {
   public void setVerified(boolean verified) {
     this.verified = verified;
   }
-
-  public boolean isAdmin() {
-    return false;
-  }
   
 }

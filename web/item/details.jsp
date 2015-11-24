@@ -47,20 +47,27 @@
           </div>
         </div>
         <div class="row">
-          <a id="add-cart" class="ui orange button">
-            <i class="add to cart icon"></i>
-            Add to cart
-          </a>
+          <% IUserBean user = (IUserBean) request.getSession().getAttribute("user"); %>
+          <% if (user != null && user instanceof ClientBean) { %>
+            <a id="add-cart" class="ui orange button">
+              <i class="add to cart icon"></i>
+              Add to cart
+            </a>
+            <script>
+            $('#add-cart').click(function () {
+              $.post('item?action=cart&no=<%=item.getNo()%>', function () {
+                location.href = 'item?action=cart';
+              });
+            });
+            </script>
+          <% } else { %>
+            <a id="edit-item" class="ui violet button" href="item?action=edit&no=<%=item.getNo()%>">
+              <i class="edit icon"></i>
+              Edit details
+            </a>
+          <% } %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-$('#add-cart').click(function () {
-  $.post('item?action=cart&no=<%=item.getNo()%>', function () {
-    location.href = 'item?action=cart';
-  });
-});
-</script>

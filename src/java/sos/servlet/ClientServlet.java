@@ -31,23 +31,49 @@ public class ClientServlet extends HttpServlet {
     }
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
+    IUserBean user = (IUserBean) request.getSession().getAttribute("user");
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
+        /* already registered */
+        if (request.getSession().getAttribute("user") != null) {
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
         if (request.getSession().getAttribute("regInfo") != null)
           request.getRequestDispatcher("client/downPayment.jsp").forward(request, response);
         else
           request.getRequestDispatcher("client/register.jsp").forward(request, response);
         break;
       case "signIn":
+        /* already signed in */
+        if (request.getSession().getAttribute("user") != null) {
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
         request.getRequestDispatcher("client/signIn.jsp").forward(request, response);
         break;
       case "manageOrders":
+        /* check is client */
+        if (user == null || !(user instanceof ClientBean)) {
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
         request.getRequestDispatcher("client/manageOrders.jsp").forward(request, response);
         break;
       case "updateInfo":
+        /* check is client */
+        if (user == null || !(user instanceof ClientBean)) {
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
         request.getRequestDispatcher("client/updateInfo.jsp").forward(request, response);
         break;
       case "bonus":
+        /* check is client */
+        if (user == null || !(user instanceof ClientBean)) {
+          request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
         request.getRequestDispatcher("client/bonus.jsp").forward(request, response);
         break;
       case "null":

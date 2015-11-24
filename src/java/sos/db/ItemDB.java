@@ -140,4 +140,25 @@ public class ItemDB extends SOSDB {
     return getCategoriesByAttr("CATNAME", "LIKE", "'%" + name + "%'");
   }
   
+  public boolean update(ItemBean item) {
+    PreparedStatement statement = null;
+    try {
+      String preQueryStatement = "UPDATE PRODUCTS SET PRODNAME=?,PRICE=?,DESCRIPTION=?,CATNO=?,BRAND=?,PICTURE=? WHERE PRODNO = ?";
+      statement = getConnection().prepareStatement(preQueryStatement);
+      statement.setString(1, item.getName());
+      statement.setDouble(2, item.getPrice());
+      statement.setString(3, item.getDesc());
+      statement.setString(4, item.getCatNo());
+      statement.setString(5, item.getBrand());
+      statement.setString(6, item.getPicture());
+      statement.setString(7, item.getNo());
+      statement.executeUpdate();
+      statement.close();
+      return true;
+    } catch (Exception e) {
+      /* Who cares? */
+    }
+    return false;
+  }
+  
 }

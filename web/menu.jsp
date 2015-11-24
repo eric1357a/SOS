@@ -10,7 +10,7 @@
     <%
       IUserBean user = (IUserBean) request.getSession().getAttribute("user");
       if (user != null) {
-        if (user.isAdmin()) {
+        if (user instanceof AdminBean) {
     %>
         <a class="item" href="<%=cp%>/admin">Admin</a>
       <% } else { %>

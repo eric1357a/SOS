@@ -2,8 +2,10 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.ServletException;
@@ -11,8 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sos.bean.CategoryBean;
-import sos.bean.ItemBean;
+import sos.bean.*;
 import sos.db.*;
 
 @WebServlet(name = "ItemServlet", urlPatterns = {"/item"})
@@ -41,6 +42,7 @@ public class ItemServlet extends HttpServlet {
     }
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
+    IUserBean user = (IUserBean) request.getSession().getAttribute("user");
     switch (String.valueOf(request.getParameter("action"))) {
       case "categories":
         request.setAttribute("categories", db.getAllCategories());
@@ -67,8 +69,29 @@ public class ItemServlet extends HttpServlet {
         // DB QueryByID request.setAttribute("id", id);
         break;
       case "cart":
-        initializeCart(request);
-        request.getRequestDispatcher("item/cart.jsp").forward(request, response);
+        if (user != null && user instanceof ClientBean) {
+          initializeCart(request);
+          request.getRequestDispatcher("item/cart.jsp").forward(request, response);
+        }
+        else request.getRequestDispatcher("404.jsp").forward(request, response);
+        break;
+      case "checkout":
+        if (user != null && user instanceof ClientBean) {
+          request.getRequestDispatcher("item/checkout.jsp").forward(request, response);
+        }
+        else request.getRequestDispatcher("404.jsp").forward(request, response);
+        break;
+      case "edit":
+        if (user != null && user instanceof AdminBean) {
+          item = db.getProductByNo(String.valueOf(request.getParameter("no")));
+          if (null == item)
+            request.getRequestDispatcher("404.jsp").forward(request, response);
+          else {
+            request.setAttribute("item", item);
+            request.getRequestDispatcher("item/edit.jsp").forward(request, response);
+          }
+        }
+        else request.getRequestDispatcher("404.jsp").forward(request, response);
         break;
       case "null":
         LinkedHashMap<CategoryBean, ArrayList<ItemBean>> map = new LinkedHashMap<>();
@@ -102,6 +125,7 @@ public class ItemServlet extends HttpServlet {
     if (request.getHeader("X-Requested-With") == null) return;
     PrintWriter out = response.getWriter();
     response.setContentType("text/html;charset=UTF-8");
+    IUserBean user = (IUserBean) request.getSession().getAttribute("user");
     switch (String.valueOf(request.getParameter("action"))) {
       case "search":
         String keyword = request.getParameter("word");
@@ -116,12 +140,45 @@ public class ItemServlet extends HttpServlet {
           request.getRequestDispatcher("item/noResult.jsp").forward(request, response);
         break;
       case "cart":
-        ItemBean item = db.getProductByNo(String.valueOf(request.getParameter("no")));
-        if (null != item) {
-          initializeCart(request);
-          ArrayList<ItemBean> cart = (ArrayList<ItemBean>) request.getSession().getAttribute("cart");
-          cart.add(item);
+        if (user != null && user instanceof ClientBean) {
+          ItemBean item = db.getProductByNo(String.valueOf(request.getParameter("no")));
+          if (null != item) {
+            initializeCart(request);
+            ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart");
+            if (cart.size() < 1)
+              cart.add(new SimpleEntry<>(item, 1));
+            else for (Entry<ItemBean, Integer> entry : cart)
+              if (entry.getKey().getNo().equals(item.getNo()))
+                entry.setValue(entry.getValue() + 1);
+            request.getSession().setAttribute("cart", cart);
+          }
+        }
+        break;
+      case "edit":
+        if (user != null && user instanceof AdminBean) {
+          ItemBean item = db.getProductByNo(String.valueOf(request.getParameter("no")));
+          if (null != item) {
+            item.setName(request.getParameter("name"));
+            item.setDesc(request.getParameter("desc"));
+            item.setBrand(request.getParameter("brand"));
+            item.setPrice(Double.parseDouble(request.getParameter("price")));
+            String catNo = String.valueOf(request.getParameter("catNo"));
+            if (db.getCategoryByNo(catNo) != null)
+              item.setCatNo(catNo);
+            item.setPicture(request.getParameter("pic"));
+            db.update(item);
+          }
+        }
+      case "emptyCart":
+        String no = request.getParameter("no");
+        if (no != null) {
+          ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart");
+          for (Entry<ItemBean, Integer> entry : cart)
+              if (entry.getKey().getNo().equals(no))
+                cart.remove(entry);
           request.getSession().setAttribute("cart", cart);
+        } else {
+          request.getSession().setAttribute("cart", new ArrayList<>());
         }
       default:
         break;

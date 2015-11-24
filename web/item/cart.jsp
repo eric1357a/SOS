@@ -1,4 +1,4 @@
-<%@page import="java.util.*, sos.bean.*"%>
+<%@page import="java.util.*, java.util.Map.*, sos.bean.*"%>
 <%@taglib uri="/WEB-INF/tlds/cart-item" prefix="sos"%>
 <br>
 <div class="ui two column centered grid">
@@ -13,7 +13,7 @@
         Back
       </a>
       <br><br>
-      <% ArrayList<ItemBean> cart = (ArrayList<ItemBean>) request.getSession().getAttribute("cart"); %>
+      <% ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart"); %>
       <div class="ui equal width center aligned padded grid">
         <div class="row">
           <div class="ui tiny horizontal statistic">
@@ -26,13 +26,23 @@
       <div class="ui segment">
         <div class="ui relaxed items">
           <div class="ui feed">
-          <% for (ItemBean item : cart) { %>
-          <sos:cartItem item="<%=item%>"/>
+          <% for (Entry<ItemBean, Integer> entry : cart) { %>
+          <sos:cartItem entry="<%=entry%>"/>
           <% } %>
           </div>
         </div>
+        <button id="empty" class="ui basic red button">Empty</button>
+        <a class="ui basic blue button" href="item?action=checkout">Checkout</a>
       </div>
       <% } %>
     </div>
   </div>
 </div>
+
+<script>
+$('#empty').click(function () {
+  $.post('item?action=emptyCart', function () {
+    location.href = 'item?action=cart';
+  });
+});
+</script>

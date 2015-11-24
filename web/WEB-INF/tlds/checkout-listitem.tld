@@ -4,11 +4,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
   <tlib-version>1.0</tlib-version>
-  <short-name>cart-item</short-name>
-  <uri>/WEB-INF/tlds/cart-item</uri>
+  <short-name>checkout-listitem</short-name>
+  <uri>/WEB-INF/tlds/checkout-listitem</uri>
   <tag>
-    <name>cartItem</name>
-    <tag-class>sos.tag.CartItemTag</tag-class>
+    <name>checkoutListItem</name>
+    <tag-class>sos.tag.CheckoutListItemTag</tag-class>
     <body-content>empty</body-content>
     
     <attribute>
