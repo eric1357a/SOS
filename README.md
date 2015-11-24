@@ -1,4 +1,6 @@
-*SEE MOODLE SPEC FOR DETAILS*
+*FOR DETAILED SPEC*
+
+https://github.com/nodegin/SOS/blob/034927ab40198bb2b352c650ea13f9300582589b/README.md
 
 # Fucks
 
