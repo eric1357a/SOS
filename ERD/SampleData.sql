@@ -62,8 +62,6 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Pen', 10, 'A simple pen ( 10 pcs / pack )', 1, 'Bic', 'https://na.cx/i/RNiqN5.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Water Proof Notebook', 500, 'Notebook come with waterproof function', 2, 'iWoot', 'https://na.cx/i/rwKd9Y.jpg');
-INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Folder', 20, '10 layers folder , come with 10 colors', 4, 'Simple', 'https://na.cx/i/Sj3zT3.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Vault Boy', 111, 'Vault Boy by Vault-Tec', 13, 'Vault-Tec', 'https://na.cx/i/63S898.jpg');
@@ -76,15 +74,11 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Metal Ruler', 10, 'For measurement', 11, 'Ruler-Tec', 'https://na.cx/i/EC7545.png');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Album', 200, 'For stocking photos', 12, 'Album-Tec', 'https://na.cx/i/227SbZ.jpg');
-INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Calculator', 111, 'For calculation', 5, 'Calc-Tec', 'https://na.cx/i/mPv094.png');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Stamper', 33, 'To stamp things', 6, 'Stamp-Tec', 'https://na.cx/i/D6u295.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Stapler', 10, 'Blue in color', 1, 'Stapler-Tec', 'https://na.cx/i/8VHC96.jpg');
-INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('A5 notebook', 10, 'A5 sizes', 2, 'Write-Tec', 'https://na.cx/i/5xEKGc.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Ink Pad', 35, 'Ink Pad come with 3 colors', 8, 'Max', 'https://na.cx/i/cn645U.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
@@ -104,11 +98,9 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Projector', 2500, 'A simple projector', 14, 'Pro-Tec', 'https://na.cx/i/Cak0M0.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Tape', 20, 'A simple tape ( 10 pcs / pack )', 1, 'Max', 'https://na.cx/i/S9W3o2.jpg');
-INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Fountain Pen', 2200, 'A luxury fountain pen', 3, 'Breguet ', 'https://na.cx/i/9N7131.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Correction Pen', 20, 'A simple correction pen ( 10 pcs / pack )', 1, 'Pilot', 'https://na.cx/i/48afco.jpg');
+	VALUES ('Correction Pen', 20, 'A simple correction pen ( 10 pcs / pack )', 7, 'Pilot', 'https://na.cx/i/48afco.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Water Proof Notebook', 500, 'Notebook come with waterproof function', 2, 'iWoot', 'https://na.cx/i/rwKd9Y.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
@@ -120,13 +112,9 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Mouse Pad', 200, 'Mouse pad for mouse', 9, 'Mouse-Tec', 'https://na.cx/i/Q08SJE.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Golden Frame', 1110, 'Gold Frame For pictures', 10, 'Vault-Tec', 'https://na.cx/i/9e16F5.jpg');
-INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Wooden Ruler', 12, 'For measurement', 11, 'Ruler-Tec', 'https://na.cx/i/A4USQg.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Album', 200, 'For stocking photos', 12, 'Album-Tec', 'https://na.cx/i/227SbZ.jpg');
-INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Calculator', 111, 'For calculation', 5, 'Calc-Tec', 'https://na.cx/i/mPv094.png');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Stamper', 33, 'To stamp things', 6, 'Stamp-Tec', 'https://na.cx/i/D6u295.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
@@ -139,7 +127,6 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 	VALUES ('Rope', 55, '3/4 inch', 11, 'Rope-Tec', 'https://na.cx/i/90pL32.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Tape', 10, 'A simple tape ( 10 pcs / pack )', 1, 'Max', 'https://na.cx/i/S9W3o2.jpg');
-
 
 /*Insert PRODUCT_ORDER Sample Records*/
 INSERT INTO APP.PRODUCTS_ORDERS (QUANTITY, PRODNO, ORDNO) 
