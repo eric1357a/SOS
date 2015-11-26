@@ -15,7 +15,7 @@ CREATE TABLE Clients (
   Verified boolean NOT NULL, 
   Bonus    integer NOT NULL, 
   PRIMARY KEY (ClientID));
-CREATE TABLE CreditRequests (
+CREATE TABLE Credit_Requests (
   ClientID integer NOT NULL, 
   Amount   integer NOT NULL, 
   Time     bigint NOT NULL, 
@@ -46,7 +46,7 @@ CREATE TABLE Products_Orders (
   Quantity integer NOT NULL, 
   ProdNo   integer NOT NULL, 
   OrdNo    integer NOT NULL);
-ALTER TABLE CreditRequests ADD CONSTRAINT FKCreditRequ554699 FOREIGN KEY (ClientID) REFERENCES Clients (ClientID);
+ALTER TABLE Credit_Requests ADD CONSTRAINT FKCredit_Req554699 FOREIGN KEY (ClientID) REFERENCES Clients (ClientID);
 ALTER TABLE Products_Orders ADD CONSTRAINT FKProducts_O391648 FOREIGN KEY (OrdNo) REFERENCES Orders (OrdNo);
 ALTER TABLE Products_Orders ADD CONSTRAINT FKProducts_O628035 FOREIGN KEY (ProdNo) REFERENCES Products (ProdNo);
 ALTER TABLE Orders ADD CONSTRAINT FKOrders526427 FOREIGN KEY (ClientID) REFERENCES Clients (ClientID);
