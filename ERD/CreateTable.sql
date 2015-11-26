@@ -15,7 +15,7 @@ CREATE TABLE Clients (
   Verified boolean NOT NULL, 
   Bonus    integer NOT NULL, 
   PRIMARY KEY (ClientID));
-CREATE TABLE CreditRequests (
+CREATE TABLE Credit_Requests (
   ClientID integer NOT NULL, 
   Amount   integer NOT NULL, 
   Time     bigint NOT NULL, 
