@@ -55,7 +55,7 @@ public class AdminServlet extends HttpServlet {
         request.getRequestDispatcher("admin/verify.jsp").forward(request, response);
         break;
       case "halfOrders":
-        request.setAttribute("halfOrders", orderDB.getOrdersByAttr("Status", "IN", "('process','cancelled')"));
+        request.setAttribute("halfOrders", orderDB.getOrdersByAttr("Status", "IN", "('process','cancel')"));
         request.getRequestDispatcher("admin/halfOrders.jsp").forward(request, response);
         break;
       case "null":

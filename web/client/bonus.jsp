@@ -23,7 +23,7 @@
               <div class="ui circular segment">
                 <div class="ui massive star rating"></div>
                 <br>
-                <b>102 points</b>
+                <b><%=request.getAttribute("bonus")%> points</b>
               </div>
             </div>
           </div>

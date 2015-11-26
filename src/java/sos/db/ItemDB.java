@@ -48,32 +48,43 @@ public class ItemDB extends SOSDB {
     return success;
   }
   
-  private ItemBean itemFronResult (ResultSet result) throws Exception {
+  private ItemBean itemFronResult (String table, ResultSet result) throws Exception {
     ItemBean item = new ItemBean();
-    item.setNo(result.getString("ProdNo"));
-    item.setName(result.getString("ProdName"));
-    item.setPrice(result.getDouble("Price"));
-    item.setDesc(result.getString("Description"));
-    item.setCatNo(result.getString("CatNo"));
-    item.setBrand(result.getString("Brand"));
-    item.setPicture(result.getString("Picture"));
+    if (table.equals("PRODUCTS")) {
+      item.setNo(result.getString("ProdNo"));
+      item.setName(result.getString("ProdName"));
+      item.setDesc(result.getString("Description"));
+      item.setPrice(result.getDouble("Price"));
+      item.setCatNo(result.getString("CatNo"));
+      item.setBrand(result.getString("Brand"));
+      item.setPicture(result.getString("Picture"));
+    } else {
+      item.setNo(result.getString("GiftNo"));
+      item.setName(result.getString("GiftName"));
+      item.setDesc(result.getString("Description"));
+      item.setPrice(result.getDouble("Point"));
+    }
     return item;
   }
   
   public ArrayList<ItemBean> getProductsByAttr(String attr, String op, String val) {
     return this.getProductsByAttr(attr, op, val, -1);
   }
-
+  
   public ArrayList<ItemBean> getProductsByAttr(String attr, String op, String val, int limit) {
+    return this.getItemsByAttr("PRODUCTS", attr, op, val, limit);
+  }
+
+  public ArrayList<ItemBean> getItemsByAttr(String table, String attr, String op, String val, int limit) {
     PreparedStatement statement = null;
     ArrayList<ItemBean> products = new ArrayList<>();
     try {
-      statement = getConnection().prepareStatement("SELECT * FROM PRODUCTS WHERE " + attr +" " + op + " " + val);
+      statement = getConnection().prepareStatement("SELECT * FROM " + table + " WHERE " + attr +" " + op + " " + val);
       if (limit > 0)
         statement.setMaxRows(limit);
       ResultSet result = statement.executeQuery();
       while (result.next())
-        products.add(itemFronResult(result));
+        products.add(itemFronResult(table, result));
       statement.close();
     } catch (Exception e) {
       /* Who cares? */
@@ -96,6 +107,23 @@ public class ItemDB extends SOSDB {
   
   public ArrayList<ItemBean> getTop10ProductsByCategory(String category) {
     return getProductsByAttr("CATNO", "=", category, 10);
+  }
+  
+  public ArrayList<ItemBean> getGiftsByAttr(String attr, String op, String val) {
+    return this.getGiftsByAttr(attr, op, val, -1);
+  }
+  
+  public ArrayList<ItemBean> getGiftsByAttr(String attr, String op, String val, int limit) {
+    return this.getItemsByAttr("GIFTS", attr, op, val, limit);
+  }
+  
+  public ArrayList<ItemBean> getAllGifts() {
+    return getGiftsByAttr("GiftName", "LIKE", "'%'");
+  }
+  
+  public ItemBean getGiftByNo(String giftNo) {
+    ArrayList<ItemBean> result = getGiftsByAttr("GIFTNO", "=", giftNo);
+    return result.size() == 1 ? result.get(0) : null;
   }
   
   public ArrayList<CategoryBean> getCategoriesByAttr(String attr, String op, String val) {

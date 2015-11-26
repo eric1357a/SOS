@@ -1,3 +1,5 @@
+<%@page import="java.util.*, sos.bean.*"%>
+<%@taglib uri="/WEB-INF/tlds/order-listitem" prefix="sos"%>
 <br>
 <div class="ui two column centered grid">
   <div class="column">
@@ -21,34 +23,14 @@
           </div>
         </div>
       </div>
+      <% ArrayList<OrderBean> orders = (ArrayList<OrderBean>) request.getAttribute("orders"); %>
       <div class="ui segment">
         <div class="ui relaxed items">
           <div class="ui feed">
-            <div class="event">
-              <div class="label">
-                <img src="http://localhost:8080/SOS/images/stationery/pens/101/10103.jpg">
-              </div>
-              <div class="content">
-                <div class="date">Vault penis</div>
-                <div class="summary">111111111111111</div>
-                <div class="meta">
-                  <a href="gift"><i class="share icon"></i> View</a>
-                </div>
-              </div>
-            </div>
-            <div class="ui divider"></div>
-            <div class="event">
-              <div class="label">
-                <img src="http://localhost:8080/SOS/images/stationery/pens/101/10103.jpg">
-              </div>
-              <div class="content">
-                <div class="date">Vault penis</div>
-                <div class="summary">111111111111111</div>
-                <div class="meta">
-                  <a href="gift"><i class="share icon"></i> View</a>
-                </div>
-              </div>
-            </div>
+            <% for (int i = 0; i < orders.size(); i++) { %>
+              <%=(i > 0 ? "<div class='ui divider'></div>" : "")%>
+              <sos:orderListItem order="<%=orders.get(i)%>"/>
+            <% } %>
           </div>
         </div>
       </div>
