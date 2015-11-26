@@ -4,7 +4,7 @@
 <div id="menu" class="ui secondary pointing menu">
   <a class="item" href="<%=cp%>/">Stationaries</a>
   <a class="item" href="<%=cp%>/item?action=categories">Categories</a>
-  <a class="item" href="<%=cp%>/gift">Gifts</a>
+  <a class="item" href="<%=cp%>/item?action=gifts">Gifts</a>
   <a id="toggle-search" class="item">Search</a>
   <div class="right menu">
     <%

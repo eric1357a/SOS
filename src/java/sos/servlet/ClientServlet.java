@@ -2,6 +2,9 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map.Entry;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +16,15 @@ import sos.db.*;
 @WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
 public class ClientServlet extends HttpServlet {
 
-  private UserDB db;
+  private UserDB userDB;
+  private OrderDB orderDB;
   
   public void init() throws ServletException {
     String host = this.getServletContext().getInitParameter("host");
     String user = this.getServletContext().getInitParameter("user");
     String pass = this.getServletContext().getInitParameter("pass");
-    db = new UserDB(host, user, pass);
+    userDB = new UserDB(host, user, pass);
+    orderDB = new OrderDB(host, user, pass);
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +71,7 @@ public class ClientServlet extends HttpServlet {
           request.getRequestDispatcher("404.jsp").forward(request, response);
           break;
         }
+        request.setAttribute("orders", orderDB.getOrder10LastClient(((ClientBean) user).getId()));
         request.getRequestDispatcher("client/orderHistory.jsp").forward(request, response);
         break;
       case "updateInfo":
@@ -83,6 +89,7 @@ public class ClientServlet extends HttpServlet {
           request.getRequestDispatcher("404.jsp").forward(request, response);
           break;
         }
+        request.setAttribute("bonus", ((ClientBean) user).getBonus());
         request.getRequestDispatcher("client/bonus.jsp").forward(request, response);
         break;
       case "null":
@@ -104,17 +111,18 @@ public class ClientServlet extends HttpServlet {
     if (request.getHeader("X-Requested-With") == null) return;
     PrintWriter out = response.getWriter();
     response.setContentType("application/json;charset=UTF-8");
+    ClientBean client = (ClientBean) request.getSession().getAttribute("user");
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
         if (null != request.getSession().getAttribute("regInfo")) {
+          request.getSession().removeAttribute("regInfo");
           if ("submit".equals(request.getParameter("act"))) {
             String[] data = ((String) request.getSession().getAttribute("regInfo")).split("\\|");
-            db.addClient(data[0], new Integer(data[1]), data[2]);
+            userDB.addClient(data[0], new Integer(data[1]), data[2]);
             out.print("\"" + request.getContextPath() + "\"");
             break;
           }
-          else if ("cancel".equals(request.getParameter("act")))
-            request.getSession().removeAttribute("regInfo");
+          break;
         } else {
           String name = request.getParameter("forename") + " " + request.getParameter("surname");
           String phone = request.getParameter("phone");
@@ -127,7 +135,7 @@ public class ClientServlet extends HttpServlet {
       case "signIn":
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        IUserBean user = db.login(username, password);
+        IUserBean user = userDB.login(username, password);
         //getServletContext().setAttribute("user", out);
         if (user != null)
           request.getSession().setAttribute("user", user);
@@ -138,11 +146,10 @@ public class ClientServlet extends HttpServlet {
         String name = request.getParameter("forename") + " " + request.getParameter("surname");
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
-        ClientBean client = (ClientBean) request.getSession().getAttribute("user");
         client.setName(name);
         client.setPhone(new Integer(phone));
         client.setAddress(address);
-        db.update(client);
+        userDB.update(client);
         out.print('1');
         break;
       case "signOut":

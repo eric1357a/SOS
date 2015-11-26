@@ -12,19 +12,39 @@ public class OrderDB extends SOSDB {
     super(url, username, password);
   }
   
-  public boolean addOrder(double amount, Date time, String status, int clientId) {
+  public boolean addCreditRequest(int clientId, int bonus, long time) {
     PreparedStatement statement = null;
     boolean success = false;
     try {
-      statement = getConnection().prepareStatement("INSERT INTO ORDERS (AMOUNT,TIME,STATUS,CLIENTID) VALUES (?,?,?,?)");
-      statement.setDouble(1, amount);
-      statement.setLong(2, time.getTime());
-      statement.setString(3, status);
-      statement.setInt(4, clientId);
+      statement = getConnection().prepareStatement("INSERT INTO CREDIT_REQUESTS (CLIENTID,AMOUNT,TIME) VALUES (?,?,?)");
+      statement.setInt(1, clientId);
+      statement.setInt(2, bonus);
+      statement.setLong(3, time);
       if (statement.executeUpdate() >= 1)
         success = true;
       statement.close();
     } catch (Exception e) {
+      e.printStackTrace();
+      /* Who cares? */
+    }
+    return success;
+  }
+  
+  public boolean addOrder(double amount, Date time, String ordType, String status, int clientId) {
+    PreparedStatement statement = null;
+    boolean success = false;
+    try {
+      statement = getConnection().prepareStatement("INSERT INTO ORDERS (AMOUNT,TIME,ORDTYPE,STATUS,CLIENTID) VALUES (?,?,?,?,?)");
+      statement.setDouble(1, amount);
+      statement.setLong(2, time.getTime());
+      statement.setString(3, ordType);
+      statement.setString(4, status);
+      statement.setInt(5, clientId);
+      if (statement.executeUpdate() >= 1)
+        success = true;
+      statement.close();
+    } catch (Exception e) {
+      e.printStackTrace();
       /* Who cares? */
     }
     return success;
@@ -59,6 +79,10 @@ public class OrderDB extends SOSDB {
       /* Who cares? */
     }
     return orders;
+  }
+  
+  public ArrayList<OrderBean> getOrder10LastClient(int clientID) {
+    return getOrdersByAttr("CLIENTID", "=", clientID + " order by time desc", 10);
   }
   
 }

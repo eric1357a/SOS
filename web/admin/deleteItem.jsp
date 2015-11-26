@@ -5,7 +5,7 @@
   <div class="column">
     <h4 class="ui horizontal divider header">
       <i class="remove icon"></i>
-      Delete item #<%=item.getId()%>
+      Delete item #<%=item.getNo()%>
     </h4>
     <div class="ui segment">
       <a class="ui basic violet ribbon label" onclick="history.go(-1)">
