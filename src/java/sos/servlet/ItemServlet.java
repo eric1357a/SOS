@@ -45,6 +45,7 @@ public class ItemServlet extends HttpServlet {
     ArrayList<Entry<ItemBean, Integer>> cart = (ArrayList<Entry<ItemBean, Integer>>) request.getSession().getAttribute("cart");
     IUserBean user = (IUserBean) request.getSession().getAttribute("user");
     ItemBean item;
+    OrderBean order;
     switch (String.valueOf(request.getParameter("action"))) {
       case "categories":
         request.setAttribute("categories", itemDB.getAllCategories());
@@ -95,6 +96,28 @@ public class ItemServlet extends HttpServlet {
           request.getRequestDispatcher("item/checkout.jsp").forward(request, response);
         }
         else request.getRequestDispatcher("404.jsp").forward(request, response);
+        break;
+      case "updateOrder":
+        if (user != null && user instanceof AdminBean) {
+          order = orderDB.getOrder(String.valueOf(request.getParameter("no")));
+          if (null != order) {
+            request.setAttribute("order", order);
+            request.getRequestDispatcher("item/updateOrder.jsp").forward(request, response);
+            break;
+          }
+        }
+        request.getRequestDispatcher("404.jsp").forward(request, response);
+        break;
+      case "cancelOrder":
+        if (user != null && user instanceof ClientBean) {
+          order = orderDB.getOrder(String.valueOf(request.getParameter("no")));
+          if (null != order) {
+            request.setAttribute("order", order);
+            request.getRequestDispatcher("item/cancelOrder.jsp").forward(request, response);
+            break;
+          }
+        }
+        request.getRequestDispatcher("404.jsp").forward(request, response);
         break;
       case "edit":
         if (user != null && user instanceof AdminBean) {
@@ -226,10 +249,15 @@ public class ItemServlet extends HttpServlet {
       case "checkout":
         int total = new Integer(request.getParameter("totalCost"));
         boolean pickup = "true".equals(request.getParameter("pickup"));
-        System.out.println("t "+total);
         int clientId = ((ClientBean) user).getId();
-        orderDB.addOrder(total, new Date(), pickup ? "Self pick-up" : "Delivery", "process", clientId);
-        orderDB.addCreditRequest(clientId, (total / 1000) * 100, System.currentTimeMillis());
+        /* create order, credit request */
+        int ordId = orderDB.addOrder(total, new Date(), pickup ? "Self pick-up" : "Delivery", "process", clientId);
+        int credit = (total / 1000) * 100;
+        if (credit > 0)
+          orderDB.addCreditRequest(clientId, credit, System.currentTimeMillis());
+        /* insert products orders */
+        for (Entry<ItemBean, Integer> entry : cart)
+          orderDB.addProductOrder(entry.getValue(), entry.getKey().getNo(), ordId);
         /* empty shopping cart */
         request.getSession().setAttribute("cart", new ArrayList<>());
         break;

@@ -30,31 +30,19 @@ INSERT INTO APP.CATEGORIES ("CATNAME")
 
 /*Insert Client Sample Records*/
 INSERT INTO APP.CLIENTS (PASSWORD, "FULLNAME", PHONE, ADDRESS, VERIFIED, BONUS) 
-	VALUES ('pas', 'Vault Boy', 23382338, 'Vault 101', true, 3000);
+	VALUES ('pas', 'Vault Boy', 23382338, 'Vault 111', true, 200);
 INSERT INTO APP.CLIENTS (PASSWORD, "FULLNAME", PHONE, ADDRESS, VERIFIED, BONUS) 
-	VALUES ('pas', 'Steven', 23800000, 'Vault 111', true, 1000);
+	VALUES ('pas', 'Steven', 23800000, 'Vault 111', true, 100);
 INSERT INTO APP.CLIENTS (PASSWORD, "FULLNAME", PHONE, ADDRESS, VERIFIED, BONUS) 
-	VALUES ('pas', 'Eric', 24681357, 'Vault 111', true, 1333);
+	VALUES ('pas', 'Eric', 24681357, 'Vault 111', true, 100);
 INSERT INTO APP.CLIENTS (PASSWORD, "FULLNAME", PHONE, ADDRESS, VERIFIED, BONUS) 
-	VALUES ('pas', 'Carlyle', 36696940, 'Vault 111', true, 1234);
+	VALUES ('pas', 'Carlyle', 36696940, 'Vault 111', true, 500);
 INSERT INTO APP.CLIENTS (PASSWORD, "FULLNAME", PHONE, ADDRESS, VERIFIED, BONUS) 
 	VALUES ('pas', 'Cedric', 36996336, 'Vault 111', false, 0);
-
-
-/*Insert Order Sample Records*/
-INSERT INTO APP.Orders (AMOUNT, "TIME", STATUS, CLIENTID, ORDTYPE) 
-	VALUES (8964, 20151108, 'process', 1, 'Self pick-up');
-INSERT INTO APP.Orders (AMOUNT, "TIME", STATUS, CLIENTID,ORDTYPE) 
-	VALUES (4689, 20151115, 'cancel', 2, 'Delivery');
-INSERT INTO APP.Orders (AMOUNT, "TIME", STATUS, CLIENTID,ORDTYPE) 
-	VALUES (20, 20151116, 'delivered', 3, 'Self pick-up');
-INSERT INTO APP.Orders (AMOUNT, "TIME", STATUS, CLIENTID,ORDTYPE) 
-	VALUES (20, 20151115, 'picked-up', 4, 'Delivery');
 	
 /*Insert Gift Sample Records*/
 INSERT INTO APP.GIFTS (POINT, "GIFTNAME", DESCRIPTION) 
-	VALUES (100, 'Free Pen', 'Redeem a free limited edition pen');
-
+	VALUES (100, 'Vault Pen', 'Redeem super rare limited edition pen now!');
 	
 /*Insert Product Sample Records*/
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
@@ -127,14 +115,6 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 	VALUES ('Rope', 55, '3/4 inch', 11, 'Rope-Tec', 'https://na.cx/i/90pL32.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Tape', 10, 'A simple tape ( 10 pcs / pack )', 1, 'Max', 'https://na.cx/i/S9W3o2.jpg');
-
-/*Insert PRODUCT_ORDER Sample Records*/
-INSERT INTO APP.PRODUCTS_ORDERS (QUANTITY, PRODNO, ORDNO) 
-	VALUES (20, 1, 1);
-INSERT INTO APP.PRODUCTS_ORDERS (QUANTITY, PRODNO, ORDNO) 
-	VALUES (10, 2, 3);
-INSERT INTO APP.PRODUCTS_ORDERS (QUANTITY, PRODNO, ORDNO) 
-	VALUES (64, 3, 3);
 
 /*Insert Admin Sample Records*/
 INSERT INTO APP.ADMINS (USERNAME, PASSWORD) 

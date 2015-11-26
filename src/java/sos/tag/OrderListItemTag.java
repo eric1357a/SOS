@@ -1,7 +1,6 @@
 package sos.tag;
 
 import java.util.Calendar;
-import java.util.Date;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import sos.bean.*;
@@ -9,6 +8,7 @@ import sos.bean.*;
 public class OrderListItemTag extends SimpleTagSupport {
   
   private OrderBean order;
+  private Boolean admin;
 
   public OrderBean getOrder() {
     return order;
@@ -16,6 +16,14 @@ public class OrderListItemTag extends SimpleTagSupport {
 
   public void setOrder(OrderBean order) {
     this.order = order;
+  }
+
+  public Boolean getAdmin() {
+    return admin;
+  }
+
+  public void setAdmin(Boolean admin) {
+    this.admin = admin;
   }
   
   public void doTag() throws java.io.IOException {
@@ -25,11 +33,18 @@ public class OrderListItemTag extends SimpleTagSupport {
     String date = cal.get(Calendar.YEAR) + "-" + (1 + cal.get(Calendar.MONTH)) + "-" + cal.get(Calendar.DATE);
     out.print("<div class='event'>");
     out.print("  <div class='content'>");
-    out.print("    <div class='date'>Order #" + order.getNo() + "</div>");
+    out.print("    <div class='date'>#" + order.getNo() + "&emsp;" + order.getType() + " order" + "</div>");
     out.print("    <div class='summary'>");
     out.print("      Status: " + order.getStatus() + "<br>");
     out.print("      Total: $" + order.getAmount() + "<br>");
     out.print("      Date: " + date);
+    out.print("    </div>");
+    out.print("    <div class='meta'>");
+    if (admin) {
+    out.print("      <a href='item?action=updateOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Update order</a>");
+    } else {
+    out.print("      <a href='item?action=cancelOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Cancel order</a>");
+    }
     out.print("    </div>");
     out.print("  </div>");
     out.print("</div>");

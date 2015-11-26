@@ -29,9 +29,9 @@
           </div>
         </div>
         <div class="row">
-          <a class="ui pink button" href="gift">
+          <a class="ui pink button" href="item?action=gifts">
             <i class="add to cart icon"></i>
-            Shop gift now
+            Redeem gifts now
           </a>
         </div>
       </div>

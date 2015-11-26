@@ -4,7 +4,7 @@
 <div class="ui centered grid">
   <div class="twelve wide column">
     <h4 class="ui horizontal divider header">
-      <i class="book icon"></i>
+      <i class="gift icon"></i>
       Browse gifts
     </h4>
     <div class="ui segment">
@@ -18,7 +18,7 @@
         <div class="row">
           <div class="ui tiny horizontal statistic">
             <div class="value"><%=gifts.size()%></div>
-            <div class="label">gift(s) found in this category</div>
+            <div class="label">gift(s) available</div>
           </div>
         </div>
       </div>

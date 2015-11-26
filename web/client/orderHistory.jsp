@@ -4,8 +4,8 @@
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="list icon"></i>
-      Manage orders
+      <i class="time icon"></i>
+      Order history
     </h4>
     <div class="ui segment">
       <a class="ui basic teal ribbon label" onclick="history.go(-1)">
@@ -25,14 +25,18 @@
       </div>
       <% ArrayList<OrderBean> orders = (ArrayList<OrderBean>) request.getAttribute("orders"); %>
       <div class="ui segment">
+        <% if (orders.isEmpty()) { %>
+        No order records found
+        <% } else { %>
         <div class="ui relaxed items">
           <div class="ui feed">
             <% for (int i = 0; i < orders.size(); i++) { %>
               <%=(i > 0 ? "<div class='ui divider'></div>" : "")%>
-              <sos:orderListItem order="<%=orders.get(i)%>"/>
+              <sos:orderListItem order="<%=orders.get(i)%>" admin="false"/>
             <% } %>
           </div>
         </div>
+        <% } %>
       </div>
     </div>
   </div>

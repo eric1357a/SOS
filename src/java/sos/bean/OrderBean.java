@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class OrderBean implements Serializable {
 
-  private String no, status;
+  private String no, type, status;
   private double amount;
   private Date time;
   private int clientId;
@@ -13,10 +13,11 @@ public class OrderBean implements Serializable {
   public OrderBean() {
   }
 
-  public OrderBean(String no,  double amount, Date time, String status, int clientId) {
+  public OrderBean(String no,  double amount, Date time, String type, String status, int clientId) {
     this.no = no;
     this.amount = amount;
     this.time = time;
+    this.type = type;
     this.status = status;
     this.clientId = clientId;
   }
@@ -27,6 +28,14 @@ public class OrderBean implements Serializable {
 
   public void setNo(String no) {
     this.no = no;
+  }
+  
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
   public String getStatus() {

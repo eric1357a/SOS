@@ -57,14 +57,6 @@ public class ClientServlet extends HttpServlet {
         }
         request.getRequestDispatcher("client/signIn.jsp").forward(request, response);
         break;
-      case "manageOrders":
-        /* check is client */
-        if (user == null || !(user instanceof ClientBean)) {
-          request.getRequestDispatcher("404.jsp").forward(request, response);
-          break;
-        }
-        request.getRequestDispatcher("client/manageOrders.jsp").forward(request, response);
-        break;
       case "orderHistory":
         /* check is client */
         if (user == null || !(user instanceof ClientBean)) {
@@ -89,15 +81,15 @@ public class ClientServlet extends HttpServlet {
           request.getRequestDispatcher("404.jsp").forward(request, response);
           break;
         }
-        request.setAttribute("bonus", ((ClientBean) user).getBonus());
+        request.setAttribute("bonus", userDB.getClientById(String.valueOf(((ClientBean) user).getId())).getBonus());
         request.getRequestDispatcher("client/bonus.jsp").forward(request, response);
         break;
       case "null":
-        boolean signedIn = true;
-        if (signedIn)
-          request.getRequestDispatcher("client/index.jsp").forward(request, response);
-        else
+        if (user == null || !(user instanceof ClientBean)) {
           request.getRequestDispatcher("404.jsp").forward(request, response);
+          break;
+        }
+        request.getRequestDispatcher("client/index.jsp").forward(request, response);
         break;
       default:
         request.getRequestDispatcher("404.jsp").forward(request, response);

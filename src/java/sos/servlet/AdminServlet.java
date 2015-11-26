@@ -48,7 +48,12 @@ public class AdminServlet extends HttpServlet {
         request.getRequestDispatcher("admin/manageItems.jsp").forward(request, response);
         break;
       case "manageOrders":
+        request.setAttribute("orders", orderDB.getAllOrders());
         request.getRequestDispatcher("admin/manageOrders.jsp").forward(request, response);
+        break;
+      case "bonusRequests":
+        request.setAttribute("requests", orderDB.getAllCreditRequests());
+        request.getRequestDispatcher("admin/bonusRequests.jsp").forward(request, response);
         break;
       case "verify":
         request.setAttribute("clients", userDB.getClientsByAttr("Verified", "=", "false"));
@@ -101,6 +106,16 @@ public class AdminServlet extends HttpServlet {
         if (null != client) {
           client.setVerified(true);
           userDB.update(client);
+        }
+        out.print("");
+        break;
+      case "approveBonus":
+        BonusRequestBean req = orderDB.getCreditRequest(String.valueOf(request.getParameter("id")));
+        if (null != req) {
+          client = userDB.getClientById(String.valueOf(req.getClientID()));
+          client.setBonus(client.getBonus() + req.getAmount());
+          userDB.update(client);
+          orderDB.removeCreditRequest(req.getId());
         }
         out.print("");
         break;

@@ -48,6 +48,14 @@
             <span>Incomplete orders</span>
           </a>
         </div>
+        <!--  Credit request  -->
+        <div class="column">
+          <a class="basic violet ui icon button" href="admin?action=bonusRequests">
+            <i class="database icon"></i>
+            <br>
+            <span>Bonus requests</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

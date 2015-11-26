@@ -3,7 +3,7 @@
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="info icon"></i>
+      <i class="gift icon"></i>
       Gift details
     </h4>
     <div class="ui segment">
