@@ -211,6 +211,14 @@ public class ItemServlet extends HttpServlet {
           }
         }
         break;
+      case "delete":
+        if (user != null && user instanceof AdminBean) {
+          ItemBean item = itemDB.getProductByNo(String.valueOf(request.getParameter("no")));
+          if (null != item) {
+            itemDB.removeItem(item.getNo());
+          }
+        }
+        break;
       case "updateCart":
         java.util.Map<String, String[]> map = request.getParameterMap();
         for (java.util.Map.Entry<String, String[]> field : map.entrySet()) {
@@ -260,6 +268,25 @@ public class ItemServlet extends HttpServlet {
           orderDB.addProductOrder(entry.getValue(), entry.getKey().getNo(), ordId);
         /* empty shopping cart */
         request.getSession().setAttribute("cart", new ArrayList<>());
+        break;
+      case "updateOrder":
+        if (user != null && user instanceof AdminBean) {
+          OrderBean order = orderDB.getOrder(String.valueOf(request.getParameter("no")));
+          if (null != order) {
+            order.setStatus(request.getParameter("orderStatus"));
+            orderDB.update(order);
+          }
+        }
+        request.getRequestDispatcher("404.jsp").forward(request, response);
+        break;
+      case "cancelOrder":
+        if (user != null && user instanceof ClientBean) {
+          OrderBean order = orderDB.getOrder(String.valueOf(request.getParameter("no")));
+          if (null != order) {
+            order.setStatus("cancel");
+            orderDB.update(order);
+          }
+        }
         break;
       default:
         break;

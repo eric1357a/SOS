@@ -2,6 +2,7 @@ package sos.db;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -13,32 +14,35 @@ public class ItemDB extends SOSDB {
     super(url, username, password);
   }
 
-  public boolean addItem(String name, String desc, String brand, String catId, float price, String picture) {
+  public int addItem(String name, String desc, String brand, String catId, float price, String picture) {
     PreparedStatement statement = null;
-    boolean success = false;
+    int id = -1;
     try {
-      statement = getConnection().prepareStatement("INSERT INTO PRODUCTS (PRODNAME,PRICE,DESCRIPTION,CATNO,BRAND,PICTURE) VALUES (?,?,?,?,?,?)");
+      statement = getConnection().prepareStatement("INSERT INTO PRODUCTS (PRODNAME,PRICE,DESCRIPTION,CATNO,BRAND,PICTURE) VALUES (?,?,?,?,?,?)",
+              Statement.RETURN_GENERATED_KEYS);
       statement.setString(1, name);
       statement.setFloat(2, price);
       statement.setString(3, desc);
       statement.setString(4, catId);
       statement.setString(5, brand);
       statement.setString(6, picture);
+      ResultSet rs;
       if (statement.executeUpdate() >= 1)
-        success = true;
+        if ((rs = statement.getGeneratedKeys()).next())
+          id = rs.getInt(1);
       statement.close();
     } catch (Exception e) {
       /* Who cares? */
     }
-    return success;
+    return id;
   }
 
-  public boolean removeItem(int prodNo) {
+  public boolean removeItem(String prodNo) {
     PreparedStatement statement = null;
     boolean success = false;
     try {
       statement = getConnection().prepareStatement("DELETE FROM PRODUCTS WHERE PRODNO = ?");
-      statement.setInt(1, prodNo);
+      statement.setString(1, prodNo);
       if (statement.executeUpdate() >= 1)
         success = true;
       statement.close();

@@ -2,7 +2,6 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,8 +43,9 @@ public class AdminServlet extends HttpServlet {
     }
     int itemId;
     switch (String.valueOf(request.getParameter("action"))) {
-      case "manageItems":
-        request.getRequestDispatcher("admin/manageItems.jsp").forward(request, response);
+      case "addItem":
+        request.setAttribute("categories", itemDB.getAllCategories());
+        request.getRequestDispatcher("admin/addItem.jsp").forward(request, response);
         break;
       case "manageOrders":
         request.setAttribute("orders", orderDB.getAllOrders());
@@ -65,10 +65,6 @@ public class AdminServlet extends HttpServlet {
         break;
       case "null":
         request.getRequestDispatcher("admin/index.jsp").forward(request, response);
-        break;
-      case "editItem":
-        //request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
-        request.getRequestDispatcher("admin/editItem.jsp").forward(request, response);
         break;
       case "deleteItem":
         //request.setAttribute("item", new ItemBean(request.getParameter("id"), "fuck"));
@@ -93,13 +89,14 @@ public class AdminServlet extends HttpServlet {
         String name = request.getParameter("name");
         String desc = request.getParameter("desc");
         String brand = request.getParameter("brand");
-        String catId = request.getParameter("catId");
+        String catNo = request.getParameter("catNo");
         float price = 0;
         try {
           price = new Float(request.getParameter("price"));
         } catch (NumberFormatException e) {}
-        out.print("server returns: " + name+" "+desc+" "+price);
-        itemDB.addItem(name, desc, brand, catId, price, "https://na.cx/i/051NY1.jpg");
+        String picture = request.getParameter("picture");
+        int id = itemDB.addItem(name, desc, brand, catNo, price, picture);
+        out.print(String.valueOf(id));
         break;
       case "verify":
         ClientBean client = userDB.getClientById(String.valueOf(request.getParameter("id")));

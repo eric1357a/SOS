@@ -103,7 +103,6 @@ public class ClientServlet extends HttpServlet {
     if (request.getHeader("X-Requested-With") == null) return;
     PrintWriter out = response.getWriter();
     response.setContentType("application/json;charset=UTF-8");
-    ClientBean client = (ClientBean) request.getSession().getAttribute("user");
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
         if (null != request.getSession().getAttribute("regInfo")) {
@@ -137,7 +136,8 @@ public class ClientServlet extends HttpServlet {
         /* check is client */
         String name = request.getParameter("forename") + " " + request.getParameter("surname");
         String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
+        String address = request.getParameter("address");        
+        ClientBean client = (ClientBean) request.getSession().getAttribute("user");
         client.setName(name);
         client.setPhone(new Integer(phone));
         client.setAddress(address);

@@ -1,8 +1,9 @@
+<%@page import="java.util.*, sos.bean.*"%>
 <br>
 <div class="ui two column centered grid">
   <div class="column">
     <h4 class="ui horizontal divider header">
-      <i class="add square icon"></i>
+      <i class="add icon"></i>
       Add item
     </h4>
     <div class="ui segment">
@@ -29,17 +30,20 @@
         </div>
         <div class="field">
           <label>Item brand</label>
-          <select class="ui dropdown">
-            <option value="1">AP</option>
-            <option value="0">Fuck</option>
-          </select>
+          <input name="brand" type="text">
         </div>
         <div class="field">
           <label>Item category</label>
-          <select class="ui dropdown">
-            <option value="1">Penis</option>
-            <option value="0">Manko</option>
+          <% ArrayList<CategoryBean> categories = (ArrayList<CategoryBean>) request.getAttribute("categories"); %>
+          <select name="catNo" class="ui dropdown">
+            <% for (CategoryBean category : categories) { %>
+            <option value="<%=category.getNo()%>"><%=category.getName()%></option>
+            <% } %>
           </select>
+        </div>
+        <div class="field">
+          <label>Item picture URL</label>
+          <input name="picture" type="text">
         </div>
         <button class="ui button" type="submit">Submit</button>
       </form>
@@ -51,8 +55,8 @@
 $('.ui.dropdown').dropdown();
 $('form').submit(function (e) {
   e.preventDefault();
-  $.post(this.getAttribute('action'), $(this).serialize(), function (data) {
-    alert(data);
+  $.post(this.getAttribute('action'), $(this).serialize(), function (id) {
+    location = 'item?action=details&no=' + id;
   })
 });
 </script>

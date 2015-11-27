@@ -21,12 +21,12 @@
             <span>Shopping cart</span>
           </a>
         </div>
-        <!--  Manage orders  -->
+        <!--  Update info  -->
         <div class="column">
-          <a class="basic teal ui icon button" href="client?action=manageOrders">
-            <i class="list icon"></i>
+          <a class="basic teal ui icon button" href="client?action=updateInfo">
+            <i class="edit icon"></i>
             <br>
-            <span>Manage orders</span>
+            <span>Update info</span>
           </a>
         </div>
         <!--  Order history  -->
@@ -40,14 +40,6 @@
       </div>
       <!--  Row 2  -->
       <div class="grid menu ui three column grid">
-        <!--  Update info  -->
-        <div class="column">
-          <a class="basic teal ui icon button" href="client?action=updateInfo">
-            <i class="edit icon"></i>
-            <br>
-            <span>Update info</span>
-          </a>
-        </div>
         <!--  Bonus points  -->
         <div class="column">
           <a class="basic teal ui icon button" href="client?action=bonus">

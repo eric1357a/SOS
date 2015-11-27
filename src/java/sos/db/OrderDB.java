@@ -160,4 +160,24 @@ public class OrderDB extends SOSDB {
     return result.size() == 1 ? result.get(0) : null;
   }
   
+  public boolean update(OrderBean order) {
+    PreparedStatement statement = null;
+    try {
+      String preQueryStatement = "UPDATE ORDERS SET AMOUNT=?,TIME=?,STATUS=?,CLIENTID=?,ORDTYPE=? WHERE ORDNO = ?";
+      statement = getConnection().prepareStatement(preQueryStatement);
+      statement.setDouble(1, order.getAmount());
+      statement.setLong(2, order.getTime().getTime());
+      statement.setString(3, order.getStatus());
+      statement.setInt(4, order.getClientId());
+      statement.setString(5, order.getType());
+      statement.setString(6, order.getNo());
+      statement.executeUpdate();
+      statement.close();
+      return true;
+    } catch (Exception e) {
+      /* Who cares? */
+    }
+    return false;
+  }
+  
 }

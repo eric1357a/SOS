@@ -27,6 +27,8 @@ public class PendingClientTag extends SimpleTagSupport {
     out.print("    <i class='home icon'></i>" + client.getAddress());
     out.print("    <br>");
     out.print("    <i class='call icon'></i>" + client.getPhone());
+    out.print("    <br>");
+    out.print("    <i class='database icon'></i>" + client.getBonus());
     out.print("  </div>");
     out.print("</div>");
   }

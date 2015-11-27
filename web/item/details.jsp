@@ -61,10 +61,24 @@
             });
             </script>
           <% } else if (user != null && user instanceof AdminBean) { %>
-            <a id="edit-item" class="ui violet button" href="item?action=edit&no=<%=item.getNo()%>">
+            <a class="ui violet button" href="item?action=edit&no=<%=item.getNo()%>">
               <i class="edit icon"></i>
               Edit details
             </a>
+            <br>
+            <a id="delete-item" class="ui red button">
+              <i class="trash outline icon"></i>
+              Delete item
+            </a>
+            <script>
+            $('#delete-item').click(function () {
+              if (confirm('Are you sure you want to delete <%=item.getName()%>?')) {
+                $.post('item?action=delete&no=<%=item.getNo()%>', function () {
+                  history.back();
+                });
+              }
+            });
+            </script>
           <% } %>
         </div>
       </div>

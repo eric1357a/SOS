@@ -15,10 +15,10 @@
       <div class="grid menu ui three column grid">
         <!--  Manage items  -->
         <div class="column">
-          <a class="basic violet ui icon button" href="admin?action=manageItems">
-            <i class="cubes icon"></i>
+          <a class="basic violet ui icon button" href="admin?action=addItem">
+            <i class="add icon"></i>
             <br>
-            <span>Manage items</span>
+            <span>Add item</span>
           </a>
         </div>
         <!--  Manage orders  -->

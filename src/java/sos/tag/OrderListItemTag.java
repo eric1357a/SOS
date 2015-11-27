@@ -39,13 +39,15 @@ public class OrderListItemTag extends SimpleTagSupport {
     out.print("      Total: $" + order.getAmount() + "<br>");
     out.print("      Date: " + date);
     out.print("    </div>");
-    out.print("    <div class='meta'>");
     if (admin) {
-    out.print("      <a href='item?action=updateOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Update order</a>");
-    } else {
-    out.print("      <a href='item?action=cancelOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Cancel order</a>");
-    }
+    out.print("    <div class='meta'>");
+    out.print("      <a href='item?action=updateOrder&no=" + order.getNo() + "'><i class='edit icon'></i> Update order</a>");
     out.print("    </div>");
+    } else if (!order.getStatus().equals("cancel")) {
+    out.print("    <div class='meta'>");
+    out.print("      <a href='item?action=cancelOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Cancel order</a>");
+    out.print("    </div>");
+    }
     out.print("  </div>");
     out.print("</div>");
   }
