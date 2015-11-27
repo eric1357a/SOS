@@ -17,9 +17,9 @@ https://github.com/nodegin/SOS/blob/034927ab40198bb2b352c650ea13f9300582589b/REA
 
 - AJAX
 - MVC
-- REST
+- REST (controller handles different requests [e.g. get, post])
 - SPA (https://en.wikipedia.org/wiki/Single-page_application)
-- Responsive UI design
+- Responsive UI design (same ui on desktop + mobile)
 
 # notes
 
