@@ -36,10 +36,11 @@ body {
   position: fixed;
 }
 #search-result {
-  max-height: 320px;
+  max-height: 420px;
   overflow-x: hidden;
 }
 #search-result .name {
+  clear: both;
   float: left;
   height: 58px;
   overflow: hidden;

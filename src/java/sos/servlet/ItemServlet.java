@@ -2,6 +2,7 @@ package sos.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -174,7 +177,34 @@ public class ItemServlet extends HttpServlet {
         Matcher m = p.matcher(which);
         if (null != keyword && m.find()) {
           String matched = m.group(1);
-          request.setAttribute("items", itemDB.getProductsByName(keyword));
+          ArrayList<ItemBean> items = new ArrayList<>();
+          if (matched.equals("Item name")) {
+            items = itemDB.getProductsByName(keyword);
+          } else if (matched.equals("Item type")) {
+            ArrayList<CategoryBean> categories = itemDB.getCategoriesByName(keyword);
+            String cat = categories.size() > 0 ? categories.get(0).getNo(): "-1";
+            items = itemDB.getProductsByCategory(cat);
+          } else if (matched.equals("Gift points") || matched.equals("Item price")) {
+            try {
+              String met = matched.equals("Gift points") ? "getGiftsByAttr" : "getProductsByAttr";
+              String col = matched.equals("Gift points") ? "POINT" : "PRICE";
+              Method method = ItemDB.class.getDeclaredMethod(met, String.class, String.class, String.class);
+              // test for logic expression
+              if (keyword.startsWith(">") || keyword.startsWith("<"))
+                items = (ArrayList<ItemBean>) method.invoke(itemDB, col, keyword.substring(0, 2).replaceAll("\\d", ""), keyword.replaceAll("\\D+",""));
+              // test for equals exact number
+              else if (keyword.matches("-?\\d+") || keyword.startsWith("="))
+                items = (ArrayList<ItemBean>) method.invoke(itemDB, col, "=", keyword.replaceAll("\\D+",""));
+              // test for range
+              else if (keyword.matches("^\\d+-\\d+$")) {
+                String[] parts = keyword.split("-");
+                int from = new Integer(parts[0]);
+                int to = new Integer(parts[1]);
+                items = (ArrayList<ItemBean>) method.invoke(itemDB, col, "BETWEEN", from + " AND " + to);
+              }
+            } catch (Exception e) {}
+          }
+          request.setAttribute("items", items);
           request.getRequestDispatcher("item/searchResult.jsp").forward(request, response);
         } else
           request.getRequestDispatcher("item/noResult.jsp").forward(request, response);

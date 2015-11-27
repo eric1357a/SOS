@@ -102,7 +102,7 @@ public class ItemDB extends SOSDB {
   }
   
   public ArrayList<ItemBean> getProductsByName(String name) {
-    return getProductsByAttr("PRODNAME", "LIKE", "'%" + name + "%'");
+    return getProductsByAttr("LOWER(PRODNAME)", "LIKE", "'%" + name.toLowerCase() + "%'");
   }
   
   public ArrayList<ItemBean> getProductsByCategory(String category) {
@@ -169,7 +169,7 @@ public class ItemDB extends SOSDB {
   }
   
   public ArrayList<CategoryBean> getCategoriesByName(String name) {
-    return getCategoriesByAttr("CATNAME", "LIKE", "'%" + name + "%'");
+    return getCategoriesByAttr("LOWER(CATNAME)", "LIKE", "'%" + name.toLowerCase() + "%'");
   }
   
   public boolean update(ItemBean item) {

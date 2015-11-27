@@ -68,10 +68,13 @@ $(document).on('click reset', function (e) {
   }
 })
 searchInput.keyup(function () {
-  var which = $('#search-input .dropdown .text').text();
-  $.post('<%=cp%>/item?action=search&word=' + this.value + '&which=' + which, function(data) {
-    $('#search-result').html(data);
-  });
+  if (this.value.length > 0) {
+    var which = $('#search-input .dropdown .text').text();
+    $.post('<%=cp%>/item?action=search&word=' + this.value + '&which=' + which, function(data) {
+      $('#search-result').html(data);
+    });
+  }
+  else $('#search-result').empty();
 });
 $('#sign-out').click(function () {
   $.post('<%=cp%>/client?action=signOut', function(data) {

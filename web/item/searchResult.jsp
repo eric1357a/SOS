@@ -4,25 +4,45 @@
 <% if (items.size() > 0) { %>
 
 <div id="sort" class="ui menu">
-  <a class="bug popup icon item" data-content="Edit This Page" href="https://github.com/Semantic-Org/Semantic-UI-Docs/edit/master/server/documents/elements/icon.html.eco">
-    <i class="edit icon"></i>
+  <span class="item">Sort by</span>
+  <a class="icon item" data-sort="name-asc" data-content="Sort by name ascending" data-position="bottom center">
+    <i class="sort alphabet ascending icon"></i>
   </a>
-
-  <a class="bug popup icon item" data-content="Submit Bug Report" href="https://github.com/Semantic-Org/Semantic-UI/issues/new?title=[Icon] - Your Bug Name&amp;body=**Steps to Reproduce**%0A1. Do something%0A2. Do something else.%0A3. Do one last thing.%0A%0A**Expected**%0AThe Icon should do this%0A%0A**Result**%0AThe Icon does not do this%0A%0A**Testcase**%0A(fork this to get started)%0Ahttp://jsfiddle.net/rduvhn8u/1/">
-    <i class="bug icon"></i>
+  <a class="icon item" data-sort="name-desc" data-content="Sort by name ascending" data-position="bottom center">
+    <i class="sort alphabet descending icon"></i>
   </a>
-
-  <a class="github popup icon item" data-content="View project on GitHub" href="https://github.com/Semantic-Org/Semantic-UI">
-    <i class="alternate github icon"></i>
+  <a class="icon item" data-sort="cost-asc" data-content="Sort by cost ascending" data-position="bottom center">
+    <i class="sort numeric ascending icon"></i>
+  </a>
+  <a class="icon item" data-sort="cost-desc" data-content="Sort by cost descending" data-position="bottom center">
+    <i class="sort numeric descending icon"></i>
   </a>
 </div>
 
+<div id="results">
 <% for (ItemBean item : items) { %>
   <sos:searchResult  item="<%=item%>"/>
 <% } %>
+</div>
 
 <script>
-  
+$('[data-content]').popup({
+  duration: 0
+});
+$('#sort [data-sort]').click(function () {
+  var list = $('#results .list-item').get();
+  var sort = this.getAttribute('data-sort').split('-');
+  list.sort(function (a, b) {
+    var va = sort[1] === 'asc' ? a.getAttribute('data-' + sort[0]) : b.getAttribute('data-' + sort[0]);
+    var vb = sort[1] === 'asc' ? b.getAttribute('data-' + sort[0]) : a.getAttribute('data-' + sort[0]);
+    if (sort[0] === 'name')
+      return va.replace(/\W+/g, '').toLowerCase().localeCompare(vb.replace(/\W+/g, '').toLowerCase());
+    else
+      return +va > +vb;
+  });
+  for (var i = 0; i < list.length; i++)
+    list[i].parentNode.appendChild(list[i]);
+});
 </script>
 
 <% } else { %>
