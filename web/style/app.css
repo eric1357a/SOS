@@ -39,6 +39,7 @@ body {
   max-height: 420px;
   overflow-x: hidden;
 }
+#search-result .menu { margin: 0 }
 #search-result .name {
   clear: both;
   float: left;
@@ -109,3 +110,39 @@ body {
 .product.card:active { opacity: .75 }
 .product.card .header { margin: 0 }
 .product.card .description td { padding-left: 8px }
+#back-to-top {
+  display: none;
+  bottom: 0;
+  margin: 2rem;
+  position: fixed;
+  right: 0;
+}
+@media (max-width: 720px) {
+  .column.grid > .column { width: 100%!important }
+  .grid.wall {
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0;
+    -moz-column-count: 1;
+    -moz-column-gap: 0;
+    column-count: 1;
+    column-gap: 0;
+  }
+  #menu {
+    height: 48px;
+    z-index: 10;
+  }
+  #menu, #menu .menu { flex-flow: column }
+  #menu .menu, #menu .menu .item {
+    width: 100%;
+  }
+  #menu .menu {
+    background: rgba(255,255,255,.9);
+    display: none;
+    position: relative;
+    top: 48px;
+  }
+  #menu.open .menu { display: block }
+  #menu .menu .item {
+    float: left;
+  }
+}

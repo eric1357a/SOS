@@ -35,6 +35,9 @@
     return $.get('menu.jsp', function (data) {
       $main.prepend(data);
       $('#menu .item').click(updateActiveMenu);
+      $('#menu').click(function (e) {
+        $(this).toggleClass('open');
+      });
     });
   }
   function getIndex () {
@@ -54,5 +57,15 @@
     });
     window.onpopstate = getIndex;
   }
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() > 200) {
+      $('#back-to-top').fadeIn(250);
+    } else {
+      $('#back-to-top').fadeOut(250);
+    }
+  });
+  $('#back-to-top').click(function () {
+    $('html,body').animate({ scrollTop: 0 }, 500);
+  });
   getMenu().then(getIndex).done(initialized);
 })();

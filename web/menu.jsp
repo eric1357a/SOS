@@ -2,10 +2,12 @@
 <%@page import="sos.bean.*"%>
 <% String cp = request.getContextPath(); %>
 <div id="menu" class="ui secondary pointing menu">
-  <a class="item" href="<%=cp%>/">Stationaries</a>
-  <a class="item" href="<%=cp%>/item?action=categories">Categories</a>
-  <a class="item" href="<%=cp%>/item?action=gifts">Gifts</a>
-  <a id="toggle-search" class="item">Search</a>
+  <div class="left menu">
+    <a class="item" href="<%=cp%>/">Stationaries</a><br>
+    <a class="item" href="<%=cp%>/item?action=categories">Categories</a><br>
+    <a class="item" href="<%=cp%>/item?action=gifts">Gifts</a><br>
+    <a id="toggle-search" class="item">Search</a><br>
+  </div>
   <div class="right menu">
     <%
       IUserBean user = (IUserBean) request.getSession().getAttribute("user");

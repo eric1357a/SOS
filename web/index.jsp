@@ -18,6 +18,12 @@
         <% } %>
       </article>
     </main>
+      <div>
+    <div id="back-to-top" class="ui menu">
+      <a class="icon item">
+        <i class="arrow up icon"></i>
+      </a>
+    </div>
     <script src="js/jquery.js"></script>
     <script src="js/semantic.js"></script>
     <script src="js/app.js"></script>
