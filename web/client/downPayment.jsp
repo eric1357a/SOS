@@ -73,7 +73,7 @@ $('input').keypress(function (e) {
 $('form').submit(function (e) {
   e.preventDefault();
   var clicked = $(this).find('button[type="submit"]:focus').val().toLowerCase();
-  if ($('.error input').length && clicked !== 'cancel') {
+  if ($('[name="cvc"]').val().length < 3 || $('.error input').length && clicked !== 'cancel') {
     alert('Some field contains invalid data.');
     return;
   }

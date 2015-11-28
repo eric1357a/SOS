@@ -106,12 +106,14 @@ public class ClientServlet extends HttpServlet {
     switch (String.valueOf(request.getParameter("action"))) {
       case "register":
         if (null != request.getSession().getAttribute("regInfo")) {
-          request.getSession().removeAttribute("regInfo");
           if ("submit".equals(request.getParameter("act"))) {
             String[] data = ((String) request.getSession().getAttribute("regInfo")).split("\\|");
+            request.getSession().removeAttribute("regInfo");
             userDB.addClient(data[0], new Integer(data[1]), data[2]);
             out.print("\"" + request.getContextPath() + "\"");
-            break;
+          } else {
+            request.getSession().removeAttribute("regInfo");
+            out.print("\"client?action=register\"");
           }
           break;
         } else {
@@ -121,7 +123,7 @@ public class ClientServlet extends HttpServlet {
           String regInfo = name + "|" + phone + "|" + address;
           request.getSession().setAttribute("regInfo", regInfo);
         }
-        out.print("\"" + request.getContextPath() + "/client?action=register\"");
+        out.print("\"client?action=register\"");
         break;
       case "signIn":
         String username = request.getParameter("username");
