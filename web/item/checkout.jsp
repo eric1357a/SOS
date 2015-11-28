@@ -49,25 +49,19 @@
               </div>
             </div>
             <div class="row">
-              <div id="delivery" class="ui segment">
-                Item(s) will deliver to the following address:
-                <br>
-                <b><%=client.getAddress()%></b> - <a href="client?action=updateInfo">Edit</a>
-                <br><br>
-                Select date and time for delivery:
-                <br><br>
-                Date&emsp;
-                <div class="ui input"><input id="timedat" type="date"></div>
-                <br><br>
-                Time&emsp;
-                <div class="ui input" style="width:78px"><input id="timehrs" type="number" min="0" max="23" maxlength="2"></div>
-                &#65306;
-                <div class="ui input" style="width:78px"><input id="timemin" type="number" min="0" max="59" maxlength="2"></div>
-              </div>
-              <div id="selfpick" class="ui segment" style="display: none">
-                <b>Self pick-up at Stationery Station main office</b>
-                <br><br>
-                Select date and time to pick-up:
+              <div class="ui segment">
+                <div id="delivery">
+                  Item(s) will deliver to the following address:
+                  <br>
+                  <b><%=client.getAddress()%></b> - <a href="client?action=updateInfo">Edit</a>
+                  <br><br>
+                  Select date and time for delivery:
+                </div>
+                <div id="selfpick" style="display: none">
+                  <b>Self pick-up at Stationery Station main office</b>
+                  <br><br>
+                  Select date and time to pick-up:
+                </div>
                 <br><br>
                 Date&emsp;
                 <div class="ui input"><input id="timedat" type="date"></div>
