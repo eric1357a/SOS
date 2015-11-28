@@ -56,7 +56,7 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Ink', 50, 'Ink for fountain pen', 8, 'Parker', 'https://na.cx/i/JF641X.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Golden Frame', 1110, 'Gold Frame For pictures', 10, 'Vault-Tec', 'https://na.cx/i/9e16F5.jpg');
+	VALUES ('Golden Frame', 1110.5, 'Gold Frame For pictures', 10, 'Vault-Tec', 'https://na.cx/i/9e16F5.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Metal Ruler', 10, 'For measurement', 11, 'Ruler-Tec', 'https://na.cx/i/EC7545.png');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
@@ -92,7 +92,7 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Repositional Notes', 35, 'A simple repositional notes', 8, 'Post-it®', 'https://na.cx/i/42HY84.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
-	VALUES ('Mouse Pad', 200, 'Mouse pad for mouse', 9, 'Mouse-Tec', 'https://na.cx/i/Q08SJE.jpg');
+	VALUES ('Mouse Pad', 200.5, 'Mouse pad for mouse', 9, 'Mouse-Tec', 'https://na.cx/i/Q08SJE.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
 	VALUES ('Wooden Ruler', 12, 'For measurement', 11, 'Ruler-Tec', 'https://na.cx/i/A4USQg.jpg');
 INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE) 
@@ -108,7 +108,7 @@ INSERT INTO APP.PRODUCTS (PRODNAME, PRICE, DESCRIPTION, CATNO, BRAND, PICTURE)
 
 /*Insert Admin Sample Records*/
 INSERT INTO APP.ADMINS (USERNAME, PASSWORD) 
-	VALUES ('admin', 'pas');
+	VALUES ('admin', '123');
 	
 	
 /*Insert Order Sample Records*/
