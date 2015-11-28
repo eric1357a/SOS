@@ -14,7 +14,7 @@
       <br><br>
       <% OrderBean order = (OrderBean) request.getAttribute("order"); %>
       <div class="ui error message">
-        You can cancel the order within 24 hours after ordered at least 24 hours before deliver date.
+        You can cancel the order within 24 hours after ordered and at least 24 hours before deliver date.
         In addition, $50 will be charged from your credit card for handling fee.
       </div>
       <form class="ui form" action="item?action=cancelOrder&no=<%=order.getNo()%>">
@@ -38,7 +38,9 @@ $('form').submit(function (e) {
     $.post(this.getAttribute('action'), function (target) {
       location.href = 'client?action=orderHistory';
     });
+  } else {
+    alert('You can only cancel the orders that within 24 hours after ordered,\nand at least 24 hours before deliver date.');
+    $(this).find('button').addClass('disabled');
   }
-  else alert('You cant cancel la on9 jai fucker');
 });
 </script>
