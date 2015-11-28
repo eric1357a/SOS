@@ -21,6 +21,7 @@ https://github.com/nodegin/SOS/blob/034927ab40198bb2b352c650ea13f9300582589b/REA
 - SPA (https://en.wikipedia.org/wiki/Single-page_application)
 - Responsive UI design (same ui on desktop + mobile)
 - HTML5
+- EJB
 
 # notes
 
