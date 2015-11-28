@@ -29,7 +29,7 @@ public class UserDB extends SOSDB {
     boolean success = false;
     try {
       statement = getConnection().prepareStatement("INSERT INTO CLIENTS (PASSWORD,FULLNAME,PHONE,ADDRESS,VERIFIED,BONUS) VALUES (?,?,?,?,?,?)");
-      statement.setString(1, "1234");
+      statement.setString(1, "123");
       statement.setString(2, name);
       statement.setInt(3, phone);
       statement.setString(4, address);

@@ -35,7 +35,7 @@ public class OrderListItemTag extends SimpleTagSupport {
     String delivDate = cal.get(Calendar.YEAR) + "-" + (1 + cal.get(Calendar.MONTH)) + "-" + cal.get(Calendar.DATE);
     out.print("<div class='event'>");
     out.print("  <div class='content'>");
-    out.print("    <div class='date'>#" + order.getNo() + "&emsp;" + order.getType() + " order" + "</div>");
+    out.print("    <div class='date'>" + order.getType() + " order #" + order.getNo() + "</div>");
     out.print("    <div class='summary'>");
     out.print("      Status: " + order.getStatus() + "<br>");
     out.print("      Total: $" + order.getAmount() + "<br>");
@@ -44,11 +44,11 @@ public class OrderListItemTag extends SimpleTagSupport {
     out.print("    </div>");
     if (admin) {
     out.print("    <div class='meta'>");
-    out.print("      <a href='item?action=updateOrder&no=" + order.getNo() + "'><i class='edit icon'></i> Update order</a>");
+    out.print("      <a href='item?action=updateOrder&no=" + order.getNo() + "'><i class='edit icon'></i> Update</a>");
     out.print("    </div>");
     } else if (!order.getStatus().equals("cancel")) {
     out.print("    <div class='meta'>");
-    out.print("      <a href='item?action=cancelOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Cancel order</a>");
+    out.print("      <a href='item?action=cancelOrder&no=" + order.getNo() + "'><i class='remove icon'></i> Cancel</a>");
     out.print("    </div>");
     }
     out.print("  </div>");
