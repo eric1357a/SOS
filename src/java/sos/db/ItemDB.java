@@ -32,7 +32,7 @@ public class ItemDB extends SOSDB {
           id = rs.getInt(1);
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return id;
   }
@@ -47,7 +47,7 @@ public class ItemDB extends SOSDB {
         success = true;
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return success;
   }
@@ -91,7 +91,7 @@ public class ItemDB extends SOSDB {
         products.add(itemFronResult(table, result));
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return products;
   }
@@ -145,7 +145,6 @@ public class ItemDB extends SOSDB {
       statement.close();
     } catch (Exception e) {
       e.printStackTrace();
-      /* Who cares? */
     }
     return categories;
   }
@@ -188,7 +187,7 @@ public class ItemDB extends SOSDB {
       statement.close();
       return true;
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return false;
   }

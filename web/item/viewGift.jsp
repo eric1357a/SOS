@@ -15,6 +15,16 @@
       <% ItemBean item = (ItemBean) request.getAttribute("gift"); %>
       <div class="ui equal width center aligned padded grid">
         <div class="row">
+          <div class="ui tiny horizontal statistic">
+            <div class="label">This gift have been viewed for </div>
+            <div class="label"></div>
+            <div class="value"><%=request.getAttribute("viewCount")%></div>
+            <div class="label">times</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
           <h2 class="ui center aligned header"><%=item.getName()%></h2>
         </div>
         <div class="row">

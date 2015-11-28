@@ -40,7 +40,6 @@ public class UserDB extends SOSDB {
       statement.close();
     } catch (Exception e) {
       e.printStackTrace();
-      /* Who cares? */
     }
     return success;
   }
@@ -69,7 +68,7 @@ public class UserDB extends SOSDB {
         }
       }
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return null;
   }
@@ -84,7 +83,7 @@ public class UserDB extends SOSDB {
         clients.add(clientFromResult(result));
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return clients;
   }
@@ -110,7 +109,7 @@ public class UserDB extends SOSDB {
       statement.close();
       return true;
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return false;
   }

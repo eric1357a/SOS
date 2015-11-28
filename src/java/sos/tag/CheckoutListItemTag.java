@@ -7,8 +7,17 @@ import sos.bean.*;
 
 public class CheckoutListItemTag extends SimpleTagSupport {
   
+  private int index;
   private Entry<ItemBean, Integer> entry;
 
+  public int getIndex() {
+    return index;
+  }
+
+  public void setIndex(int index) {
+    this.index = index;
+  }
+  
   public Entry<ItemBean, Integer> getEntry() {
     return entry;
   }
@@ -22,7 +31,7 @@ public class CheckoutListItemTag extends SimpleTagSupport {
     ItemBean item = entry.getKey();
     out.print("<div class='item'>");
     out.print("  <div class='content'>");
-    out.print("    <div class='header'>#" + item.getNo()+ " &emsp; " + item.getName() + "</div>");
+    out.print("    <div class='header'>#" + index + " &emsp; " + item.getName() + "</div>");
     out.print("    <div class='ui mini horizontal statistic'>");
     out.print("      <div class='label'>Price</div>");
     out.print("      <div class='label'></div>");

@@ -7,16 +7,17 @@ public class OrderBean implements Serializable {
 
   private String no, type, status;
   private double amount;
-  private Date time;
+  private Date orderDate, delivDate;
   private int clientId;
 
   public OrderBean() {
   }
 
-  public OrderBean(String no,  double amount, Date time, String type, String status, int clientId) {
+  public OrderBean(String no,  double amount, Date orderDate, Date delivDate, String type, String status, int clientId) {
     this.no = no;
     this.amount = amount;
-    this.time = time;
+    this.orderDate = orderDate;
+    this.delivDate = delivDate;
     this.type = type;
     this.status = status;
     this.clientId = clientId;
@@ -53,13 +54,21 @@ public class OrderBean implements Serializable {
   public void setAmount(double amount) {
     this.amount = amount;
   }
-
-  public Date getTime() {
-    return time;
+  
+  public Date getOrderDate() {
+    return orderDate;
   }
 
-  public void setTime(Date time) {
-    this.time = time;
+  public void setOrderDate(Date orderDate) {
+    this.orderDate = orderDate;
+  }
+
+  public Date getDelivDate() {
+    return delivDate;
+  }
+
+  public void setDelivDate(Date delivDate) {
+    this.delivDate = delivDate;
   }
 
   public int getClientId() {

@@ -29,15 +29,18 @@ public class OrderListItemTag extends SimpleTagSupport {
   public void doTag() throws java.io.IOException {
     JspWriter out = getJspContext().getOut();
     Calendar cal = Calendar.getInstance();
-    cal.setTime(order.getTime());
-    String date = cal.get(Calendar.YEAR) + "-" + (1 + cal.get(Calendar.MONTH)) + "-" + cal.get(Calendar.DATE);
+    cal.setTime(order.getOrderDate());
+    String orderDate = cal.get(Calendar.YEAR) + "-" + (1 + cal.get(Calendar.MONTH)) + "-" + cal.get(Calendar.DATE);
+    cal.setTime(order.getDelivDate());
+    String delivDate = cal.get(Calendar.YEAR) + "-" + (1 + cal.get(Calendar.MONTH)) + "-" + cal.get(Calendar.DATE);
     out.print("<div class='event'>");
     out.print("  <div class='content'>");
     out.print("    <div class='date'>#" + order.getNo() + "&emsp;" + order.getType() + " order" + "</div>");
     out.print("    <div class='summary'>");
     out.print("      Status: " + order.getStatus() + "<br>");
     out.print("      Total: $" + order.getAmount() + "<br>");
-    out.print("      Date: " + date);
+    out.print("      Order date: " + orderDate + "<br>");
+    out.print("      " + order.getType() + " date: " + delivDate);
     out.print("    </div>");
     if (admin) {
     out.print("    <div class='meta'>");

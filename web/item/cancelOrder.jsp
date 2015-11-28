@@ -29,10 +29,16 @@
 </div>
 
 <script>
+var orderTime = <%=order.getOrderDate().getTime()%>;
+var delivTime = <%=order.getDelivDate().getTime()%>;
+var curntTime = +new Date;
 $('form').submit(function (e) {
   e.preventDefault();
-  $.post(this.getAttribute('action'), function (target) {
-    location.href = 'client?action=orderHistory';
-  });
+  if (curntTime > orderTime && curntTime < delivTime - 1000 * 60 * 60 * 24) {
+    $.post(this.getAttribute('action'), function (target) {
+      location.href = 'client?action=orderHistory';
+    });
+  }
+  else alert('You cant cancel la on9 jai fucker');
 });
 </script>

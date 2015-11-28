@@ -16,6 +16,16 @@
       <% CategoryBean category = (CategoryBean) request.getAttribute("category"); %>
       <div class="ui equal width center aligned padded grid">
         <div class="row">
+          <div class="ui tiny horizontal statistic">
+            <div class="label">This item have been viewed for </div>
+            <div class="label"></div>
+            <div class="value"><%=request.getAttribute("viewCount")%></div>
+            <div class="label">times</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui equal width center aligned padded grid">
+        <div class="row">
           <div class="ui centered two stackable cards">
             <div class="card">
               <div class="image">

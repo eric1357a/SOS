@@ -20,7 +20,7 @@ public class IncompleteOrderTag extends SimpleTagSupport {
   public void doTag() throws java.io.IOException {
     JspWriter out = getJspContext().getOut();
     Calendar cal = Calendar.getInstance();
-    cal.setTime(order.getTime());
+    cal.setTime(order.getOrderDate());
     String date = cal.get(Calendar.YEAR) + "-" + (1 + cal.get(Calendar.MONTH)) + "-" + cal.get(Calendar.DATE);
     out.print("<div class='item'>");
     out.print("  <div class='content'>");

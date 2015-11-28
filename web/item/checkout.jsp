@@ -27,9 +27,9 @@
       <form action="item?action=checkout">
         <div class="ui middle aligned divided list">
           <% int total = 0; %>
-          <% for (Entry<ItemBean, Integer> entry : cart) { %>
-            <sos:checkoutListItem entry="<%=entry%>"/>
-            <% total += entry.getKey().getPrice() * entry.getValue(); %>
+          <% for (int i = 0; i < cart.size(); i++) { %>
+            <sos:checkoutListItem index="<%=(i + 1)%>" entry="<%=cart.get(i)%>"/>
+            <% total += cart.get(i).getKey().getPrice() * cart.get(i).getValue(); %>
           <% } %>
           <div class="ui divider"></div>
           <div class="ui equal width center aligned padded grid">
@@ -51,20 +51,31 @@
             <div class="row">
               <div id="delivery" class="ui segment">
                 Item(s) will deliver to the following address:
-                <br><br>
-                <b><%=client.getAddress()%></b>
                 <br>
-                <a href="client?action=updateInfo">Edit</a>
+                <b><%=client.getAddress()%></b> - <a href="client?action=updateInfo">Edit</a>
+                <br><br>
+                Select date and time for delivery:
+                <br><br>
+                Date&emsp;
+                <div class="ui input"><input id="timedat" type="date"></div>
+                <br><br>
+                Time&emsp;
+                <div class="ui input" style="width:78px"><input id="timehrs" type="number" min="0" max="23" maxlength="2"></div>
+                &#65306;
+                <div class="ui input" style="width:78px"><input id="timemin" type="number" min="0" max="59" maxlength="2"></div>
               </div>
               <div id="selfpick" class="ui segment" style="display: none">
+                <b>Self pick-up at Stationery Station main office</b>
+                <br><br>
                 Select date and time to pick-up:
                 <br><br>
-                <b>Date<b>&emsp;
-                <div class="ui input"><input type="date"></div>
+                Date&emsp;
+                <div class="ui input"><input id="timedat" type="date"></div>
                 <br><br>
-                <b>Time<b>&emsp;
-                <div class="ui input" style="width:78px"><input type="number" min="0" max="23" maxlength="2"></div>&#65306;
-                <div class="ui input" style="width:78px"><input type="number" min="0" max="59" maxlength="2"></div>
+                Time&emsp;
+                <div class="ui input" style="width:78px"><input id="timehrs" type="number" min="0" max="23" maxlength="2"></div>
+                &#65306;
+                <div class="ui input" style="width:78px"><input id="timemin" type="number" min="0" max="59" maxlength="2"></div>
               </div>
             </div>
             <div class="row">
@@ -88,7 +99,11 @@ $('.ui.checkbox').checkbox({
 });
 $('form').submit(function (e) {
   e.preventDefault();
-  $.post(this.getAttribute('action'), {totalCost: <%=total%>, pickup: $('#pickup').is(':checked')}, function () {
+  $.post(this.getAttribute('action'), {
+    totalCost: <%=total%>,
+    pickup: $('#pickup').is(':checked'),
+    date: $('#timedat').val() + ' ' + $('#timehrs').val() + ':' + $('#timemin').val()
+  }, function () {
     location.href = 'client?action=orderHistory';
   });
 });

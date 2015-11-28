@@ -3,15 +3,19 @@ package sos.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
+import javax.ejb.EJB;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sos.bean.*;
 import sos.db.*;
+import sos.ejb.ViewCountSessionBean;
+import sos.ejb.ViewCounter;
 
 @WebServlet(name = "ItemServlet", urlPatterns = {"/item"})
 public class ItemServlet extends HttpServlet {
@@ -26,6 +32,8 @@ public class ItemServlet extends HttpServlet {
   private ItemDB itemDB;
   private UserDB userDB;
   private OrderDB orderDB;
+  @EJB
+  private ViewCounter counter;
   
   public void init() throws ServletException {
     String host = this.getServletContext().getInitParameter("host");
@@ -34,6 +42,21 @@ public class ItemServlet extends HttpServlet {
     itemDB = new ItemDB(host, user, pass);
     userDB = new UserDB(host, user, pass);
     orderDB = new OrderDB(host, user, pass);
+    try {
+      counter = lookupRemoteStatefulCounter();
+    } catch (Exception e) {}
+  }
+  
+  private ViewCounter lookupRemoteStatefulCounter() throws NamingException {
+    final Hashtable jndiProperties = new Hashtable();
+    jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+    final Context context = new InitialContext(jndiProperties);
+    final String appName = "";
+    final String moduleName = "viewcount";
+    final String distinctName = "";
+    final String beanName = ViewCountSessionBean.class.getSimpleName();
+    final String viewClassName = ViewCounter.class.getName();
+    return (ViewCounter) context.lookup("ejb:" + appName + "/" + moduleName + "/" + distinctName + "/" + beanName + "!" + viewClassName + "?stateful");
   }
   
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -72,7 +95,10 @@ public class ItemServlet extends HttpServlet {
         if (null == item)
           request.getRequestDispatcher("404.jsp").forward(request, response);
         else {
+          counter.plusOne(item.getNo() + "@" + item.getCatNo());
+          int count = counter.getCount(item.getNo() + "@" + item.getCatNo());
           request.setAttribute("gift", item);
+          request.setAttribute("viewCount", count);
           request.getRequestDispatcher("item/viewGift.jsp").forward(request, response);
         }
         break;
@@ -81,8 +107,11 @@ public class ItemServlet extends HttpServlet {
         if (null == item)
           request.getRequestDispatcher("404.jsp").forward(request, response);
         else {
+          counter.plusOne(item.getNo() + "@" + item.getCatNo());
+          int count = counter.getCount(item.getNo() + "@" + item.getCatNo());
           request.setAttribute("category", itemDB.getCategoryByNo(item.getCatNo()));
           request.setAttribute("item", item);
+          request.setAttribute("viewCount", count);
           request.getRequestDispatcher("item/details.jsp").forward(request, response);
         }
         break;
@@ -288,8 +317,13 @@ public class ItemServlet extends HttpServlet {
         int total = new Integer(request.getParameter("totalCost"));
         boolean pickup = "true".equals(request.getParameter("pickup"));
         int clientId = ((ClientBean) user).getId();
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date delivDate = new Date(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000)); // +7 days if parse exception
+        try {
+          delivDate = parser.parse(request.getParameter("date"));
+        } catch (Exception e) {}
         /* create order, credit request */
-        int ordId = orderDB.addOrder(total, new Date(), pickup ? "Self pick-up" : "Delivery", "process", clientId);
+        int ordId = orderDB.addOrder(total, new Date(), delivDate, pickup ? "Self pick-up" : "Delivery", "process", clientId);
         int credit = (total / 1000) * 100;
         if (credit > 0)
           orderDB.addCreditRequest(clientId, credit, System.currentTimeMillis());

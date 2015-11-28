@@ -26,56 +26,58 @@ public class OrderDB extends SOSDB {
         success = true;
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return success;
   }
   
-  public int addOrder(double amount, Date time, String ordType, String status, int clientId) {
+  public int addOrder(double amount, Date orderDate, Date delivDate, String orderType, String status, int clientId) {
     PreparedStatement statement = null;
     int id = -1;
     try {
-      statement = getConnection().prepareStatement("INSERT INTO ORDERS (AMOUNT,TIME,ORDTYPE,STATUS,CLIENTID) VALUES (?,?,?,?,?)",
+      statement = getConnection().prepareStatement("INSERT INTO ORDERS (AMOUNT,ORDERTIME,COLLECTTIME,ORDERTYPE,STATUS,CLIENTID) VALUES (?,?,?,?,?,?)",
               Statement.RETURN_GENERATED_KEYS);
       statement.setDouble(1, amount);
-      statement.setLong(2, time.getTime());
-      statement.setString(3, ordType);
-      statement.setString(4, status);
-      statement.setInt(5, clientId);
+      statement.setLong(2, orderDate.getTime());
+      statement.setLong(3, delivDate.getTime());
+      statement.setString(4, orderType);
+      statement.setString(5, status);
+      statement.setInt(6, clientId);
       ResultSet rs;
       if (statement.executeUpdate() >= 1)
         if ((rs = statement.getGeneratedKeys()).next())
           id = rs.getInt(1);
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return id;
   }
   
-  public boolean addProductOrder(int quantity, String prodNo, int ordNo) {
+  public boolean addProductOrder(int quantity, String prodNo, int orderNo) {
     PreparedStatement statement = null;
     boolean success = false;
     try {
-      statement = getConnection().prepareStatement("INSERT INTO PRODUCTS_ORDERS (QUANTITY,PRODNO,ORDNO) VALUES (?,?,?)");
+      statement = getConnection().prepareStatement("INSERT INTO PRODUCTS_ORDERS (QUANTITY,PRODNO,ORDERNO) VALUES (?,?,?)");
       statement.setInt(1, quantity);
       statement.setString(2, prodNo);
-      statement.setInt(3, ordNo);
+      statement.setInt(3, orderNo);
       if (statement.executeUpdate() >= 1)
         success = true;
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return success;
   }
   
   private OrderBean orderFronResult (ResultSet result) throws Exception {
     OrderBean order = new OrderBean();
-    order.setNo(result.getString("OrdNo"));
+    order.setNo(result.getString("OrderNo"));
     order.setAmount(result.getDouble("Amount"));
-    order.setTime(new Date(result.getLong("Time")));
-    order.setType(result.getString("OrdType"));
+    order.setOrderDate(new Date(result.getLong("OrderTime")));
+    order.setDelivDate(new Date(result.getLong("CollectTime")));
+    order.setType(result.getString("OrderType"));
     order.setStatus(result.getString("Status"));
     order.setClientId(result.getInt("ClientID"));
     return order;
@@ -97,13 +99,13 @@ public class OrderDB extends SOSDB {
         orders.add(orderFronResult(result));
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return orders;
   }
   
   public ArrayList<OrderBean> getOrder10LastClient(int clientID) {
-    return getOrdersByAttr("CLIENTID", "=", clientID + " order by time desc", 10);
+    return getOrdersByAttr("CLIENTID", "=", clientID + " ORDER BY ORDERTIME DESC", 10);
   }
   
   public ArrayList<OrderBean> getAllOrders() {
@@ -111,7 +113,7 @@ public class OrderDB extends SOSDB {
   }
   
   public OrderBean getOrder(String no) {
-    ArrayList<OrderBean> result = getOrdersByAttr("ORDNO", "=", no);
+    ArrayList<OrderBean> result = getOrdersByAttr("ORDERNO", "=", no);
     return result.size() == 1 ? result.get(0) : null;
   }
   
@@ -125,7 +127,7 @@ public class OrderDB extends SOSDB {
         success = true;
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return success;
   }
@@ -146,7 +148,7 @@ public class OrderDB extends SOSDB {
       }
       statement.close();
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return requests;
   }
@@ -163,19 +165,20 @@ public class OrderDB extends SOSDB {
   public boolean update(OrderBean order) {
     PreparedStatement statement = null;
     try {
-      String preQueryStatement = "UPDATE ORDERS SET AMOUNT=?,TIME=?,STATUS=?,CLIENTID=?,ORDTYPE=? WHERE ORDNO = ?";
+      String preQueryStatement = "UPDATE ORDERS SET AMOUNT=?,ORDERTIME=?,COLLECTTIME=?,STATUS=?,CLIENTID=?,ORDERTYPE=? WHERE ORDERNO = ?";
       statement = getConnection().prepareStatement(preQueryStatement);
       statement.setDouble(1, order.getAmount());
-      statement.setLong(2, order.getTime().getTime());
-      statement.setString(3, order.getStatus());
-      statement.setInt(4, order.getClientId());
-      statement.setString(5, order.getType());
-      statement.setString(6, order.getNo());
+      statement.setLong(2, order.getOrderDate().getTime());
+      statement.setLong(3, order.getDelivDate().getTime());
+      statement.setString(4, order.getStatus());
+      statement.setInt(5, order.getClientId());
+      statement.setString(6, order.getType());
+      statement.setString(7, order.getNo());
       statement.executeUpdate();
       statement.close();
       return true;
     } catch (Exception e) {
-      /* Who cares? */
+      e.printStackTrace();
     }
     return false;
   }
