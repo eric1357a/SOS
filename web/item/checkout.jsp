@@ -99,10 +99,16 @@ $('.ui.checkbox').checkbox({
 });
 $('form').submit(function (e) {
   e.preventDefault();
+  var date = $('#timedat').val() + ' ' + $('#timehrs').val() + ':' + $('#timemin').val();
+  var chkDate = +new Date((date.replace(' ', 'T') + ':00').replace(/T(\d{1})\:/g, 'T0$1:').replace(/\:(\d{1})\:/g, ':0$1:'));
+  if (isNaN(chkDate) || chkDate < +new Date) {
+    alert('Invalid date input');
+    return;
+  }
   $.post(this.getAttribute('action'), {
     totalCost: <%=total%>,
     pickup: $('#pickup').is(':checked'),
-    date: $('#timedat').val() + ' ' + $('#timehrs').val() + ':' + $('#timemin').val()
+    date: date
   }, function () {
     location.href = 'client?action=orderHistory';
   });

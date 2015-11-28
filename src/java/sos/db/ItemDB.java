@@ -105,6 +105,10 @@ public class ItemDB extends SOSDB {
     return getProductsByAttr("LOWER(PRODNAME)", "LIKE", "'%" + name.toLowerCase() + "%'");
   }
   
+  public ArrayList<ItemBean> getProductsByBrand(String name) {
+    return getProductsByAttr("LOWER(BRAND)", "LIKE", "'%" + name.toLowerCase() + "%'");
+  }
+  
   public ArrayList<ItemBean> getProductsByCategory(String category) {
     return getProductsByAttr("CATNO", "=", category);
   }

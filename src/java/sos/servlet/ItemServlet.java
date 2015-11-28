@@ -202,13 +202,15 @@ public class ItemServlet extends HttpServlet {
       case "search":
         String keyword = request.getParameter("word");
         String which = request.getParameter("which");
-        Pattern p = Pattern.compile("(Item name|Item price|Item type|Gift points)");
+        Pattern p = Pattern.compile("(Item name|Item price|Item type|Item brand|Gift points)");
         Matcher m = p.matcher(which);
         if (null != keyword && m.find()) {
           String matched = m.group(1);
           ArrayList<ItemBean> items = new ArrayList<>();
           if (matched.equals("Item name")) {
             items = itemDB.getProductsByName(keyword);
+          } else if (matched.equals("Item brand")) {
+            items = itemDB.getProductsByBrand(keyword);
           } else if (matched.equals("Item type")) {
             ArrayList<CategoryBean> categories = itemDB.getCategoriesByName(keyword);
             String cat = categories.size() > 0 ? categories.get(0).getNo(): "-1";

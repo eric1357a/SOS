@@ -20,14 +20,20 @@
           <a class="item" data-tab="delivery-addr">Delivery address</a>
         </div>
         <!--  Maintain personal information tab  -->
+        <%
+          String[] parts = client.getName().split(" ");
+          String surname = parts[0];
+          String forename = Arrays.toString(Arrays.copyOfRange(parts, 1, parts.length));
+          forename = forename.substring(1, forename.length() - 1).replaceAll(",", " ");
+        %>
         <div class="ui bottom attached active tab segment" data-tab="personal-info">
           <div class="field">
             <label>Forename</label>
-            <input name="forename" type="text" autocomplete="off" value="<%=client.getName().split(" ")[0]%>">
+            <input name="forename" type="text" autocomplete="off" value="<%=surname%>">
           </div>
           <div class="field">
             <label>Surname</label>
-            <input name="surname" type="text" autocomplete="off" value="<%=client.getName().split(" ")[1]%>">
+            <input name="surname" type="text" autocomplete="off" value="<%=forename%>">
           </div>
           <div class="field">
             <label>Phone number</label>

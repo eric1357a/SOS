@@ -38,6 +38,7 @@
           <div class="menu">
             <div class="item">Item name</div>
             <div class="item">Item price</div>
+            <div class="item">Item brand</div>
             <div class="item">Item type</div>
             <div class="item">Gift points</div>
           </div>
