@@ -138,7 +138,7 @@ public class ClientServlet extends HttpServlet {
         /* check is client */
         String name = request.getParameter("forename") + " " + request.getParameter("surname");
         String phone = request.getParameter("phone");
-        String address = request.getParameter("address");        
+        String address = request.getParameter("address");    
         ClientBean client = (ClientBean) request.getSession().getAttribute("user");
         client.setName(name);
         client.setPhone(new Integer(phone));
